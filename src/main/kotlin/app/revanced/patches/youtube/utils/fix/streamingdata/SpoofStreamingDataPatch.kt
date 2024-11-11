@@ -1,6 +1,7 @@
 package app.revanced.patches.youtube.utils.fix.streamingdata
 
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
@@ -15,10 +16,12 @@ import app.revanced.patches.youtube.utils.fix.streamingdata.fingerprints.BuildPl
 import app.revanced.patches.youtube.utils.fix.streamingdata.fingerprints.CreateStreamingDataFingerprint
 import app.revanced.patches.youtube.utils.fix.streamingdata.fingerprints.NerdsStatsVideoFormatBuilderFingerprint
 import app.revanced.patches.youtube.utils.fix.streamingdata.fingerprints.ProtobufClassParseByteBufferFingerprint
+import app.revanced.patches.youtube.utils.fix.streamingdata.fingerprints.TimeBarLiveLabelFingerprint
 import app.revanced.patches.youtube.utils.integrations.Constants.MISC_PATH
 import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.findOpcodeIndicesReversed
 import app.revanced.util.getReference
+import app.revanced.util.indexOfFirstInstructionOrThrow
 import app.revanced.util.patch.BaseBytecodePatch
 import app.revanced.util.resultOrThrow
 import com.android.tools.smali.dexlib2.Opcode
@@ -26,6 +29,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 object SpoofStreamingDataPatch : BaseBytecodePatch(
     name = "Spoof streaming data",
@@ -45,6 +49,9 @@ object SpoofStreamingDataPatch : BaseBytecodePatch(
 
         // Nerds stats video format.
         NerdsStatsVideoFormatBuilderFingerprint,
+
+        // `Live` label in player time bar.
+        TimeBarLiveLabelFingerprint,
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
@@ -232,6 +239,27 @@ object SpoofStreamingDataPatch : BaseBytecodePatch(
                         """
                 )
             }
+        }
+
+        // endregion
+
+        // region Sync livestream time.
+        // This is needed when using iOS client as streaming data source.
+
+        TimeBarLiveLabelFingerprint.resultOrThrow().mutableMethod.apply {
+            val targetIndex = indexOfFirstInstructionOrThrow {
+                opcode == Opcode.INVOKE_VIRTUAL &&
+                    getReference<MethodReference>()?.definingClass == "Landroid/widget/TextView;" &&
+                    getReference<MethodReference>()?.name == "setOnClickListener"
+            }
+
+            val targetRegister =
+                getInstruction<FiveRegisterInstruction>(targetIndex).registerC
+
+            addInstruction(
+                targetIndex + 1,
+                "invoke-static { v$targetRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->syncLivestreamTime(Landroid/widget/TextView;)V"
+            )
         }
 
         // endregion

@@ -107,6 +107,7 @@ object SharedResourceIdPatch : ResourcePatch() {
     var SubtitleMenuSettingsFooterInfo = -1L
     var SuggestedAction = -1L
     var TapBloomView = -1L
+    var TimeBarLiveLabel = -1L
     var TitleAnchor = -1L
     var ToolTipContentView = -1L
     var TotalTime = -1L
@@ -220,6 +221,7 @@ object SharedResourceIdPatch : ResourcePatch() {
         SubtitleMenuSettingsFooterInfo = getId(STRING, "subtitle_menu_settings_footer_info")
         SuggestedAction = getId(LAYOUT, "suggested_action")
         TapBloomView = getId(ID, "tap_bloom_view")
+        TimeBarLiveLabel = getId(ID, "time_bar_live_label")
         TitleAnchor = getId(ID, "title_anchor")
         ToolTipContentView = getId(LAYOUT, "tooltip_content_view")
         TotalTime = getId(STRING, "total_time")
