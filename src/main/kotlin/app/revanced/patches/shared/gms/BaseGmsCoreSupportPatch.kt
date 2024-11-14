@@ -433,9 +433,6 @@ abstract class BaseGmsCoreSupportPatch(
             // cast
             "com.google.android.gms.cast.service.BIND_CAST_DEVICE_CONTROLLER_SERVICE",
 
-            // chimera
-            "com.google.android.gms.chimera",
-
             // fonts
             "com.google.android.gms.fonts",
 
