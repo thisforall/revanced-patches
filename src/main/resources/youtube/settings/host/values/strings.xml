@@ -1033,7 +1033,10 @@ Tap and hold to open whitelist setting dialog.</string>
 
     <string name="revanced_overlay_button_play_all_title">Show Play All button</string>
     <string name="revanced_overlay_button_play_all_summary">"Tap to generate a playlist of all videos from channel.
-Tap and hold to undo."</string>
+Tap and hold to undo.
+
+Info:
+• May not work on livestreams."</string>
     <string name="revanced_overlay_button_play_all_type_title">Generate playlist mode</string>
     <string name="revanced_overlay_button_play_all_type_entry_1">All contents (Sort by time)</string>
     <string name="revanced_overlay_button_play_all_type_entry_2">All contents (Sort by popular)</string>
