@@ -17,7 +17,6 @@ import app.revanced.patches.shared.gms.BaseGmsCoreSupportResourcePatch.Companion
 import app.revanced.patches.shared.gms.fingerprints.CastContextFetchFingerprint
 import app.revanced.patches.shared.gms.fingerprints.CertificateFingerprint
 import app.revanced.patches.shared.gms.fingerprints.GmsCoreSupportFingerprint
-import app.revanced.patches.shared.gms.fingerprints.GmsServiceBrokerFingerprint
 import app.revanced.patches.shared.gms.fingerprints.GooglePlayUtilityFingerprint
 import app.revanced.patches.shared.gms.fingerprints.PrimesApiFingerprint
 import app.revanced.patches.shared.gms.fingerprints.PrimesBackgroundInitializationFingerprint
@@ -72,7 +71,6 @@ abstract class BaseGmsCoreSupportPatch(
         // Google Play Services.
         CastContextFetchFingerprint,
         GmsCoreSupportFingerprint,
-        GmsServiceBrokerFingerprint,
         GooglePlayUtilityFingerprint,
         PrimesApiFingerprint,
         PrimesBackgroundInitializationFingerprint,
@@ -93,7 +91,6 @@ abstract class BaseGmsCoreSupportPatch(
 
         var gmsCoreVendor = "app.revanced"
         var checkGmsCore = true
-        var disableGmsServiceBroker = false
         var packageNameYouTube = "com.google.android.youtube"
         var packageNameYouTubeMusic = "com.google.android.apps.youtube.music"
 
@@ -132,7 +129,6 @@ abstract class BaseGmsCoreSupportPatch(
     override fun execute(context: BytecodeContext) {
         gmsCoreVendor = getStringPatchOption("GmsCoreVendorGroupId")
         checkGmsCore = getBooleanPatchOption("CheckGmsCore")
-        disableGmsServiceBroker = getBooleanPatchOption("DisableGmsServiceBroker")
         packageNameYouTube = getStringPatchOption("PackageNameYouTube")
         packageNameYouTubeMusic = getStringPatchOption("PackageNameYouTubeMusic")
 
@@ -159,9 +155,6 @@ abstract class BaseGmsCoreSupportPatch(
             GooglePlayUtilityFingerprint,
             ServiceCheckFingerprint
         )
-        if (disableGmsServiceBroker) {
-            returnEarly += GmsServiceBrokerFingerprint
-        }
         returnEarly.returnEarly()
 
         transformPrimeMethod()
