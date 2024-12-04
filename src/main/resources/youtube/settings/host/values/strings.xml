@@ -1031,7 +1031,7 @@ Tap and hold to reset playback speed to 1.0x. Tap and hold again to reset back t
     <string name="revanced_overlay_button_whitelist_summary">"Tap to open whitelist dialog.
 Tap and hold to open whitelist setting dialog.</string>
 
-    <string name="revanced_overlay_button_play_all_title">Show Play All button</string>
+    <string name="revanced_overlay_button_play_all_title">Show play all button</string>
     <string name="revanced_overlay_button_play_all_summary">"Tap to generate a playlist of all videos from channel.
 Tap and hold to undo.
 
