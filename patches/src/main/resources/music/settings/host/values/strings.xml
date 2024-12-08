@@ -58,7 +58,10 @@ Please download %2$s from the website."</string>
     <string name="revanced_preference_screen_ads_title">Ads</string>
 
     <string name="revanced_hide_fullscreen_ads_title">Hide fullscreen ads</string>
-    <string name="revanced_hide_fullscreen_ads_summary">Hides fullscreen ads.</string>
+    <string name="revanced_hide_fullscreen_ads_summary">"Hides fullscreen ads.
+
+Limitations:
+• Sometimes you may see a blank black screen instead of the home feed."</string>
     <string name="revanced_hide_general_ads_title">Hide general ads</string>
     <string name="revanced_hide_general_ads_summary">Hides general ads.</string>
     <string name="revanced_hide_music_ads_title">Hide media ads</string>
@@ -438,6 +441,14 @@ This is required for the app to work."</string>
 
 Tap on the continue button and disable battery optimizations."</string>
     <string name="gms_core_dialog_continue_text">Continue</string>
+
+    <string name="revanced_spoof_client_title">Spoof client</string>
+    <string name="revanced_spoof_client_summary">"Spoof the client to prevent playback issues.
+
+Limitations:
+• OPUS audio codec may not be supported.
+• Seekbar thumbnail may not be present.
+• Watch history does not work with a brand account.</string>
 
     <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>
     <string name="revanced_sanitize_sharing_links_summary">Removes tracking query parameters from URLs when sharing links.</string>
