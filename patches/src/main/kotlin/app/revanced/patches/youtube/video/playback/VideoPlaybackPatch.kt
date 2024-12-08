@@ -315,7 +315,7 @@ val videoPlaybackPatch = bytecodePatch(
 
         // region patch for disable VP9 codec
 
-        vp9CapabilityFingerprint.methodOrThrow().apply {
+        vp9CapabilityFingerprint.methodOrThrow(hdrCapabilityFingerprint).apply {
             addInstructionsWithLabels(
                 0, """
                     invoke-static {}, $EXTENSION_VP9_CODEC_CLASS_DESCRIPTOR->disableVP9Codec()Z
