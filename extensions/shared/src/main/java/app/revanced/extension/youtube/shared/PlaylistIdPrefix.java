@@ -7,6 +7,7 @@ public enum PlaylistIdPrefix {
      * To check all available prefixes,
      * See <a href="https://github.com/RobertWesner/YouTube-Play-All/blob/main/documentation/available-lists.md">this document</a>.
      */
+    ALL_CONTENTS_WITH_TIME_ASCENDING("UL"),
     ALL_CONTENTS_WITH_TIME_DESCENDING("UU"),
     ALL_CONTENTS_WITH_POPULAR_DESCENDING("PU"),
     VIDEOS_ONLY_WITH_TIME_DESCENDING("UULF"),
