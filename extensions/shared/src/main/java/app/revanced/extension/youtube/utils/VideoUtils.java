@@ -3,6 +3,7 @@ package app.revanced.extension.youtube.utils;
 import static app.revanced.extension.shared.utils.ResourceUtils.getStringArray;
 import static app.revanced.extension.shared.utils.StringRef.str;
 import static app.revanced.extension.youtube.patches.video.PlaybackSpeedPatch.userSelectedPlaybackSpeed;
+import static app.revanced.extension.youtube.shared.PlaylistIdPrefix.ALL_CONTENTS_WITH_TIME_ASCENDING;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -65,6 +66,29 @@ public class VideoUtils extends IntentUtils {
         return String.format(Locale.ENGLISH, VIDEO_SCHEME_FORMAT, videoId, VideoInformation.getVideoTimeInSeconds());
     }
 
+    /**
+     * Create playlist body to open all channel videos.
+     */
+    private static String getPlaylistBody(@Nullable PlaylistIdPrefix prefixIdType) {
+        if (prefixIdType == null)
+            return "";
+
+        final String finalBody = "&list=" + prefixIdType.prefixId;
+
+        // `&list=UL` playlist prefix cannot be used with channelId
+        if (prefixIdType == ALL_CONTENTS_WITH_TIME_ASCENDING) {
+            return finalBody + VideoInformation.getVideoId();
+        }
+
+        final String channelId = VideoInformation.getChannelId();
+        // Channel id always starts with `UC` prefix
+        if (!channelId.startsWith("UC")) {
+            showToastShort(str("revanced_overlay_button_play_all_not_available_toast"));
+            return "";
+        }
+        return finalBody + channelId.substring(2);
+    }
+
     public static void copyUrl(boolean withTimestamp) {
         setClipboard(getVideoUrl(withTimestamp), withTimestamp
                 ? str("revanced_share_copy_url_timestamp_success")
@@ -118,29 +142,15 @@ public class VideoUtils extends IntentUtils {
     }
 
     public static void openVideo(@NonNull String videoId) {
-        openVideo(getVideoScheme(videoId), "");
+        openVideo(getVideoScheme(videoId), null);
     }
 
-    public static void openVideo(@NonNull PlaylistIdPrefix prefixId) {
-        openVideo(getVideoScheme(), prefixId.prefixId);
+    public static void openVideo(@NonNull PlaylistIdPrefix prefixIdType) {
+        openVideo(getVideoScheme(), prefixIdType);
     }
 
-    /**
-     * Create playlist with all channel videos.
-     */
-    public static void openVideo(@NonNull String videoScheme, @NonNull String prefixId) {
-        if (!TextUtils.isEmpty(prefixId)) {
-            final String channelId = VideoInformation.getChannelId();
-            // Channel id always starts with `UC` prefix
-            if (!channelId.startsWith("UC")) {
-                showToastShort(str("revanced_overlay_button_play_all_not_available_toast"));
-                return;
-            }
-            videoScheme += "&list=" + prefixId + channelId.substring(2);
-        }
-        final String finalVideoScheme = videoScheme;
-        Logger.printInfo(() -> finalVideoScheme);
-
+    public static void openVideo(@NonNull String videoScheme, @Nullable PlaylistIdPrefix prefixIdType) {
+        videoScheme += getPlaylistBody(prefixIdType);
         launchView(videoScheme, getContext().getPackageName());
     }
 
