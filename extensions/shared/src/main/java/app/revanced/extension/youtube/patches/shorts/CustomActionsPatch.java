@@ -1,28 +1,20 @@
 package app.revanced.extension.youtube.patches.shorts;
 
-import static app.revanced.extension.shared.utils.ResourceUtils.getString;
-import static app.revanced.extension.youtube.patches.components.ShortsCustomActionsFilter.isShortsFlyoutMenuVisible;
-import static app.revanced.extension.youtube.utils.ExtendedUtils.isSpoofingToLessThan;
-
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import org.apache.commons.lang3.StringUtils;
-
-import java.lang.ref.WeakReference;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
-
 import app.revanced.extension.shared.settings.BooleanSetting;
 import app.revanced.extension.shared.utils.Logger;
 import app.revanced.extension.shared.utils.ResourceUtils;
@@ -30,7 +22,18 @@ import app.revanced.extension.shared.utils.Utils;
 import app.revanced.extension.youtube.patches.components.ShortsCustomActionsFilter;
 import app.revanced.extension.youtube.settings.Settings;
 import app.revanced.extension.youtube.shared.ShortsPlayerState;
+import app.revanced.extension.youtube.utils.ThemeUtils;
 import app.revanced.extension.youtube.utils.VideoUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import java.lang.ref.WeakReference;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+
+import static app.revanced.extension.shared.utils.ResourceUtils.getString;
+import static app.revanced.extension.youtube.patches.components.ShortsCustomActionsFilter.isShortsFlyoutMenuVisible;
+import static app.revanced.extension.youtube.utils.ExtendedUtils.isSpoofingToLessThan;
 
 @SuppressWarnings("unused")
 public final class CustomActionsPatch {
@@ -92,19 +95,101 @@ public final class CustomActionsPatch {
 
         String[] titles = toolbarMap.keySet().toArray(new String[0]);
         Runnable[] actions = toolbarMap.values().toArray(new Runnable[0]);
-        builder.setItems(titles, (dialog, which) -> {
-            String selectedOption = titles[which];
-            Runnable action = actions[which];
-            if (action != null) {
-                action.run();
-            } else {
-                Logger.printDebug(() -> "No action found for " + selectedOption);
-            }
-        });
+        int[] iconsIds = getIconsIds(titles);
 
+        ScrollView scrollView = new ScrollView(context);
+        LinearLayout container = createContainer(context);
+
+        // add divider after the title
+        container.addView(createDivider(context, 8, 8));
+
+        for (int i = 0; i < titles.length; i++) {
+            boolean isLast = (i == titles.length - 1);
+
+            container.addView(createItemLayout(context, titles[i], iconsIds[i], actions[i]));
+
+            if (!isLast)
+                container.addView(createDivider(context, 8, 8));
+        }
+
+
+        scrollView.addView(container);
+        builder.setView(scrollView);
 
         AlertDialog dialog = builder.create();
+        applyDialogStyle(dialog);
         dialog.show();
+    }
+
+    private static int[] getIconsIds(String[] titles) {
+        int[] iconsIds = new int[titles.length];
+        for (int i = 0; i < titles.length; i++)
+            iconsIds[i] = CustomAction.values()[i].getDrawableId();
+        return iconsIds;
+    }
+
+    private static LinearLayout createContainer(Context context) {
+        LinearLayout container = new LinearLayout(context);
+        container.setOrientation(LinearLayout.VERTICAL);
+        container.setPadding(16, 16, 16, 16);
+        return container;
+    }
+
+    private static View createDivider(Context context, int top, int bottom) {
+        View divider = new View(context);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                2
+        );
+        params.setMargins(0, top, 0, bottom);
+        divider.setLayoutParams(params);
+        divider.setBackgroundColor(Color.LTGRAY);
+        return divider;
+    }
+
+    private static LinearLayout createItemLayout(Context context, String title, int iconId, Runnable action) {
+        LinearLayout itemLayout = new LinearLayout(context);
+        itemLayout.setOrientation(LinearLayout.HORIZONTAL);
+        itemLayout.setPadding(16, 16, 16, 16);
+        itemLayout.setGravity(Gravity.CENTER_VERTICAL);
+
+        ImageView iconView = new ImageView(context);
+        iconView.setImageResource(iconId);
+        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(64, 64);
+        iconParams.setMarginEnd(16);
+        iconView.setLayoutParams(iconParams);
+
+        TextView textView = new TextView(context);
+        textView.setText(title);
+        textView.setTextSize(16);
+        textView.setTextColor(ThemeUtils.getForegroundColor());
+
+        itemLayout.addView(iconView);
+        itemLayout.addView(textView);
+
+        itemLayout.setOnClickListener(v -> {
+            if (action != null) {
+                action.run();
+                // TODO: Dismiss dialog
+            } else
+                Logger.printDebug(() -> "No action found for " + title);
+        });
+
+        GradientDrawable background = new GradientDrawable();
+        background.setCornerRadius(16);
+        itemLayout.setBackground(background);
+
+        return itemLayout;
+    }
+
+    private static void applyDialogStyle(AlertDialog dialog) {
+        if (dialog.getWindow() == null)
+            return;
+
+        GradientDrawable dialogBackground = new GradientDrawable();
+        dialogBackground.setColor(Color.WHITE);
+        dialogBackground.setCornerRadius(32);
+        dialog.getWindow().setBackgroundDrawable(dialogBackground);
     }
 
     private static boolean isMoreButton(String enumString) {
@@ -312,6 +397,8 @@ public final class CustomActionsPatch {
         @NonNull
         private final Drawable drawable;
 
+        private final int drawableId;
+
         @NonNull
         private final String label;
 
@@ -334,6 +421,7 @@ public final class CustomActionsPatch {
                      @Nullable Runnable onLongClickAction
         ) {
             this.drawable = Objects.requireNonNull(ResourceUtils.getDrawable(icon));
+            this.drawableId = ResourceUtils.getDrawableIdentifier(icon);
             this.label = getString(settings.key + "_label");
             this.settings = settings;
             this.onClickAction = onClickAction;
@@ -343,6 +431,10 @@ public final class CustomActionsPatch {
         @NonNull
         public Drawable getDrawable() {
             return drawable;
+        }
+
+        public int getDrawableId() {
+            return drawableId;
         }
 
         @NonNull
