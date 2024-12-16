@@ -145,8 +145,10 @@ public final class ShortsCustomActionsFilter extends Filter {
         synchronized (lastVideoIds) {
             for (Map.Entry<String, ByteArrayFilterGroup> entry : lastVideoIds.entrySet()) {
                 final ByteArrayFilterGroup filterGroup = entry.getKey();
+
                 if (filterGroup.check(protobufBufferArray).isFiltered()) {
-                    setShortsVideoId(entry.getValue(), false);
+                    final String videoId = entry.getValue();
+                    setShortsVideoId(videoId, false);
                     return;
                 }
             }
