@@ -137,9 +137,10 @@ public final class ReturnYouTubeDislikeFilterPatch extends Filter {
     private String findVideoId(byte[] protobufBufferArray) {
         synchronized (lastVideoIds) {
             for (Map.Entry<String, ByteArrayFilterGroup> entry : lastVideoIds.entrySet()) {
-                final ByteArrayFilterGroup filterGroup = entry.getKey();
+                final ByteArrayFilterGroup filterGroup = entry.getValue();
+
                 if (filterGroup.check(protobufBufferArray).isFiltered()) {
-                    return entry.getValue(); // Return video id
+                    return entry.getKey();
                 }
             }
 
