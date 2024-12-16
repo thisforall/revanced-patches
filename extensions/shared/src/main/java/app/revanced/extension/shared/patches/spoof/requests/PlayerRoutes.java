@@ -14,10 +14,10 @@ import app.revanced.extension.shared.utils.Utils;
 
 @SuppressWarnings({"ExtractMethodRecommender", "deprecation"})
 public final class PlayerRoutes {
-    public static final Route.CompiledRoute GET_PLAYLIST_PAGE = new Route(
+    public static final Route.CompiledRoute GET_CATEGORY = new Route(
             Route.Method.POST,
-            "next" +
-                    "?fields=contents.singleColumnWatchNextResults.playlist.playlist"
+            "player" +
+                    "?fields=microformat.playerMicroformatRenderer"
     ).compile();
     static final Route.CompiledRoute GET_STREAMING_DATA = new Route(
             Route.Method.POST,
@@ -38,21 +38,21 @@ public final class PlayerRoutes {
     }
 
     public static String createInnertubeBody(ClientType clientType) {
-        return createInnertubeBody(clientType, false);
-    }
-
-    public static String createInnertubeBody(ClientType clientType, boolean playlistId) {
         JSONObject innerTubeBody = new JSONObject();
 
         try {
             JSONObject client = new JSONObject();
             client.put("clientName", clientType.clientName);
             client.put("clientVersion", clientType.clientVersion);
-            client.put("deviceModel", clientType.deviceModel);
-            client.put("osVersion", clientType.osVersion);
             if (clientType.androidSdkVersion != null) {
                 client.put("androidSdkVersion", clientType.androidSdkVersion);
             }
+            if (clientType.deviceMake != null) {
+                client.put("deviceMake", clientType.deviceMake);
+            }
+            client.put("deviceModel", clientType.deviceModel);
+            client.put("osName", clientType.osName);
+            client.put("osVersion", clientType.osVersion);
             client.put("hl", LOCALE_LANGUAGE);
 
             JSONObject context = new JSONObject();
@@ -62,9 +62,6 @@ public final class PlayerRoutes {
             innerTubeBody.put("contentCheckOk", true);
             innerTubeBody.put("racyCheckOk", true);
             innerTubeBody.put("videoId", "%s");
-            if (playlistId) {
-                innerTubeBody.put("playlistId", "%s");
-            }
         } catch (JSONException e) {
             Logger.printException(() -> "Failed to create innerTubeBody", e);
         }

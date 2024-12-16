@@ -7,6 +7,19 @@ import android.os.Build;
 import androidx.annotation.Nullable;
 
 public class AppClient {
+    
+    // WEB
+    private static final String CLIENT_VERSION_WEB = "2.20240726.00.00";
+    private static final String DEVICE_MODEL_WEB = "Surface Book 3";
+    private static final String OS_NAME_WEB = "Windows";
+    private static final String OS_VERSION_WEB = "10";
+    private static final String USER_AGENT_WEB = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0)" +
+            " Gecko/20100101" +
+            " Firefox/129.0";
+
+    // ANDROID
+    private static final String OS_NAME_ANDROID = "Android";
+
     // IOS
     /**
      * The hardcoded client version of the iOS app used for InnerTube requests with this client.
@@ -18,6 +31,7 @@ public class AppClient {
      * </p>
      */
     private static final String CLIENT_VERSION_IOS = "19.49.5";
+    private static final String DEVICE_MAKE_IOS = "Apple";
     /**
      * The device machine id for the iPhone 16 Pro Max (iPhone17,2), used to get HDR with AV1 hardware decoding.
      *
@@ -27,6 +41,7 @@ public class AppClient {
      * </p>
      */
     private static final String DEVICE_MODEL_IOS = "iPhone17,2";
+    private static final String OS_NAME_IOS = "iOS";
     /**
      * The minimum supported OS version for the iOS YouTube client is iOS 14.0.
      * Using an invalid OS version will use the AVC codec.
@@ -71,6 +86,7 @@ public class AppClient {
      * </p>
      */
     private static final String CLIENT_VERSION_ANDROID_VR = "1.61.47";
+    private static final String DEVICE_MAKE_ANDROID_VR = "Oculus";
     /**
      * The device machine id for the Meta Quest 3, used to get opus codec with the Android VR client.
      *
@@ -80,7 +96,7 @@ public class AppClient {
      * </p>
      */
     private static final String DEVICE_MODEL_ANDROID_VR = "Quest 3";
-    private static final String OS_VERSION_ANDROID_VR = "12";
+    private static final String OS_VERSION_ANDROID_VR = "12L";
     /**
      * The SDK version for Android 12 is 31,
      * but for some reason the build.props for the {@code Quest 3} state that the SDK version is 32.
@@ -95,7 +111,7 @@ public class AppClient {
             CLIENT_VERSION_ANDROID_VR +
             " (Linux; U; Android " +
             OS_VERSION_ANDROID_VR +
-            "; GB) gzip";
+            "; eureka-user Build/SQ3A.220605.009.A1) gzip";
 
     // ANDROID UNPLUGGED
     private static final String CLIENT_VERSION_ANDROID_UNPLUGGED = "8.49.0";
@@ -120,8 +136,20 @@ public class AppClient {
     }
 
     public enum ClientType {
+        WEB(1,
+                null,
+                DEVICE_MODEL_WEB,
+                OS_NAME_WEB,
+                OS_VERSION_WEB,
+                USER_AGENT_WEB,
+                null,
+                CLIENT_VERSION_WEB,
+                true
+        ),
         IOS(5,
+                DEVICE_MAKE_IOS,
                 DEVICE_MODEL_IOS,
+                OS_NAME_IOS,
                 OS_VERSION_IOS,
                 USER_AGENT_IOS,
                 null,
@@ -129,7 +157,9 @@ public class AppClient {
                 false
         ),
         ANDROID_VR(28,
+                DEVICE_MAKE_ANDROID_VR,
                 DEVICE_MODEL_ANDROID_VR,
+                OS_NAME_ANDROID,
                 OS_VERSION_ANDROID_VR,
                 USER_AGENT_ANDROID_VR,
                 ANDROID_SDK_VERSION_ANDROID_VR,
@@ -137,16 +167,19 @@ public class AppClient {
                 true
         ),
         ANDROID_UNPLUGGED(29,
+                null,
                 DEVICE_MODEL_ANDROID_UNPLUGGED,
+                OS_NAME_ANDROID,
                 OS_VERSION_ANDROID_UNPLUGGED,
                 USER_AGENT_ANDROID_UNPLUGGED,
                 ANDROID_SDK_VERSION_ANDROID_UNPLUGGED,
                 CLIENT_VERSION_ANDROID_UNPLUGGED,
                 true
         ),
-        IOS_MUSIC(
-                26,
+        IOS_MUSIC(26,
+                DEVICE_MAKE_IOS,
                 DEVICE_MODEL_IOS,
+                OS_NAME_IOS,
                 OS_VERSION_IOS,
                 USER_AGENT_IOS_MUSIC,
                 null,
@@ -163,9 +196,20 @@ public class AppClient {
         public final String clientName;
 
         /**
+         * Device manufacturer.
+         */
+        @Nullable
+        public final String deviceMake;
+
+        /**
          * Device model, equivalent to {@link Build#MODEL} (System property: ro.product.model)
          */
         public final String deviceModel;
+
+        /**
+         * Device OS name.
+         */
+        public final String osName;
 
         /**
          * Device OS version.
@@ -195,7 +239,9 @@ public class AppClient {
         public final boolean canLogin;
 
         ClientType(int id,
+                   String deviceMake,
                    String deviceModel,
+                   String osName,
                    String osVersion,
                    String userAgent,
                    @Nullable String androidSdkVersion,
@@ -204,8 +250,10 @@ public class AppClient {
         ) {
             this.id = id;
             this.clientName = name();
+            this.deviceMake = deviceMake;
             this.deviceModel = deviceModel;
             this.clientVersion = clientVersion;
+            this.osName = osName;
             this.osVersion = osVersion;
             this.androidSdkVersion = androidSdkVersion;
             this.userAgent = userAgent;
