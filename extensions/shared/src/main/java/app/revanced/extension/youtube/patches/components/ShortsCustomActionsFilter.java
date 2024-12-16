@@ -28,8 +28,8 @@ public final class ShortsCustomActionsFilter extends Filter {
 
     /**
      * Last unique video id's loaded.
-     * Key is video id
-     * Value is ByteArrayFilterGroup which used to do pattern search.
+     * Key is a String represeting the video id.
+     * Value is a ByteArrayFilterGroup used for performing KMP pattern searching.
      */
     @GuardedBy("itself")
     private static final Map<String, ByteArrayFilterGroup> lastVideoIds = new LinkedHashMap<>() {
