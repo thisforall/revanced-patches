@@ -37,8 +37,8 @@ public final class ReturnYouTubeDislikeFilterPatch extends Filter {
 
     /**
      * Last unique video id's loaded.
-     * Key is video id
-     * Value is ByteArrayFilterGroup which used to do pattern search.
+     * Key is the video id.
+     * Value is ByteArrayFilterGroup used for performing KMP pattern searching.
      */
     @GuardedBy("itself")
     private static final Map<String, ByteArrayFilterGroup> lastVideoIds = new LinkedHashMap<>() {
