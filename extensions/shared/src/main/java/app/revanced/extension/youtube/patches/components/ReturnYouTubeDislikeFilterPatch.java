@@ -140,7 +140,7 @@ public final class ReturnYouTubeDislikeFilterPatch extends Filter {
                 final ByteArrayFilterGroup videoIdFilter = entry.getValue();
 
                 if (videoIdFilter.check(protobufBufferArray).isFiltered()) {
-                    return entry.getKey();
+                    return entry.getKey(); // Return videoId
                 }
             }
 
