@@ -117,8 +117,8 @@ public final class ShortsCustomActionsFilter extends Filter {
             synchronized (lastVideoIds) {
                 if (lastVideoIds.containsKey(videoId)) return;
 
-                final ByteArrayFilterGroup filterGroup = new ByteArrayFilterGroup(null, videoId);
-                lastVideoIds.put(videoId, filterGroup);
+                final ByteArrayFilterGroup videoIdFilter = new ByteArrayFilterGroup(null, videoId);
+                lastVideoIds.put(videoId, videoIdFilter);
             }
         } catch (Exception ex) {
             Logger.printException(() -> "newPlayerResponseVideoId failure", ex);
@@ -144,12 +144,10 @@ public final class ShortsCustomActionsFilter extends Filter {
     private void findVideoId(byte[] protobufBufferArray) {
         synchronized (lastVideoIds) {
             for (Map.Entry<String, ByteArrayFilterGroup> entry : lastVideoIds.entrySet()) {
-                final ByteArrayFilterGroup filterGroup = entry.getKey();
+                final ByteArrayFilterGroup videoIdFilter = entry.getValue();
 
-                if (filterGroup.check(protobufBufferArray).isFiltered()) {
-                    final String videoId = entry.getValue();
-                    setShortsVideoId(videoId, false);
-                    return;
+                if (videoIdFilter.check(protobufBufferArray).isFiltered()) {
+                    setShortsVideoId(entry.getKey(), false);
                 }
             }
         }
