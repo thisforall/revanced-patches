@@ -105,8 +105,8 @@ public final class ReturnYouTubeDislikeFilterPatch extends Filter {
                 if (lastVideoIds.containsKey(videoId)) return;
                 Logger.printDebug(() -> "New Shorts video id: " + videoId);
 
-                final ByteArrayFilterGroup filterGroup = new ByteArrayFilterGroup(null, videoId);
-                lastVideoIds.put(videoId, filterGroup);
+                final ByteArrayFilterGroup videoIdFilter = new ByteArrayFilterGroup(null, videoId);
+                lastVideoIds.put(videoId, videoIdFilter);
             }
         } catch (Exception ex) {
             Logger.printException(() -> "newPlayerResponseVideoId failure", ex);
@@ -137,9 +137,9 @@ public final class ReturnYouTubeDislikeFilterPatch extends Filter {
     private String findVideoId(byte[] protobufBufferArray) {
         synchronized (lastVideoIds) {
             for (Map.Entry<String, ByteArrayFilterGroup> entry : lastVideoIds.entrySet()) {
-                final ByteArrayFilterGroup filterGroup = entry.getValue();
+                final ByteArrayFilterGroup videoIdFilter = entry.getValue();
 
-                if (filterGroup.check(protobufBufferArray).isFiltered()) {
+                if (videoIdFilter.check(protobufBufferArray).isFiltered()) {
                     return entry.getKey();
                 }
             }
