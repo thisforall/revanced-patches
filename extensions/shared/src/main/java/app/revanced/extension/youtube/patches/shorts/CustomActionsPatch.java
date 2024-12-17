@@ -2,6 +2,10 @@ package app.revanced.extension.youtube.patches.shorts;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -9,7 +13,10 @@ import android.graphics.drawable.StateListDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.*;
-import android.widget.*;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import app.revanced.extension.shared.settings.BooleanSetting;
@@ -30,7 +37,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import static app.revanced.extension.shared.utils.ResourceUtils.getString;
-import static app.revanced.extension.shared.utils.Utils.getEditTextDialogBuilder;
 import static app.revanced.extension.youtube.patches.components.ShortsCustomActionsFilter.isShortsFlyoutMenuVisible;
 import static app.revanced.extension.youtube.utils.ExtendedUtils.isSpoofingToLessThan;
 
@@ -82,7 +88,6 @@ public final class CustomActionsPatch {
 
     private static void showMoreButtonDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        //AlertDialog.Builder builder = getEditTextDialogBuilder(context);
 
         Map<String, Runnable> toolbarMap = new LinkedHashMap<>();
         for (CustomAction customAction : CustomAction.values()) {
@@ -157,8 +162,16 @@ public final class CustomActionsPatch {
         itemLayout.setBackground(background);
 
         // Icon
+        int colorBackFilter;
+        if (ThemeUtils.isDarkTheme())
+            colorBackFilter = Color.parseColor("#ffffffff");
+        else
+            colorBackFilter = Color.parseColor("#ff000000");
+
+        ColorFilter cf = new PorterDuffColorFilter(colorBackFilter, PorterDuff.Mode.SRC_ATOP);
         ImageView iconView = new ImageView(context);
         iconView.setImageResource(iconId);
+        iconView.setColorFilter(cf);
         LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(dpToPx(context, 24), dpToPx(context, 24));
         iconParams.setMarginEnd(dpToPx(context, 16));
         iconView.setLayoutParams(iconParams);
@@ -342,7 +355,7 @@ public final class CustomActionsPatch {
     public enum CustomAction {
         COPY_URL(
                 Settings.SHORTS_CUSTOM_ACTIONS_COPY_VIDEO_URL,
-                ThemeUtils.isDarkTheme() ? "yt_outline_link_white_24" : "yt_outline_link_black_24",
+                "yt_outline_link_black_24",
                 () -> VideoUtils.copyUrl(
                         VideoUtils.getVideoUrl(
                                 ShortsCustomActionsFilter.getShortsVideoId(),
@@ -360,7 +373,7 @@ public final class CustomActionsPatch {
         ),
         COPY_URL_WITH_TIMESTAMP(
                 Settings.SHORTS_CUSTOM_ACTIONS_COPY_VIDEO_URL_TIMESTAMP,
-                ThemeUtils.isDarkTheme() ? "yt_outline_arrow_time_vd_theme_24" : "yt_outline_arrow_time_black_24",
+                "yt_outline_arrow_time_black_24",
                 () -> VideoUtils.copyUrl(
                         VideoUtils.getVideoUrl(
                                 ShortsCustomActionsFilter.getShortsVideoId(),
@@ -378,14 +391,14 @@ public final class CustomActionsPatch {
         ),
         EXTERNAL_DOWNLOADER(
                 Settings.SHORTS_CUSTOM_ACTIONS_EXTERNAL_DOWNLOADER,
-                ThemeUtils.isDarkTheme() ? "yt_outline_download_vd_theme_24" : "yt_outline_download_black_24",
+                "yt_outline_download_black_24",
                 () -> VideoUtils.launchVideoExternalDownloader(
                         ShortsCustomActionsFilter.getShortsVideoId()
                 )
         ),
         OPEN_VIDEO(
                 Settings.SHORTS_CUSTOM_ACTIONS_OPEN_VIDEO,
-                "yt_outline_youtube_logo_icon_black_24", // TODO: find the equivalent icon for black theme
+                "yt_outline_youtube_logo_icon_black_24",
                 () -> VideoUtils.openVideo(
                         ShortsCustomActionsFilter.getShortsVideoId(),
                         true
@@ -393,7 +406,7 @@ public final class CustomActionsPatch {
         ),
         REPEAT_STATE(
                 Settings.SHORTS_CUSTOM_ACTIONS_REPEAT_STATE,
-                ThemeUtils.isDarkTheme() ? "yt_outline_arrow_repeat_1_white_24" : "yt_outline_arrow_repeat_1_black_24",
+                "yt_outline_arrow_repeat_1_black_24",
                 () -> VideoUtils.showShortsRepeatDialog(contextRef.get())
         );
 
