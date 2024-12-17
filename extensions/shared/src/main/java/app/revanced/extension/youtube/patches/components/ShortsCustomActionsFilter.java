@@ -147,7 +147,9 @@ public final class ShortsCustomActionsFilter extends Filter {
                 final ByteArrayFilterGroup videoIdFilter = entry.getValue();
 
                 if (videoIdFilter.check(protobufBufferArray).isFiltered()) {
-                    setShortsVideoId(entry.getKey(), false);
+                    final String videoId = entry.getKey();
+                    setShortsVideoId(videoId, false);
+                    return;
                 }
             }
         }
