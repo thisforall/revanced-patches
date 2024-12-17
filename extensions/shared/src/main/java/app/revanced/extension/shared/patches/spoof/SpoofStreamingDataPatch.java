@@ -144,7 +144,7 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
             return spoofedStreamingData;
         }
         ClientType lastSpoofedClientType = getLastSpoofedClient(videoId);
-        if (lastSpoofedClientType == ClientType.IOS) {
+        if (lastSpoofedClientType != ClientType.IOS) {
             Logger.printDebug(() -> "Not overriding original streaming data as spoofed client is not iOS: " + videoId + " (" + lastSpoofedClientType + ")");
             return spoofedStreamingData;
         }
