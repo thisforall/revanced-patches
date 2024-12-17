@@ -9,10 +9,7 @@ import android.graphics.drawable.StateListDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.*;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import app.revanced.extension.shared.settings.BooleanSetting;
@@ -33,6 +30,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import static app.revanced.extension.shared.utils.ResourceUtils.getString;
+import static app.revanced.extension.shared.utils.Utils.getEditTextDialogBuilder;
 import static app.revanced.extension.youtube.patches.components.ShortsCustomActionsFilter.isShortsFlyoutMenuVisible;
 import static app.revanced.extension.youtube.utils.ExtendedUtils.isSpoofingToLessThan;
 
@@ -84,6 +82,7 @@ public final class CustomActionsPatch {
 
     private static void showMoreButtonDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        //AlertDialog.Builder builder = getEditTextDialogBuilder(context);
 
         Map<String, Runnable> toolbarMap = new LinkedHashMap<>();
         for (CustomAction customAction : CustomAction.values()) {
@@ -118,13 +117,19 @@ public final class CustomActionsPatch {
 
         Window window = dialog.getWindow();
         // fit screen width
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        int dialogWidth = (int) (context.getResources().getDisplayMetrics().widthPixels * 0.95);
+        window.setLayout(dialogWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         // move dialog to bottom
         WindowManager.LayoutParams layoutParams = window.getAttributes();
         layoutParams.gravity = Gravity.BOTTOM;
+
+        // adjust the vertical offset
+        layoutParams.y = dpToPx(context, 5);
+
         window.setAttributes(layoutParams);
     }
+
 
     private static int[] getIconsIds(String[] titles) {
         int[] iconIds = new int[titles.length];
