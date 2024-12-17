@@ -7,21 +7,7 @@ import app.revanced.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
-import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
-
-internal val buildInitPlaybackRequestFingerprint = legacyFingerprint(
-    name = "buildInitPlaybackRequestFingerprint",
-    returnType = "Lorg/chromium/net/UrlRequest\$Builder;",
-    opcodes = listOf(
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.IGET_OBJECT, // Moves the request URI string to a register to build the request with.
-    ),
-    strings = listOf(
-        "Content-Type",
-        "Range",
-    ),
-)
 
 internal val buildMediaDataSourceFingerprint = legacyFingerprint(
     name = "buildMediaDataSourceFingerprint",
@@ -40,24 +26,6 @@ internal val buildMediaDataSourceFingerprint = legacyFingerprint(
         "Ljava/lang/Object;"
     )
 )
-
-internal val buildPlayerRequestURIFingerprint = legacyFingerprint(
-    name = "buildPlayerRequestURIFingerprint",
-    returnType = "Ljava/lang/String;",
-    strings = listOf(
-        "key",
-        "asig",
-    ),
-    customFingerprint = { method, _ ->
-        indexOfToStringInstruction(method) >= 0
-    },
-)
-
-internal fun indexOfToStringInstruction(method: Method) =
-    method.indexOfFirstInstruction {
-        opcode == Opcode.INVOKE_VIRTUAL &&
-                getReference<MethodReference>().toString() == "Landroid/net/Uri;->toString()Ljava/lang/String;"
-    }
 
 internal val buildRequestFingerprint = legacyFingerprint(
     name = "buildRequestFingerprint",
@@ -133,4 +101,41 @@ internal val protobufClassParseByteBufferFingerprint = legacyFingerprint(
         Opcode.RETURN_OBJECT,
     ),
     customFingerprint = { method, _ -> method.name == "parseFrom" },
+)
+
+internal val videoStreamingDataConstructorFingerprint = legacyFingerprint(
+    name = "videoStreamingDataConstructorFingerprint",
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
+    returnType = "V",
+    customFingerprint = { method, _ ->
+        indexOfFormatStreamModelInitInstruction(method) >= 0
+    },
+)
+
+internal fun indexOfFormatStreamModelInitInstruction(method: Method) =
+    method.indexOfFirstInstruction {
+        val reference = getReference<MethodReference>()
+        opcode == Opcode.INVOKE_DIRECT &&
+                reference?.name == "<init>" &&
+                reference.parameterTypes.size > 1
+    }
+
+internal val videoStreamingDataToStringFingerprint = legacyFingerprint(
+    name = "videoStreamingDataToStringFingerprint",
+    returnType = "Ljava/lang/String;",
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    parameters = emptyList(),
+    strings = listOf("VideoStreamingData(itags="),
+    customFingerprint = { method, _ ->
+        method.name == "toString"
+    },
+)
+
+internal const val HLS_CURRENT_TIME_FEATURE_FLAG = 45355374L
+
+internal val hlsCurrentTimeFingerprint = legacyFingerprint(
+    name = "hlsCurrentTimeFingerprint",
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    parameters = listOf("Z", "L"),
+    literals = listOf(HLS_CURRENT_TIME_FEATURE_FLAG),
 )

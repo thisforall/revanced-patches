@@ -390,6 +390,8 @@ If later turned off, it is recommended to clear the app data to prevent UI bugs.
     <string name="revanced_spoof_app_version_target_entry_18_33_40">18.33.40 - Restore old Shorts action bar</string>
     <string name="revanced_spoof_app_version_target_entry_18_38_45">18.38.45 - Restore old default video quality behavior</string>
     <string name="revanced_spoof_app_version_target_entry_18_48_39">18.48.39 - Disable views and likes from being updated in real time</string>
+    <string name="revanced_spoof_app_version_target_entry_19_26_42">19.26.42 - Disable Cairo icon in navigation and toolbar</string>
+    <string name="revanced_spoof_app_version_target_entry_19_33_37">19.33.37 - Restore old playback speed flyout panel</string>
 
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Account menu -->
     <string name="revanced_preference_screen_account_menu_title">Account menu</string>
@@ -705,6 +707,9 @@ Note:
     <string name="revanced_hide_info_panel_title">Hide info panels</string>
     <string name="revanced_hide_info_panel_summary_on">Info panels are hidden.</string>
     <string name="revanced_hide_info_panel_summary_off">Info panels are shown.</string>
+    <string name="revanced_hide_live_chat_summary_title">Hide Chat summary in live chat</string>
+    <string name="revanced_hide_live_chat_summary_summary_on">Chat summary is hidden.</string>
+    <string name="revanced_hide_live_chat_summary_summary_off">Chat summary is shown.</string>
     <string name="revanced_hide_live_chat_messages_title">Hide live chat messages</string>
     <string name="revanced_hide_live_chat_messages_summary_on">Live chat messages are hidden.\n\nThis setting applies to Shorts live videos too.</string>
     <string name="revanced_hide_live_chat_messages_summary_off">Live chat messages are shown.\n\nThis setting applies to Shorts live videos too.</string>
@@ -1155,8 +1160,8 @@ This feature works best with a very fast internet connection."</string>
     <string name="revanced_hide_ai_generated_video_summary_section_summary_on">AI-generated video summary section is hidden.</string>
     <string name="revanced_hide_ai_generated_video_summary_section_summary_off">AI-generated video summary section is shown.</string>
     <string name="revanced_hide_attributes_section_title">Hide Attributes section</string>
-    <string name="revanced_hide_attributes_section_summary_on">Featured places, Games, and Music sections are hidden.</string>
-    <string name="revanced_hide_attributes_section_summary_off">Featured places, Games, and Music sections are shown.</string>
+    <string name="revanced_hide_attributes_section_summary_on">Featured places, Games, Music and People mentioned sections are hidden.</string>
+    <string name="revanced_hide_attributes_section_summary_off">Featured places, Games, Music and People mentioned sections are shown.</string>
     <string name="revanced_hide_chapters_section_title">Hide Chapters section</string>
     <string name="revanced_hide_chapters_section_summary_on">Chapters section is hidden.</string>
     <string name="revanced_hide_chapters_section_summary_off">Chapters section is shown.</string>
@@ -1235,6 +1240,7 @@ Info:
 
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Experimental Flags -->
     <string name="revanced_change_shorts_repeat_state_title">Change Shorts repeat state</string>
+    <string name="revanced_change_shorts_background_repeat_state_title">Change Shorts background repeat state</string>
     <string name="revanced_change_shorts_repeat_state_entry_auto_play">Autoplay</string>
     <string name="revanced_change_shorts_repeat_state_entry_default">Default</string>
     <string name="revanced_change_shorts_repeat_state_entry_pause">Pause</string>
@@ -1899,16 +1905,11 @@ Tap on the continue button and disable battery optimizations."</string>
     <string name="revanced_spoof_streaming_data_type_entry_android_unplugged">Android TV</string>
     <string name="revanced_spoof_streaming_data_type_entry_android_vr">Android VR</string>
     <string name="revanced_spoof_streaming_data_side_effects_title">Spoofing side effects</string>
-    <string name="revanced_spoof_streaming_data_side_effects_ios">"• Livestreams start from the beginning.
-• Videos may end 1 second early."</string>
-    <string name="revanced_spoof_streaming_data_side_effects_ios_skip_livestream_playback">• Videos may end 1 second early.</string>
+    <string name="revanced_spoof_streaming_data_side_effects_ios">• Not yet found.</string>
     <string name="revanced_spoof_streaming_data_side_effects_android_unplugged">"• Audio track menu is missing.
 • Stable volume is not available."</string>
     <string name="revanced_spoof_streaming_data_side_effects_android_vr">"• Audio track menu is missing.
 • Stable volume is not available."</string>
-    <string name="revanced_spoof_streaming_data_ios_skip_livestream_playback_title">Skip iOS livestream playback</string>
-    <string name="revanced_spoof_streaming_data_ios_skip_livestream_playback_summary_on">iOS client is not used for livestream playback.</string>
-    <string name="revanced_spoof_streaming_data_ios_skip_livestream_playback_summary_off">iOS client is used for livestream playback.</string>
     <string name="revanced_spoof_streaming_data_stats_for_nerds_title">Show in Stats for nerds</string>
     <string name="revanced_spoof_streaming_data_stats_for_nerds_summary_on">Client used to fetch streaming data is shown in Stats for nerds.</string>
     <string name="revanced_spoof_streaming_data_stats_for_nerds_summary_off">Client used to fetch streaming data is hidden in Stats for nerds.</string>

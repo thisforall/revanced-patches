@@ -49,14 +49,14 @@ internal val liveHeaderElementsContainerFingerprint = legacyFingerprint(
 
 fun indexOfAddLiveHeaderElementsContainerInstruction(method: Method) =
     method.indexOfFirstInstruction {
-        opcode == Opcode.INVOKE_DIRECT &&
-                getReference<MethodReference>()?.name == "addView"
+        getReference<MethodReference>()?.name == "addView"
     }
 
 internal val reelEnumConstructorFingerprint = legacyFingerprint(
     name = "reelEnumConstructorFingerprint",
     returnType = "V",
     strings = listOf(
+        "REEL_LOOP_BEHAVIOR_UNKNOWN",
         "REEL_LOOP_BEHAVIOR_SINGLE_PLAY",
         "REEL_LOOP_BEHAVIOR_REPEAT",
         "REEL_LOOP_BEHAVIOR_END_SCREEN"

@@ -5,77 +5,67 @@ import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.libraries.youtube.innertube.model.media.FormatStreamModel;
+import com.google.protos.youtube.api.innertube.StreamingDataOuterClass$StreamingData;
+
 import java.nio.ByteBuffer;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
+import app.revanced.extension.shared.patches.BlockRequestPatch;
+import app.revanced.extension.shared.patches.client.AppClient.ClientType;
+import app.revanced.extension.shared.patches.spoof.requests.StreamingDataRequest;
+import app.revanced.extension.shared.settings.BaseSettings;
 import app.revanced.extension.shared.utils.Logger;
 import app.revanced.extension.shared.utils.Utils;
-import app.revanced.extension.shared.settings.BaseSettings;
-import app.revanced.extension.shared.patches.spoof.requests.StreamingDataRequest;
 
 @SuppressWarnings("unused")
-public class SpoofStreamingDataPatch {
-    private static final boolean SPOOF_STREAMING_DATA = BaseSettings.SPOOF_STREAMING_DATA.get();
-    /**
-     * Any unreachable ip address.  Used to intentionally fail requests.
-     */
-    private static final String UNREACHABLE_HOST_URI_STRING = "https://127.0.0.0";
-    private static final Uri UNREACHABLE_HOST_URI = Uri.parse(UNREACHABLE_HOST_URI_STRING);
+public class SpoofStreamingDataPatch extends BlockRequestPatch {
 
     /**
-     * Injection point.
-     * Blocks /get_watch requests by returning an unreachable URI.
-     *
-     * @param playerRequestUri The URI of the player request.
-     * @return An unreachable URI if the request is a /get_watch request, otherwise the original URI.
+     * key: videoId
+     * value: android StreamingData
      */
-    public static Uri blockGetWatchRequest(Uri playerRequestUri) {
-        if (SPOOF_STREAMING_DATA) {
-            try {
-                String path = playerRequestUri.getPath();
+    private static final Map<String, StreamingDataOuterClass$StreamingData> streamingDataMap = Collections.synchronizedMap(
+            new LinkedHashMap<>(10) {
+                private static final int CACHE_LIMIT = 5;
 
-                if (path != null && path.contains("get_watch")) {
-                    Logger.printDebug(() -> "Blocking 'get_watch' by returning unreachable uri");
-
-                    return UNREACHABLE_HOST_URI;
+                @Override
+                protected boolean removeEldestEntry(Entry eldest) {
+                    return size() > CACHE_LIMIT; // Evict the oldest entry if over the cache limit.
                 }
-            } catch (Exception ex) {
-                Logger.printException(() -> "blockGetWatchRequest failure", ex);
-            }
-        }
-
-        return playerRequestUri;
-    }
+            });
 
     /**
-     * Injection point.
-     * <p>
-     * Blocks /initplayback requests.
+     * key: android StreamingData
+     * value: fetched ClientType
      */
-    public static String blockInitPlaybackRequest(String originalUrlString) {
-        if (SPOOF_STREAMING_DATA) {
-            try {
-                var originalUri = Uri.parse(originalUrlString);
-                String path = originalUri.getPath();
+    private static final Map<StreamingDataOuterClass$StreamingData, ClientType> clientTypeMap = Collections.synchronizedMap(
+            new LinkedHashMap<>(10) {
+                private static final int CACHE_LIMIT = 5;
 
-                if (path != null && path.contains("initplayback")) {
-                    Logger.printDebug(() -> "Blocking 'initplayback' by clearing query");
-
-                    return originalUri.buildUpon().clearQuery().build().toString();
+                @Override
+                protected boolean removeEldestEntry(Entry eldest) {
+                    return size() > CACHE_LIMIT; // Evict the oldest entry if over the cache limit.
                 }
-            } catch (Exception ex) {
-                Logger.printException(() -> "blockInitPlaybackRequest failure", ex);
-            }
-        }
-
-        return originalUrlString;
-    }
+            });
 
     /**
      * Injection point.
      */
     public static boolean isSpoofingEnabled() {
         return SPOOF_STREAMING_DATA;
+    }
+
+    /**
+     * Injection point.
+     */
+    public static boolean fixHLSCurrentTime(boolean original) {
+        if (!SPOOF_STREAMING_DATA) {
+            return original;
+        }
+        return false;
     }
 
     /**
@@ -110,9 +100,11 @@ public class SpoofStreamingDataPatch {
      * Injection point.
      * Fix playback by replace the streaming data.
      * Called after {@link #fetchStreams(String, Map)}.
+     *
+     * @param originalStreamingData Original StreamingData.
      */
     @Nullable
-    public static ByteBuffer getStreamingData(String videoId) {
+    public static ByteBuffer getStreamingData(String videoId, StreamingDataOuterClass$StreamingData originalStreamingData) {
         if (SPOOF_STREAMING_DATA) {
             try {
                 StreamingDataRequest request = StreamingDataRequest.getRequestForVideoId(videoId);
@@ -129,7 +121,11 @@ public class SpoofStreamingDataPatch {
                     var stream = request.getStream();
                     if (stream != null) {
                         Logger.printDebug(() -> "Overriding video stream: " + videoId);
-                        return stream;
+                        // Put the videoId, originalStreamingData, and the clientType used for spoofing into a HashMap.
+                        streamingDataMap.put(videoId, originalStreamingData);
+                        clientTypeMap.put(originalStreamingData, stream.second);
+
+                        return stream.first;
                     }
                 }
 
@@ -144,7 +140,42 @@ public class SpoofStreamingDataPatch {
 
     /**
      * Injection point.
-     * Called after {@link #getStreamingData(String)}.
+     * <p>
+     * It seems that some 'adaptiveFormats' are missing from the initial response of streaming data on iOS.
+     * Since the {@link FormatStreamModel} class for measuring the video length is not initialized on iOS clients,
+     * The video length field is always initialized to an estimated value, not the actual value.
+     * <p>
+     * To fix this, replace streamingData (spoofedStreamingData) with originalStreamingData, which is only used to initialize the {@link FormatStreamModel} class to measure the video length.
+     * <p>
+     * Called after {@link #getStreamingData(String, StreamingDataOuterClass$StreamingData)}.
+     *
+     * @param spoofedStreamingData Spoofed StreamingData.
+     */
+    public static StreamingDataOuterClass$StreamingData getOriginalStreamingData(String videoId, StreamingDataOuterClass$StreamingData spoofedStreamingData) {
+        if (SPOOF_STREAMING_DATA) {
+            try {
+                StreamingDataOuterClass$StreamingData androidStreamingData = streamingDataMap.get(videoId);
+                if (androidStreamingData != null) {
+                    ClientType clientType = clientTypeMap.get(androidStreamingData);
+                    if (clientType == ClientType.IOS) {
+                        Logger.printDebug(() -> "Overriding iOS streaming data to original streaming data: " + videoId);
+                        return androidStreamingData;
+                    } else {
+                        Logger.printDebug(() -> "Not overriding original streaming data as spoofed client is not iOS: " + videoId + " (" + clientType + ")");
+                    }
+                } else {
+                    Logger.printDebug(() -> "Not overriding original streaming data (original streaming data is null): " + videoId);
+                }
+            } catch (Exception ex) {
+                Logger.printException(() -> "getOriginalStreamingData failure", ex);
+            }
+        }
+        return spoofedStreamingData;
+    }
+
+    /**
+     * Injection point.
+     * Called after {@link #getStreamingData(String, StreamingDataOuterClass$StreamingData)}.
      */
     @Nullable
     public static byte[] removeVideoPlaybackPostBody(Uri uri, int method, byte[] postData) {

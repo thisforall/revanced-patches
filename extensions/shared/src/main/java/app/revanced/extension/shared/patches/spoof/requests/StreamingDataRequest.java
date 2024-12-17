@@ -2,6 +2,8 @@ package app.revanced.extension.shared.patches.spoof.requests;
 
 import static app.revanced.extension.shared.patches.spoof.requests.PlayerRoutes.GET_STREAMING_DATA;
 
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -13,18 +15,19 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import app.revanced.extension.shared.patches.components.ByteArrayFilterGroup;
 import app.revanced.extension.shared.patches.client.AppClient.ClientType;
-
+import app.revanced.extension.shared.settings.BaseSettings;
 import app.revanced.extension.shared.utils.Logger;
 import app.revanced.extension.shared.utils.Utils;
-import app.revanced.extension.shared.settings.BaseSettings;
 
 /**
  * Video streaming data.  Fetching is tied to the behavior YT uses,
@@ -44,12 +47,6 @@ public class StreamingDataRequest {
             "X-GOOG-API-FORMAT-VERSION",
             "X-Goog-Visitor-Id"
     };
-    private static final ByteArrayFilterGroup liveStreams =
-            new ByteArrayFilterGroup(
-                    BaseSettings.SPOOF_STREAMING_DATA_IOS_SKIP_LIVESTREAM_PLAYBACK,
-                    "yt_live_broadcast",
-                    "yt_premiere_broadcast"
-            );
     private static ClientType lastSpoofedClientType;
 
 
@@ -100,7 +97,7 @@ public class StreamingDataRequest {
     }
 
     private final String videoId;
-    private final Future<ByteBuffer> future;
+    private final Future<Pair<ByteBuffer, ClientType>> future;
 
     private StreamingDataRequest(String videoId, Map<String, String> playerHeaders) {
         Objects.requireNonNull(playerHeaders);
@@ -177,7 +174,7 @@ public class StreamingDataRequest {
         return null;
     }
 
-    private static ByteBuffer fetch(String videoId, Map<String, String> playerHeaders) {
+    private static Pair<ByteBuffer, ClientType> fetch(String videoId, Map<String, String> playerHeaders) {
         lastSpoofedClientType = null;
 
         // Retry with different client if empty response body is received.
@@ -193,18 +190,14 @@ public class StreamingDataRequest {
                         try (InputStream inputStream = new BufferedInputStream(connection.getInputStream());
                              ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
 
-                            byte[] buffer = new byte[4096];
+                            byte[] buffer = new byte[2048];
                             int bytesRead;
                             while ((bytesRead = inputStream.read(buffer)) >= 0) {
                                 baos.write(buffer, 0, bytesRead);
                             }
-                            if (clientType == ClientType.IOS && liveStreams.check(buffer).isFiltered()) {
-                                Logger.printDebug(() -> "Ignore IOS spoofing as it is a livestream (video: " + videoId + ")");
-                                continue;
-                            }
                             lastSpoofedClientType = clientType;
 
-                            return ByteBuffer.wrap(baos.toByteArray());
+                            return new Pair<>(ByteBuffer.wrap(baos.toByteArray()), clientType);
                         }
                     }
                 } catch (IOException ex) {
@@ -222,7 +215,7 @@ public class StreamingDataRequest {
     }
 
     @Nullable
-    public ByteBuffer getStream() {
+    public Pair<ByteBuffer, ClientType> getStream() {
         try {
             return future.get(MAX_MILLISECONDS_TO_WAIT_FOR_FETCH, TimeUnit.MILLISECONDS);
         } catch (TimeoutException ex) {

@@ -523,6 +523,7 @@
         <SwitchPreference android:title="@string/revanced_hide_filmstrip_overlay_title" android:key="revanced_hide_filmstrip_overlay" android:summaryOn="@string/revanced_hide_filmstrip_overlay_summary_on" android:summaryOff="@string/revanced_hide_filmstrip_overlay_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_info_cards_title" android:key="revanced_hide_info_cards" android:summaryOn="@string/revanced_hide_info_cards_summary_on" android:summaryOff="@string/revanced_hide_info_cards_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_info_panel_title" android:key="revanced_hide_info_panel" android:summaryOn="@string/revanced_hide_info_panel_summary_on" android:summaryOff="@string/revanced_hide_info_panel_summary_off" />
+        <SwitchPreference android:title="@string/revanced_hide_live_chat_summary_title" android:key="revanced_hide_live_chat_summary" android:summaryOn="@string/revanced_hide_live_chat_summary_summary_on" android:summaryOff="@string/revanced_hide_live_chat_summary_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_live_chat_messages_title" android:key="revanced_hide_live_chat_messages" android:summaryOn="@string/revanced_hide_live_chat_messages_summary_on" android:summaryOff="@string/revanced_hide_live_chat_messages_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_medical_panel_title" android:key="revanced_hide_medical_panel" android:summaryOn="@string/revanced_hide_medical_panel_summary_on" android:summaryOff="@string/revanced_hide_medical_panel_summary_off" />
         <SwitchPreference android:title="@string/revanced_hide_seek_message_title" android:key="revanced_hide_seek_message" android:summaryOn="@string/revanced_hide_seek_message_summary_on" android:summaryOff="@string/revanced_hide_seek_message_summary_off" />
@@ -632,6 +633,9 @@
         <SwitchPreference android:title="@string/revanced_hide_shorts_shelf_history_title" android:key="revanced_hide_shorts_shelf_history" android:summaryOn="@string/revanced_hide_shorts_shelf_history_summary_on" android:summaryOff="@string/revanced_hide_shorts_shelf_history_summary_off" android:dependency="revanced_hide_shorts_shelf" />
         <PreferenceCategory android:title="@string/revanced_preference_category_experimental_flag" android:layout="@layout/revanced_settings_preferences_category"/>
         <ListPreference android:entries="@array/revanced_change_shorts_repeat_state_entries" android:title="@string/revanced_change_shorts_repeat_state_title" android:key="revanced_change_shorts_repeat_state" android:entryValues="@array/revanced_change_shorts_repeat_state_entry_values" />SETTINGS: SHORTS_COMPONENTS -->
+
+        <!-- SETTINGS: SHORTS_REPEAT_STATE_BACKGROUND
+        <ListPreference android:entries="@array/revanced_change_shorts_repeat_state_entries" android:title="@string/revanced_change_shorts_background_repeat_state_title" android:key="revanced_change_shorts_background_repeat_state" android:entryValues="@array/revanced_change_shorts_repeat_state_entry_values" />SETTINGS: SHORTS_REPEAT_STATE_BACKGROUND -->
 
     <!-- PREFERENCE_SCREEN: SHORTS
     </PreferenceScreen>PREFERENCE_SCREEN: SHORTS -->
@@ -780,7 +784,6 @@
             <SwitchPreference android:title="@string/revanced_spoof_streaming_data_title" android:key="revanced_spoof_streaming_data" android:summaryOn="@string/revanced_spoof_streaming_data_summary_on" android:summaryOff="@string/revanced_spoof_streaming_data_summary_off" />
             <ListPreference android:entries="@array/revanced_spoof_streaming_data_type_entries" android:title="@string/revanced_spoof_streaming_data_type_title" android:key="revanced_spoof_streaming_data_type" android:entryValues="@array/revanced_spoof_streaming_data_type_entry_values" android:dependency="revanced_spoof_streaming_data" />
             <app.revanced.extension.youtube.settings.preference.SpoofStreamingDataSideEffectsPreference android:title="@string/revanced_spoof_streaming_data_side_effects_title" />
-            <SwitchPreference android:title="@string/revanced_spoof_streaming_data_ios_skip_livestream_playback_title" android:key="revanced_spoof_streaming_data_ios_skip_livestream_playback" android:summaryOn="@string/revanced_spoof_streaming_data_ios_skip_livestream_playback_summary_on" android:summaryOff="@string/revanced_spoof_streaming_data_ios_skip_livestream_playback_summary_off" android:dependency="revanced_spoof_streaming_data" />
             <SwitchPreference android:title="@string/revanced_spoof_streaming_data_stats_for_nerds_title" android:key="revanced_spoof_streaming_data_stats_for_nerds" android:summaryOn="@string/revanced_spoof_streaming_data_stats_for_nerds_summary_on" android:summaryOff="@string/revanced_spoof_streaming_data_stats_for_nerds_summary_off" android:dependency="revanced_spoof_streaming_data" />
         </PreferenceScreen>SETTINGS: SPOOF_STREAMING_DATA -->
 
