@@ -141,17 +141,23 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
      * @param spoofedStreamingData Spoofed StreamingData.
      */
     public static StreamingDataOuterClass$StreamingData getOriginalStreamingData(String videoId, StreamingDataOuterClass$StreamingData spoofedStreamingData) {
-        if (SPOOF_STREAMING_DATA && getLastSpoofedClient(videoId) == ClientType.IOS) {
-            try {
-                StreamingDataOuterClass$StreamingData androidStreamingData = streamingDataMap.get(videoId);
-                if (androidStreamingData != null) {
-                    return androidStreamingData;
-                }
-
-                Logger.printDebug(() -> "Not overriding original streaming data (original streaming data is null): " + videoId);
-            } catch (Exception ex) {
-                Logger.printException(() -> "getOriginalStreamingData failure", ex);
+        if (SPOOF_STREAMING_DATA) {
+            return spoofedStreamingData;
+        }
+        if (getLastSpoofedClient(videoId) == ClientType.IOS) {
+            Logger.printDebug(() -> "Not overriding original streaming data as spoofed client is not iOS: " + videoId + " (" + clientType + ")");
+            return spoofedStreamingData;
+        }
+        try {
+            StreamingDataOuterClass$StreamingData androidStreamingData = streamingDataMap.get(videoId);
+            if (androidStreamingData != null) {
+                Logger.printDebug(() -> "Overriding iOS streaming data to original streaming data: " + videoId);
+                return androidStreamingData;
             }
+
+            Logger.printDebug(() -> "Not overriding original streaming data (original streaming data is null): " + videoId);
+        } catch (Exception ex) {
+            Logger.printException(() -> "getOriginalStreamingData failure", ex);
         }
         return spoofedStreamingData;
     }
