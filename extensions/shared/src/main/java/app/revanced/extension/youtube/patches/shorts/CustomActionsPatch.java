@@ -2,13 +2,13 @@ package app.revanced.extension.youtube.patches.shorts;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.TypedValue;
+import android.view.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -25,6 +25,7 @@ import app.revanced.extension.youtube.shared.ShortsPlayerState;
 import app.revanced.extension.youtube.utils.ThemeUtils;
 import app.revanced.extension.youtube.utils.VideoUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.ref.WeakReference;
 import java.util.LinkedHashMap;
@@ -83,114 +84,114 @@ public final class CustomActionsPatch {
 
     private static void showMoreButtonDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(getString("revanced_shorts_custom_actions_toolbar_dialog_title"));
 
-        Map<String, Runnable> toolbarMap = new LinkedHashMap<>(arrSize);
-
+        Map<String, Runnable> toolbarMap = new LinkedHashMap<>();
         for (CustomAction customAction : CustomAction.values()) {
             if (customAction.settings.get()) {
-                toolbarMap.putIfAbsent(customAction.getLabel(), customAction.getOnClickAction());
+                toolbarMap.put(customAction.getLabel(), customAction.getOnClickAction());
             }
         }
 
         String[] titles = toolbarMap.keySet().toArray(new String[0]);
         Runnable[] actions = toolbarMap.values().toArray(new Runnable[0]);
-        int[] iconsIds = getIconsIds(titles);
+        int[] iconIds = getIconsIds(titles);
 
         ScrollView scrollView = new ScrollView(context);
-        LinearLayout container = createContainer(context);
-
-        // add divider after the title
-        container.addView(createDivider(context, 8, 8));
+        LinearLayout container = new LinearLayout(context);
+        container.setOrientation(LinearLayout.VERTICAL);
+        container.setPadding(0, 0, 0, 0);
 
         for (int i = 0; i < titles.length; i++) {
-            boolean isLast = (i == titles.length - 1);
-
-            container.addView(createItemLayout(context, titles[i], iconsIds[i], actions[i]));
-
-            if (!isLast)
-                container.addView(createDivider(context, 8, 8));
+            container.addView(createItemLayout(context, titles[i], iconIds[i], actions[i]));
         }
-
 
         scrollView.addView(container);
         builder.setView(scrollView);
 
         AlertDialog dialog = builder.create();
-        applyDialogStyle(dialog);
         dialog.show();
+
+        // round corners
+        GradientDrawable dialogBackground = new GradientDrawable();
+        dialogBackground.setCornerRadius(32);
+        dialog.getWindow().setBackgroundDrawable(dialogBackground);
+
+        Window window = dialog.getWindow();
+        // fit screen width
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        // move dialog to bottom
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        layoutParams.gravity = Gravity.BOTTOM;
+        window.setAttributes(layoutParams);
     }
 
     private static int[] getIconsIds(String[] titles) {
-        int[] iconsIds = new int[titles.length];
-        for (int i = 0; i < titles.length; i++)
-            iconsIds[i] = CustomAction.values()[i].getDrawableId();
-        return iconsIds;
-    }
-
-    private static LinearLayout createContainer(Context context) {
-        LinearLayout container = new LinearLayout(context);
-        container.setOrientation(LinearLayout.VERTICAL);
-        container.setPadding(16, 16, 16, 16);
-        return container;
-    }
-
-    private static View createDivider(Context context, int top, int bottom) {
-        View divider = new View(context);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                2
-        );
-        params.setMargins(0, top, 0, bottom);
-        divider.setLayoutParams(params);
-        divider.setBackgroundColor(Color.LTGRAY);
-        return divider;
+        int[] iconIds = new int[titles.length];
+        for (int i = 0; i < titles.length; i++) {
+            iconIds[i] = CustomAction.values()[i].getDrawableId();
+        }
+        return iconIds;
     }
 
     private static LinearLayout createItemLayout(Context context, String title, int iconId, Runnable action) {
+        // Item Layout
         LinearLayout itemLayout = new LinearLayout(context);
         itemLayout.setOrientation(LinearLayout.HORIZONTAL);
-        itemLayout.setPadding(16, 16, 16, 16);
+        itemLayout.setPadding(dpToPx(context, 16), dpToPx(context, 12), dpToPx(context, 16), dpToPx(context, 12));
         itemLayout.setGravity(Gravity.CENTER_VERTICAL);
+        itemLayout.setClickable(true);
+        itemLayout.setFocusable(true);
 
+        // Create a StateListDrawable for the background
+        StateListDrawable background = new StateListDrawable();
+        ColorDrawable pressedDrawable = new ColorDrawable(ThemeUtils.getPressedElementColor());
+        ColorDrawable defaultDrawable = new ColorDrawable(ThemeUtils.getBackgroundColor());
+        background.addState(new int[]{android.R.attr.state_pressed}, pressedDrawable);
+        background.addState(new int[]{}, defaultDrawable);
+        itemLayout.setBackground(background);
+
+        // Icon
         ImageView iconView = new ImageView(context);
         iconView.setImageResource(iconId);
-        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(64, 64);
-        iconParams.setMarginEnd(16);
+        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(dpToPx(context, 24), dpToPx(context, 24));
+        iconParams.setMarginEnd(dpToPx(context, 16));
         iconView.setLayoutParams(iconParams);
-
-        TextView textView = new TextView(context);
-        textView.setText(title);
-        textView.setTextSize(16);
-        textView.setTextColor(ThemeUtils.getForegroundColor());
-
         itemLayout.addView(iconView);
-        itemLayout.addView(textView);
 
+        LinearLayout textContainer = getLinearLayout(context, title);
+        itemLayout.addView(textContainer);
+
+        // Click action
         itemLayout.setOnClickListener(v -> {
             if (action != null) {
                 action.run();
-                // TODO: Dismiss dialog
-            } else
+            } else {
                 Logger.printDebug(() -> "No action found for " + title);
+            }
         });
-
-        GradientDrawable background = new GradientDrawable();
-        background.setCornerRadius(16);
-        itemLayout.setBackground(background);
 
         return itemLayout;
     }
 
-    private static void applyDialogStyle(AlertDialog dialog) {
-        if (dialog.getWindow() == null)
-            return;
+    @NotNull
+    private static LinearLayout getLinearLayout(Context context, String title) {
+        LinearLayout textContainer = new LinearLayout(context);
+        textContainer.setOrientation(LinearLayout.VERTICAL);
 
-        GradientDrawable dialogBackground = new GradientDrawable();
-        dialogBackground.setColor(Color.WHITE);
-        dialogBackground.setCornerRadius(32);
-        dialog.getWindow().setBackgroundDrawable(dialogBackground);
+        TextView titleView = new TextView(context);
+        titleView.setText(title);
+        titleView.setTextSize(16);
+        titleView.setTextColor(ThemeUtils.getForegroundColor());
+
+        textContainer.addView(titleView);
+        return textContainer;
     }
+
+    private static int dpToPx(Context context, int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+    }
+
 
     private static boolean isMoreButton(String enumString) {
         return StringUtils.equalsAny(
@@ -336,7 +337,7 @@ public final class CustomActionsPatch {
     public enum CustomAction {
         COPY_URL(
                 Settings.SHORTS_CUSTOM_ACTIONS_COPY_VIDEO_URL,
-                "yt_outline_link_black_24",
+                ThemeUtils.isDarkTheme() ? "yt_outline_link_white_24" : "yt_outline_link_black_24",
                 () -> VideoUtils.copyUrl(
                         VideoUtils.getVideoUrl(
                                 ShortsCustomActionsFilter.getShortsVideoId(),
@@ -354,7 +355,7 @@ public final class CustomActionsPatch {
         ),
         COPY_URL_WITH_TIMESTAMP(
                 Settings.SHORTS_CUSTOM_ACTIONS_COPY_VIDEO_URL_TIMESTAMP,
-                "yt_outline_arrow_time_black_24",
+                ThemeUtils.isDarkTheme() ? "yt_outline_arrow_time_vd_theme_24" : "yt_outline_arrow_time_black_24",
                 () -> VideoUtils.copyUrl(
                         VideoUtils.getVideoUrl(
                                 ShortsCustomActionsFilter.getShortsVideoId(),
@@ -372,14 +373,14 @@ public final class CustomActionsPatch {
         ),
         EXTERNAL_DOWNLOADER(
                 Settings.SHORTS_CUSTOM_ACTIONS_EXTERNAL_DOWNLOADER,
-                "yt_outline_download_black_24",
+                ThemeUtils.isDarkTheme() ? "yt_outline_download_vd_theme_24" : "yt_outline_download_black_24",
                 () -> VideoUtils.launchVideoExternalDownloader(
                         ShortsCustomActionsFilter.getShortsVideoId()
                 )
         ),
         OPEN_VIDEO(
                 Settings.SHORTS_CUSTOM_ACTIONS_OPEN_VIDEO,
-                "yt_outline_youtube_logo_icon_black_24",
+                "yt_outline_youtube_logo_icon_black_24", // TODO: find the equivalent icon for black theme
                 () -> VideoUtils.openVideo(
                         ShortsCustomActionsFilter.getShortsVideoId(),
                         true
@@ -387,7 +388,7 @@ public final class CustomActionsPatch {
         ),
         REPEAT_STATE(
                 Settings.SHORTS_CUSTOM_ACTIONS_REPEAT_STATE,
-                "yt_outline_arrow_repeat_1_black_24",
+                ThemeUtils.isDarkTheme() ? "yt_outline_arrow_repeat_1_white_24" : "yt_outline_arrow_repeat_1_black_24",
                 () -> VideoUtils.showShortsRepeatDialog(contextRef.get())
         );
 
