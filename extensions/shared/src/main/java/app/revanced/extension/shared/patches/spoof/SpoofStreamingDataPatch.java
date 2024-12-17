@@ -1,5 +1,7 @@
 package app.revanced.extension.shared.patches.spoof;
 
+import static app.revanced.extension.shared.patches.spoof.requests.StreamingDataRequest.getLastSpoofedClient;
+
 import android.net.Uri;
 import android.text.TextUtils;
 
@@ -24,24 +26,10 @@ import app.revanced.extension.shared.utils.Utils;
 public class SpoofStreamingDataPatch extends BlockRequestPatch {
 
     /**
-     * key: videoId
-     * value: android StreamingData
+     * Key: videoId
+     * Value: Original StreamingData of Android client
      */
     private static final Map<String, StreamingDataOuterClass$StreamingData> streamingDataMap = Collections.synchronizedMap(
-            new LinkedHashMap<>(10) {
-                private static final int CACHE_LIMIT = 5;
-
-                @Override
-                protected boolean removeEldestEntry(Entry eldest) {
-                    return size() > CACHE_LIMIT; // Evict the oldest entry if over the cache limit.
-                }
-            });
-
-    /**
-     * key: android StreamingData
-     * value: fetched ClientType
-     */
-    private static final Map<StreamingDataOuterClass$StreamingData, ClientType> clientTypeMap = Collections.synchronizedMap(
             new LinkedHashMap<>(10) {
                 private static final int CACHE_LIMIT = 5;
 
@@ -62,10 +50,10 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
      * Injection point.
      */
     public static boolean fixHLSCurrentTime(boolean original) {
-        if (!SPOOF_STREAMING_DATA) {
-            return original;
+        if (SPOOF_STREAMING_DATA && getLastSpoofedClient() == ClientType.IOS) {
+            return false;
         }
-        return false;
+        return original;
     }
 
     /**
@@ -106,6 +94,8 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
     @Nullable
     public static ByteBuffer getStreamingData(String videoId, StreamingDataOuterClass$StreamingData originalStreamingData) {
         if (SPOOF_STREAMING_DATA) {
+            streamingDataMap.putIfAbsent(videoId, originalStreamingData);
+
             try {
                 StreamingDataRequest request = StreamingDataRequest.getRequestForVideoId(videoId);
                 if (request != null) {
@@ -121,11 +111,7 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
                     var stream = request.getStream();
                     if (stream != null) {
                         Logger.printDebug(() -> "Overriding video stream: " + videoId);
-                        // Put the videoId, originalStreamingData, and the clientType used for spoofing into a HashMap.
-                        streamingDataMap.put(videoId, originalStreamingData);
-                        clientTypeMap.put(originalStreamingData, stream.second);
-
-                        return stream.first;
+                        return stream;
                     }
                 }
 
@@ -141,31 +127,28 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
     /**
      * Injection point.
      * <p>
-     * It seems that some 'adaptiveFormats' are missing from the initial response of streaming data on iOS.
-     * Since the {@link FormatStreamModel} class for measuring the video length is not initialized on iOS clients,
-     * The video length field is always initialized to an estimated value, not the actual value.
+     * In iOS Clients, Progressive Streaming are not available, so 'formats' field have been removed
+     * completely from the initial response of streaming data.
+     * Therefore, {@link FormatStreamModel} class is never be initialized, and the video length field
+     * is set with an estimated value from `adaptiveFormats` instead.
      * <p>
-     * To fix this, replace streamingData (spoofedStreamingData) with originalStreamingData, which is only used to initialize the {@link FormatStreamModel} class to measure the video length.
+     * To get workaround with this, replace streamingData (spoofedStreamingData) with originalStreamingData,
+     * which is only used to initialize the {@link FormatStreamModel} class to caculate the video length.
+     * The playback issues shouldn't occur since the integrity check is not appllied for Progressive Stream.
      * <p>
      * Called after {@link #getStreamingData(String, StreamingDataOuterClass$StreamingData)}.
      *
      * @param spoofedStreamingData Spoofed StreamingData.
      */
     public static StreamingDataOuterClass$StreamingData getOriginalStreamingData(String videoId, StreamingDataOuterClass$StreamingData spoofedStreamingData) {
-        if (SPOOF_STREAMING_DATA) {
+        if (SPOOF_STREAMING_DATA && getLastSpoofedClient(videoId) == ClientType.IOS) {
             try {
                 StreamingDataOuterClass$StreamingData androidStreamingData = streamingDataMap.get(videoId);
                 if (androidStreamingData != null) {
-                    ClientType clientType = clientTypeMap.get(androidStreamingData);
-                    if (clientType == ClientType.IOS) {
-                        Logger.printDebug(() -> "Overriding iOS streaming data to original streaming data: " + videoId);
-                        return androidStreamingData;
-                    } else {
-                        Logger.printDebug(() -> "Not overriding original streaming data as spoofed client is not iOS: " + videoId + " (" + clientType + ")");
-                    }
-                } else {
-                    Logger.printDebug(() -> "Not overriding original streaming data (original streaming data is null): " + videoId);
+                    return androidStreamingData;
                 }
+
+                Logger.printDebug(() -> "Not overriding original streaming data (original streaming data is null): " + videoId);
             } catch (Exception ex) {
                 Logger.printException(() -> "getOriginalStreamingData failure", ex);
             }
