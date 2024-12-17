@@ -99,16 +99,12 @@ public class StreamingDataRequest {
     private final String lastvideoId;
     private final Future<ByteBuffer> future;
 
-    public static ClientType getLastSpoofedClient() {
-        return getLastSpoofedClient(lastvideoId);
-    }
-
     public static ClientType getLastSpoofedClient(String videoId) {
         return clientTypeMap.get(videoId);
     }
 
     public static String getLastSpoofedClientName() {
-        ClientType lastSpoofedClientType = getLastSpoofedClient();
+        ClientType lastSpoofedClientType = getLastSpoofedClient(this.lastvideoId);
         return lastSpoofedClientType == null
                 ? "Unknown"
                 : lastSpoofedClientType.getFriendlyName();
