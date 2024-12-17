@@ -208,7 +208,7 @@ public class StreamingDataRequest {
                             while ((bytesRead = inputStream.read(buffer)) >= 0) {
                                 baos.write(buffer, 0, bytesRead);
                             }
-                            clientTypeMap.putIfAbsent(videoId, clientType);
+                            clientTypeMap.put(videoId, clientType);
 
                             return ByteBuffer.wrap(baos.toByteArray());
                         }
