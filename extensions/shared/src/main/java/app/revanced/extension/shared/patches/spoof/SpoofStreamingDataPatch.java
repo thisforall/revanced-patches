@@ -50,7 +50,7 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
      * Injection point.
      */
     public static boolean fixHLSCurrentTime(boolean original) {
-        if (!SPOOF_STREAMING_DATA || getLastSpoofedClient() != ClientType.IOS)
+        if (!SPOOF_STREAMING_DATA)
             return original;
         return false;
     }
