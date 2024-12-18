@@ -1,6 +1,6 @@
 package app.revanced.extension.shared.patches.spoof;
 
-import static app.revanced.extension.shared.patches.spoof.requests.StreamingDataRequest.getLastSpoofedClient;
+import static app.revanced.extension.shared.utils.Utils.isSDKAbove;
 
 import android.net.Uri;
 import android.text.TextUtils;
@@ -26,8 +26,8 @@ import app.revanced.extension.shared.utils.Utils;
 public class SpoofStreamingDataPatch extends BlockRequestPatch {
 
     /**
-     * Key: videoId
-     * Value: Original StreamingData of Android client
+     * Key: videoId.
+     * Value: Original StreamingData of Android client.
      */
     private static final Map<String, StreamingDataOuterClass$StreamingData> streamingDataMap = Collections.synchronizedMap(
             new LinkedHashMap<>(10) {
@@ -50,8 +50,9 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
      * Injection point.
      */
     public static boolean fixHLSCurrentTime(boolean original) {
-        if (!SPOOF_STREAMING_DATA)
+        if (!SPOOF_STREAMING_DATA) {
             return original;
+        }
         return false;
     }
 
@@ -93,8 +94,6 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
     @Nullable
     public static ByteBuffer getStreamingData(String videoId, StreamingDataOuterClass$StreamingData originalStreamingData) {
         if (SPOOF_STREAMING_DATA) {
-            streamingDataMap.putIfAbsent(videoId, originalStreamingData);
-
             try {
                 StreamingDataRequest request = StreamingDataRequest.getRequestForVideoId(videoId);
                 if (request != null) {
@@ -109,8 +108,25 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
 
                     var stream = request.getStream();
                     if (stream != null) {
+                        ByteBuffer spoofedStreamingData = stream.first;
+                        ClientType spoofedClientType = stream.second;
+
                         Logger.printDebug(() -> "Overriding video stream: " + videoId);
-                        return stream;
+
+                        // Put the videoId, originalStreamingData, and the clientType used for spoofing into a HashMap.
+                        if (spoofedClientType == ClientType.IOS) {
+                            // For YT Music 6.20.51, which is supported by RVX, it can run on Android 5.0 (SDK 21).
+                            // The IDE does not make any suggestions since the project's minSDK is 24, but you should check the SDK version for compatibility with SDK 21.
+                            if (isSDKAbove(24)) {
+                                streamingDataMap.putIfAbsent(videoId, originalStreamingData);
+                            } else {
+                                if (!streamingDataMap.containsKey(videoId)) {
+                                    streamingDataMap.put(videoId, originalStreamingData);
+                                }
+                            }
+                        }
+
+                        return spoofedStreamingData;
                     }
                 }
 
@@ -132,8 +148,8 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
      * is set with an estimated value from `adaptiveFormats` instead.
      * <p>
      * To get workaround with this, replace streamingData (spoofedStreamingData) with originalStreamingData,
-     * which is only used to initialize the {@link FormatStreamModel} class to caculate the video length.
-     * The playback issues shouldn't occur since the integrity check is not appllied for Progressive Stream.
+     * which is only used to initialize the {@link FormatStreamModel} class to calculate the video length.
+     * The playback issues shouldn't occur since the integrity check is not applied for Progressive Stream.
      * <p>
      * Called after {@link #getStreamingData(String, StreamingDataOuterClass$StreamingData)}.
      *
@@ -141,23 +157,17 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
      */
     public static StreamingDataOuterClass$StreamingData getOriginalStreamingData(String videoId, StreamingDataOuterClass$StreamingData spoofedStreamingData) {
         if (SPOOF_STREAMING_DATA) {
-            return spoofedStreamingData;
-        }
-        ClientType lastSpoofedClientType = getLastSpoofedClient(videoId);
-        if (lastSpoofedClientType != ClientType.IOS) {
-            Logger.printDebug(() -> "Not overriding original streaming data as spoofed client is not iOS: " + videoId + " (" + lastSpoofedClientType + ")");
-            return spoofedStreamingData;
-        }
-        try {
-            StreamingDataOuterClass$StreamingData androidStreamingData = streamingDataMap.get(videoId);
-            if (androidStreamingData != null) {
-                Logger.printDebug(() -> "Overriding iOS streaming data to original streaming data: " + videoId);
-                return androidStreamingData;
+            try {
+                StreamingDataOuterClass$StreamingData androidStreamingData = streamingDataMap.get(videoId);
+                if (androidStreamingData != null) {
+                    Logger.printDebug(() -> "Overriding iOS streaming data to original streaming data: " + videoId);
+                    return androidStreamingData;
+                } else {
+                    Logger.printDebug(() -> "Not overriding original streaming data as spoofed client is not iOS: " + videoId);
+                }
+            } catch (Exception ex) {
+                Logger.printException(() -> "getOriginalStreamingData failure", ex);
             }
-
-            Logger.printDebug(() -> "Not overriding original streaming data (original streaming data is null): " + videoId);
-        } catch (Exception ex) {
-            Logger.printException(() -> "getOriginalStreamingData failure", ex);
         }
         return spoofedStreamingData;
     }

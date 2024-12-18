@@ -2,6 +2,8 @@ package app.revanced.extension.shared.patches.spoof.requests;
 
 import static app.revanced.extension.shared.patches.spoof.requests.PlayerRoutes.GET_STREAMING_DATA;
 
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -45,6 +47,8 @@ public class StreamingDataRequest {
             "X-GOOG-API-FORMAT-VERSION",
             "X-Goog-Visitor-Id"
     };
+    private static ClientType lastSpoofedClientType;
+
 
     /**
      * TCP connection and HTTP read timeout.
@@ -71,15 +75,11 @@ public class StreamingDataRequest {
                 }
             });
 
-    private static final Map<String, ClientType> clientTypeMap = Collections.synchronizedMap(
-            new LinkedHashMap<>(10) {
-                private static final int CACHE_LIMIT = 5;
-
-                @Override
-                protected boolean removeEldestEntry(Entry eldest) {
-                    return size() > CACHE_LIMIT; // Evict the oldest entry if over the cache limit.
-                }
-            });
+    public static String getLastSpoofedClientName() {
+        return lastSpoofedClientType == null
+                ? "Unknown"
+                : lastSpoofedClientType.getFriendlyName();
+    }
 
     static {
         ClientType[] allClientTypes = ClientType.values();
@@ -96,23 +96,12 @@ public class StreamingDataRequest {
         }
     }
 
-    private final String lastvideoId;
-    private final Future<ByteBuffer> future;
-
-    public static ClientType getLastSpoofedClient(String videoId) {
-        return clientTypeMap.get(videoId);
-    }
-
-    public static String getLastSpoofedClientName() {
-        ClientType lastSpoofedClientType = getLastSpoofedClient(this.lastvideoId);
-        return lastSpoofedClientType == null
-                ? "Unknown"
-                : lastSpoofedClientType.getFriendlyName();
-    }
+    private final String videoId;
+    private final Future<Pair<ByteBuffer, ClientType>> future;
 
     private StreamingDataRequest(String videoId, Map<String, String> playerHeaders) {
         Objects.requireNonNull(playerHeaders);
-        this.lastvideoId = videoId;
+        this.videoId = videoId;
         this.future = Utils.submitOnBackgroundThread(() -> fetch(videoId, playerHeaders));
     }
 
@@ -185,7 +174,9 @@ public class StreamingDataRequest {
         return null;
     }
 
-    private static ByteBuffer fetch(String videoId, Map<String, String> playerHeaders) {
+    private static Pair<ByteBuffer, ClientType> fetch(String videoId, Map<String, String> playerHeaders) {
+        lastSpoofedClientType = null;
+
         // Retry with different client if empty response body is received.
         for (ClientType clientType : CLIENT_ORDER_TO_USE) {
             HttpURLConnection connection = send(clientType, videoId, playerHeaders);
@@ -197,16 +188,15 @@ public class StreamingDataRequest {
                         Logger.printDebug(() -> "Received empty response" + "\nClient: " + clientType + "\nVideo: " + videoId);
                     } else {
                         try (InputStream inputStream = new BufferedInputStream(connection.getInputStream());
-                             ByteArrayOutputStream baos = new ByteArrayOutputStream()
-                        ) {
+                             ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
                             byte[] buffer = new byte[2048];
                             int bytesRead;
                             while ((bytesRead = inputStream.read(buffer)) >= 0) {
                                 baos.write(buffer, 0, bytesRead);
                             }
-                            clientTypeMap.put(videoId, clientType);
+                            lastSpoofedClientType = clientType;
 
-                            return ByteBuffer.wrap(baos.toByteArray());
+                            return new Pair<>(ByteBuffer.wrap(baos.toByteArray()), clientType);
                         }
                     }
                 } catch (IOException ex) {
@@ -224,7 +214,7 @@ public class StreamingDataRequest {
     }
 
     @Nullable
-    public ByteBuffer getStream() {
+    public Pair<ByteBuffer, ClientType> getStream() {
         try {
             return future.get(MAX_MILLISECONDS_TO_WAIT_FOR_FETCH, TimeUnit.MILLISECONDS);
         } catch (TimeoutException ex) {
@@ -242,6 +232,6 @@ public class StreamingDataRequest {
     @NonNull
     @Override
     public String toString() {
-        return "StreamingDataRequest{" + "videoId='" + lastvideoId + '\'' + '}';
+        return "StreamingDataRequest{" + "videoId='" + videoId + '\'' + '}';
     }
 }
