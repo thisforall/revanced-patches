@@ -113,7 +113,7 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
 
                         Logger.printDebug(() -> "Overriding video stream: " + videoId);
 
-                        // Put the videoId, originalStreamingData, and the clientType used for spoofing into a HashMap.
+                        // Put the videoId and originalStreamingData into a HashMap.
                         if (spoofedClientType == ClientType.IOS) {
                             // For YT Music 6.20.51, which is supported by RVX, it can run on Android 5.0 (SDK 21).
                             // The IDE does not make any suggestions since the project's minSDK is 24, but you should check the SDK version for compatibility with SDK 21.
