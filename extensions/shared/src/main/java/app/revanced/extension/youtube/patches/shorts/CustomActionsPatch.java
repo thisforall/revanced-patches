@@ -162,13 +162,7 @@ public final class CustomActionsPatch {
         itemLayout.setBackground(background);
 
         // Icon
-        int colorBackFilter;
-        if (ThemeUtils.isDarkTheme())
-            colorBackFilter = Color.parseColor("#ffffffff");
-        else
-            colorBackFilter = Color.parseColor("#ff000000");
-
-        ColorFilter cf = new PorterDuffColorFilter(colorBackFilter, PorterDuff.Mode.SRC_ATOP);
+        ColorFilter cf = new PorterDuffColorFilter(ThemeUtils.getForegroundColor(), PorterDuff.Mode.SRC_ATOP);
         ImageView iconView = new ImageView(context);
         iconView.setImageResource(iconId);
         iconView.setColorFilter(cf);
