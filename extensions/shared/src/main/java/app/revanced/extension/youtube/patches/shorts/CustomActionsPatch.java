@@ -2,7 +2,6 @@ package app.revanced.extension.youtube.patches.shorts;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -11,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,7 +27,6 @@ import app.revanced.extension.youtube.shared.ShortsPlayerState;
 import app.revanced.extension.youtube.utils.ThemeUtils;
 import app.revanced.extension.youtube.utils.VideoUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
 
 import java.lang.ref.WeakReference;
 import java.util.LinkedHashMap;
@@ -37,6 +34,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import static app.revanced.extension.shared.utils.ResourceUtils.getString;
+import static app.revanced.extension.shared.utils.Utils.dpToPx;
 import static app.revanced.extension.youtube.patches.components.ShortsCustomActionsFilter.isShortsFlyoutMenuVisible;
 import static app.revanced.extension.youtube.utils.ExtendedUtils.isSpoofingToLessThan;
 
@@ -53,7 +51,6 @@ public final class CustomActionsPatch {
     private static final Map<CustomAction, Object> flyoutMenuMap = new LinkedHashMap<>(arrSize);
     private static WeakReference<Context> contextRef = new WeakReference<>(null);
     private static WeakReference<RecyclerView> recyclerViewRef = new WeakReference<>(null);
-
 
     /**
      * Injection point.
@@ -87,40 +84,51 @@ public final class CustomActionsPatch {
     }
 
     private static void showMoreButtonDialog(Context context) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        Map<String, Runnable> toolbarMap = new LinkedHashMap<>();
-        for (CustomAction customAction : CustomAction.values()) {
-            if (customAction.settings.get()) {
-                toolbarMap.put(customAction.getLabel(), customAction.getOnClickAction());
-            }
-        }
-
-        String[] titles = toolbarMap.keySet().toArray(new String[0]);
-        Runnable[] actions = toolbarMap.values().toArray(new Runnable[0]);
-        int[] iconIds = getIconsIds(titles);
-
         ScrollView scrollView = new ScrollView(context);
         LinearLayout container = new LinearLayout(context);
+
         container.setOrientation(LinearLayout.VERTICAL);
         container.setPadding(0, 0, 0, 0);
 
-        for (int i = 0; i < titles.length; i++) {
-            container.addView(createItemLayout(context, titles[i], iconIds[i], actions[i]));
+        Map<LinearLayout, Runnable> toolbarMap = new LinkedHashMap<>(arrSize);
+
+        for (CustomAction customAction : CustomAction.values()) {
+            if (customAction.settings.get()) {
+                String title = customAction.getLabel();
+                int iconId = customAction.getDrawableId();
+                Runnable action = customAction.getOnClickAction();
+                LinearLayout itemLayout = createItemLayout(context, title, iconId);
+                toolbarMap.putIfAbsent(itemLayout, action);
+                container.addView(itemLayout);
+            }
         }
 
         scrollView.addView(container);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setView(scrollView);
 
         AlertDialog dialog = builder.create();
         dialog.show();
 
+        toolbarMap.forEach((view, action) ->
+                view.setOnClickListener(v -> {
+                    action.run();
+                    dialog.dismiss();
+                })
+        );
+        toolbarMap.clear();
+
+        Window window = dialog.getWindow();
+        if (window == null) {
+            return;
+        }
+
         // round corners
         GradientDrawable dialogBackground = new GradientDrawable();
         dialogBackground.setCornerRadius(32);
-        dialog.getWindow().setBackgroundDrawable(dialogBackground);
+        window.setBackgroundDrawable(dialogBackground);
 
-        Window window = dialog.getWindow();
         // fit screen width
         int dialogWidth = (int) (context.getResources().getDisplayMetrics().widthPixels * 0.95);
         window.setLayout(dialogWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -130,25 +138,16 @@ public final class CustomActionsPatch {
         layoutParams.gravity = Gravity.BOTTOM;
 
         // adjust the vertical offset
-        layoutParams.y = dpToPx(context, 5);
+        layoutParams.y = dpToPx(5);
 
         window.setAttributes(layoutParams);
     }
 
-
-    private static int[] getIconsIds(String[] titles) {
-        int[] iconIds = new int[titles.length];
-        for (int i = 0; i < titles.length; i++) {
-            iconIds[i] = CustomAction.values()[i].getDrawableId();
-        }
-        return iconIds;
-    }
-
-    private static LinearLayout createItemLayout(Context context, String title, int iconId, Runnable action) {
+    private static LinearLayout createItemLayout(Context context, String title, int iconId) {
         // Item Layout
         LinearLayout itemLayout = new LinearLayout(context);
         itemLayout.setOrientation(LinearLayout.HORIZONTAL);
-        itemLayout.setPadding(dpToPx(context, 16), dpToPx(context, 12), dpToPx(context, 16), dpToPx(context, 12));
+        itemLayout.setPadding(dpToPx(16), dpToPx(12), dpToPx(16), dpToPx(12));
         itemLayout.setGravity(Gravity.CENTER_VERTICAL);
         itemLayout.setClickable(true);
         itemLayout.setFocusable(true);
@@ -166,44 +165,24 @@ public final class CustomActionsPatch {
         ImageView iconView = new ImageView(context);
         iconView.setImageResource(iconId);
         iconView.setColorFilter(cf);
-        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(dpToPx(context, 24), dpToPx(context, 24));
-        iconParams.setMarginEnd(dpToPx(context, 16));
+        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(dpToPx(24), dpToPx(24));
+        iconParams.setMarginEnd(dpToPx(16));
         iconView.setLayoutParams(iconParams);
         itemLayout.addView(iconView);
 
-        LinearLayout textContainer = getLinearLayout(context, title);
-        itemLayout.addView(textContainer);
-
-        // Click action
-        itemLayout.setOnClickListener(v -> {
-            if (action != null) {
-                action.run();
-            } else {
-                Logger.printDebug(() -> "No action found for " + title);
-            }
-        });
-
-        return itemLayout;
-    }
-
-    @NotNull
-    private static LinearLayout getLinearLayout(Context context, String title) {
+        // Text container
         LinearLayout textContainer = new LinearLayout(context);
         textContainer.setOrientation(LinearLayout.VERTICAL);
-
         TextView titleView = new TextView(context);
         titleView.setText(title);
         titleView.setTextSize(16);
         titleView.setTextColor(ThemeUtils.getForegroundColor());
-
         textContainer.addView(titleView);
-        return textContainer;
-    }
 
-    private static int dpToPx(Context context, int dp) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
-    }
+        itemLayout.addView(textContainer);
 
+        return itemLayout;
+    }
 
     private static boolean isMoreButton(String enumString) {
         return StringUtils.equalsAny(
