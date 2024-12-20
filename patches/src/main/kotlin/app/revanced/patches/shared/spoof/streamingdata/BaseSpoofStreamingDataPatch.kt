@@ -4,6 +4,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.instructions
 import app.revanced.patcher.patch.BytecodePatchBuilder
 import app.revanced.patcher.patch.BytecodePatchContext
@@ -19,7 +20,7 @@ import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
 import app.revanced.util.fingerprint.matchOrThrow
 import app.revanced.util.fingerprint.methodOrThrow
 import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
+import app.revanced.util.indexOfFirstInstructionOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
@@ -81,10 +82,51 @@ fun baseSpoofStreamingDataPatch(
 
         // region Replace the streaming data.
 
-        val approxDurationMsFieldName = formatStreamModelConstructorFingerprint.matchOrThrow().let {
+        val approxDurationMsReference = formatStreamModelConstructorFingerprint.matchOrThrow().let {
             with (it.method) {
-                val approxDurationMsFieldIndex = it.patternMatch!!.startIndex
-                (getInstruction<ReferenceInstruction>(approxDurationMsFieldIndex).reference as FieldReference).name
+                getInstruction<ReferenceInstruction>(it.patternMatch!!.startIndex).reference
+            }
+        }
+
+        val streamingDataFormatsReference = videoStreamingDataConstructorFingerprint.matchOrThrow(videoStreamingDataToStringFingerprint).let {
+            with(it.method) {
+                val approxDurationMsIndex = indexOfVideoLengthInitializeInstruction(this)
+                val approxDurationMsRegister = getInstruction<OneRegisterInstruction>(approxDurationMsIndex).registerA
+                val toMilisIndex = indexOfToMillisInstruction(this)
+
+                val videoIdIndex =
+                    indexOfFirstInstructionOrThrow(approxDurationMsIndex) {
+                        val reference = getReference<FieldReference>()
+                        opcode == Opcode.IGET_OBJECT &&
+                                reference?.type == "Ljava/lang/String;" &&
+                                reference.definingClass == definingClass
+                    }
+
+                val definingClassRegister =
+                    getInstruction<TwoRegisterInstruction>(videoIdIndex).registerB
+                val videoIdReference =
+                    getInstruction<ReferenceInstruction>(videoIdIndex).reference
+
+                addInstructions(
+                    approxDurationMsIndex + 1, """
+                        # Get video id.
+                        iget-object v$approxDurationMsRegister, v$definingClassRegister, $videoIdReference
+                        
+                        # Override approxDurationMs.
+                        invoke-static { v$approxDurationMsRegister }, $EXTENSION_CLASS_DESCRIPTOR->getApproxDurationMsFromOriginalResponse(Ljava/lang/String;)J
+                        move-result-wide v$approxDurationMsRegister
+                        """
+                )
+                removeInstruction(approxDurationMsIndex)
+
+                instructions.subList(
+                        approxDurationMsIndex - 5,
+                        approxDurationMsIndex + 5
+                ).find { instruction ->
+                    instruction.opcode == Opcode.IGET_OBJECT &&
+                            instruction.getReference<FieldReference>()?.definingClass == STREAMING_DATA_INTERFACE
+                }?.getReference<FieldReference>()
+                    ?: throw PatchException("Could not find streamingDataFormatsField")
             }
         }
 
@@ -92,7 +134,9 @@ fun baseSpoofStreamingDataPatch(
             .let { result ->
                 result.method.apply {
                     val setStreamDataMethodName = "patch_setStreamingData"
-                    val resultMethodType = result.classDef.type
+                    val calcApproxDurationMsMethodName = "patch_calcApproxDurationMs"
+                    val resultClassDef = result.classDef
+                    val resultMethodType = resultClassDef.type
                     val setStreamingDataIndex = result.patternMatch!!.startIndex
                     val setStreamingDataField =
                         getInstruction(setStreamingDataIndex).getReference<FieldReference>()
@@ -121,7 +165,7 @@ fun baseSpoofStreamingDataPatch(
                                 "$resultMethodType->$setStreamDataMethodName($videoDetailsClass)V",
                     )
 
-                    result.classDef.methods.add(
+                    resultClassDef.methods.add(
                         ImmutableMethod(
                             resultMethodType,
                             setStreamDataMethodName,
@@ -164,15 +208,11 @@ fun baseSpoofStreamingDataPatch(
                                     iget-object v6, v5, $getStreamingDataField
                                     if-eqz v6, :disabled
                                     
-                                    # Get original streaming data.
-                                    iget-object v0, p0, $setStreamingDataField
+                                    # Caculate approxDurationMs.
+                                    invoke-direct { p0, v2 }, $resultMethodType->$calcApproxDurationMsMethodName(Ljava/lang/String;)V
                                     
                                     # Set spoofed streaming data.
                                     iput-object v6, p0, $setStreamingDataField
-                                    
-                                    # Get video length from original streaming data and save to extension.
-                                    const-string v5, "$approxDurationMsFieldName"
-                                    invoke-static { v2, v5, v0, v6 }, $EXTENSION_CLASS_DESCRIPTOR->setApproxDurationMs(Ljava/lang/String;Ljava/lang/String;$STREAMING_DATA_INTERFACE$STREAMING_DATA_INTERFACE)V
                                     
                                     :disabled
                                     return-void
@@ -180,40 +220,69 @@ fun baseSpoofStreamingDataPatch(
                             )
                         },
                     )
+
+                    resultClassDef.methods.add(
+                        ImmutableMethod(
+                            resultMethodType,
+                            calcApproxDurationMsMethodName,
+                            listOf(
+                                ImmutableMethodParameter(
+                                    "Ljava/lang/String;",
+                                    annotations,
+                                    "videoId"
+                                )
+                            ),
+                            "V",
+                            AccessFlags.PRIVATE.value or AccessFlags.FINAL.value,
+                            annotations,
+                            null,
+                            MutableMethodImplementation(12),
+                        ).toMutable().apply {
+                            addInstructionsWithLabels(
+                                0,
+                                """
+                                    # Get video format list.
+                                    iget-object v0, p0, $setStreamingDataField
+                                    iget-object v0, v0, $streamingDataFormatsReference
+                                    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+                                    move-result-object v0
+                                    
+                                    # Initialize approxDurationMs field.
+                                    const-wide v1, 0x7fffffffffffffffL
+                                    
+                                    :loop
+                                    # Loop over all video formats to get the approxDurationMs
+                                    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+                                    move-result v3
+                                    const-wide/16 v4, 0x0
+                                    
+                                    if-eqz v3, :exit
+                                    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+                                    move-result-object v3
+                                    check-cast v3, ${(approxDurationMsReference as FieldReference).definingClass}
+                                    
+                                    # Get approxDurationMs from format
+                                    iget-wide v6, v3, $approxDurationMsReference
+                                    
+                                    # Compare with zero to make sure approxDurationMs is not negative
+                                    cmp-long v8, v6, v4
+                                    if-lez v8, :loop
+                                    
+                                    # Only use the min value of approxDurationMs
+                                    invoke-static {v1, v2, v6, v7}, Ljava/lang/Math;->min(JJ)J
+                                    move-result-wide v1
+                                    goto :loop
+                                    
+                                    :exit
+                                    # Save approxDurationMs to integrations
+                                    invoke-static { p1, v1, v2 }, $EXTENSION_CLASS_DESCRIPTOR->setApproxDurationMs(Ljava/lang/String;J)V
+                                    
+                                    return-void
+                                    """,
+                            )
+                        },
+                    )
                 }
-            }
-
-        videoStreamingDataConstructorFingerprint.methodOrThrow(videoStreamingDataToStringFingerprint)
-            .apply {
-                val formatStreamModelInitIndex = indexOfFormatStreamModelInitInstruction(this)
-                val videoIdIndex =
-                    indexOfFirstInstructionReversedOrThrow(formatStreamModelInitIndex) {
-                        val reference = getReference<FieldReference>()
-                        opcode == Opcode.IGET_OBJECT &&
-                                reference?.type == "Ljava/lang/String;" &&
-                                reference.definingClass == definingClass
-                    }
-                val definingClassRegister =
-                    getInstruction<TwoRegisterInstruction>(videoIdIndex).registerB
-                val videoIdReference =
-                    getInstruction<ReferenceInstruction>(videoIdIndex).reference
-
-                val toMillisIndex = indexOfToMillisInstruction(this)
-                val freeRegister =
-                    getInstruction<FiveRegisterInstruction>(toMillisIndex).registerC
-                val lengthMillisecondsRegister =
-                    getInstruction<OneRegisterInstruction>(toMillisIndex + 1).registerA
-
-                addInstructions(
-                    toMillisIndex + 2, """
-                        # Get video id.
-                        iget-object v$freeRegister, v$definingClassRegister, $videoIdReference
-                        
-                        # Override streaming data formats.
-                        invoke-static { v$freeRegister, v$lengthMillisecondsRegister, v${lengthMillisecondsRegister + 1} }, $EXTENSION_CLASS_DESCRIPTOR->getApproxDurationMsFromOriginalResponse(Ljava/lang/String;J)J
-                        move-result-wide v$lengthMillisecondsRegister
-                        """
-                )
             }
 
         // endregion
