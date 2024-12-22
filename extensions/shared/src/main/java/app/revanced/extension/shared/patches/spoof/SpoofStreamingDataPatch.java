@@ -120,6 +120,7 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
     /**
      * Injection point.
      * <p>
+     * If spoofed [streamingData.formats] is empty,
      * Put the original [streamingData.formats.approxDurationMs] into the HashMap.
      * <p>
      * Called after {@link #getStreamingData(String)}.
