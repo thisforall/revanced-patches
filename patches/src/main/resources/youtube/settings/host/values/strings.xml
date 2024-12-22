@@ -349,6 +349,9 @@ Limitation: Back button on the toolbar may not work."</string>
     <string name="revanced_disable_splash_animation_title">Disable splash animation</string>
     <string name="revanced_disable_splash_animation_summary_on">Splash animation is disabled.</string>
     <string name="revanced_disable_splash_animation_summary_off">Splash animation is enabled.</string>
+    <string name="revanced_disable_translucent_status_bar_title">Disable translucent status bar</string>
+    <string name="revanced_disable_translucent_status_bar_summary_on">Status bar is opaque.</string>
+    <string name="revanced_disable_translucent_status_bar_summary_off">Status bar is opaque or translucent.</string>
     <string name="revanced_enable_gradient_loading_screen_title">Enable gradient loading screen</string>
     <string name="revanced_enable_gradient_loading_screen_summary_on">Gradient loading screen is enabled.</string>
     <string name="revanced_enable_gradient_loading_screen_summary_off">Gradient loading screen is disabled.</string>
@@ -537,9 +540,12 @@ Also, ads will no longer be blocked in Shorts.
 
 If this setting do not take effect, try switching to Incognito mode."</string>
 
-    <string name="revanced_enable_translucent_navigation_bar_title">Enable translucent navigation bar</string>
-    <string name="revanced_enable_translucent_navigation_bar_summary_on">Navigation bar is translucent.</string>
-    <string name="revanced_enable_translucent_navigation_bar_summary_off">Navigation bar is opaque.</string>
+    <string name="revanced_disable_translucent_navigation_bar_light_title">Disable light translucent bar</string>
+    <string name="revanced_disable_translucent_navigation_bar_light_summary_on">Light mode navigation bar is opaque.</string>
+    <string name="revanced_disable_translucent_navigation_bar_light_summary_off">Light mode navigation bar is opaque or translucent.</string>
+    <string name="revanced_disable_translucent_navigation_bar_dark_title">Disable dark translucent bar</string>
+    <string name="revanced_disable_translucent_navigation_bar_dark_summary_on">Dark mode navigation bar is opaque.</string>
+    <string name="revanced_disable_translucent_navigation_bar_dark_summary_off">Dark mode navigation bar is opaque or translucent.</string>
     <string name="revanced_hide_navigation_bar_title">Hide navigation bar</string>
     <string name="revanced_hide_navigation_bar_summary_on">Navigation bar is hidden.</string>
     <string name="revanced_hide_navigation_bar_summary_off">Navigation bar is shown.</string>
@@ -1426,6 +1432,10 @@ Limitations:
     <string name="revanced_replace_channel_handle_title">Replace channel handle</string>
     <string name="revanced_replace_channel_handle_summary_on">Channel name is used.</string>
     <string name="revanced_replace_channel_handle_summary_off">Channel handle is used.</string>
+    <string name="revanced_restore_shorts_old_player_layout_title">Restore old player layout</string>
+    <string name="revanced_restore_shorts_old_player_layout_summary_on">"Old player layout is used.
+No margins on top and bottom of player."</string>
+    <string name="revanced_restore_shorts_old_player_layout_summary_off">Old player layout is not used.</string>
 
 
     <!-- PreferenceScreen: Swipe controls -->
@@ -1472,12 +1482,12 @@ Limitations:
     <string name="revanced_disable_hdr_auto_brightness_title">Disable auto HDR brightness</string>
     <string name="revanced_disable_hdr_auto_brightness_summary_on">Auto HDR brightness is disabled.</string>
     <string name="revanced_disable_hdr_auto_brightness_summary_off">Auto HDR brightness is enabled.</string>
-    <string name="revanced_enable_watch_panel_gestures_title">Enable watch panel gestures</string>
-    <string name="revanced_enable_watch_panel_gestures_summary_on">Entering fullscreen when swiping down below the video player is enabled.</string>
-    <string name="revanced_enable_watch_panel_gestures_summary_off">Entering fullscreen when swiping down below the video player is disabled.</string>
-    <string name="revanced_enable_swipe_to_switch_video_title">Enable swipe to change video</string>
-    <string name="revanced_enable_swipe_to_switch_video_summary_on">Swiping up / down will play the next / previous video.</string>
-    <string name="revanced_enable_swipe_to_switch_video_summary_off">Swiping up / down will not play the next / previous video.</string>
+    <string name="revanced_disable_watch_panel_gestures_title">Disable watch panel gestures</string>
+    <string name="revanced_disable_watch_panel_gestures_summary_on">Entering fullscreen when swiping down below the video player is disabled.</string>
+    <string name="revanced_disable_watch_panel_gestures_summary_off">Entering fullscreen when swiping down below the video player is enabled.</string>
+    <string name="revanced_disable_swipe_to_switch_video_title">Disable swipe to change video</string>
+    <string name="revanced_disable_swipe_to_switch_video_summary_on">Swiping up / down will not play the next / previous video.</string>
+    <string name="revanced_disable_swipe_to_switch_video_summary_off">Swiping up / down will play the next / previous video.</string>
     <string name="revanced_swipe_lowest_value_auto_brightness_overlay_text">Auto</string>
 
 
@@ -1852,7 +1862,9 @@ This is required for the app to work."</string>
     <string name="gms_core_dialog_open_website_text">Open website</string>
     <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
 
-Tap on the continue button and disable battery optimizations."</string>
+Disabling battery optimizations for GmsCore will not negatively affect battery usage.
+
+Tap the continue button and allow optimization changes."</string>
     <string name="gms_core_dialog_continue_text">Continue</string>
 
     <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>

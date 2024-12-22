@@ -147,6 +147,7 @@ public class Settings extends BaseSettings {
             new ChangeStartPagePatch.ChangeStartPageTypeAvailability());
     public static final BooleanSetting DISABLE_AUTO_AUDIO_TRACKS = new BooleanSetting("revanced_disable_auto_audio_tracks", FALSE);
     public static final BooleanSetting DISABLE_SPLASH_ANIMATION = new BooleanSetting("revanced_disable_splash_animation", FALSE, true);
+    public static final BooleanSetting DISABLE_TRANSLUCENT_STATUS_BAR = new BooleanSetting("revanced_disable_translucent_status_bar", FALSE, true);
     public static final BooleanSetting ENABLE_GRADIENT_LOADING_SCREEN = new BooleanSetting("revanced_enable_gradient_loading_screen", FALSE, true);
     public static final BooleanSetting HIDE_FLOATING_MICROPHONE = new BooleanSetting("revanced_hide_floating_microphone", TRUE, true);
     public static final BooleanSetting HIDE_GRAY_SEPARATOR = new BooleanSetting("revanced_hide_gray_separator", TRUE);
@@ -174,7 +175,7 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting MINIPLAYER_HORIZONTAL_DRAG = new BooleanSetting("revanced_miniplayer_horizontal_drag", FALSE, true, new MiniplayerPatch.MiniplayerHorizontalDragAvailability());
     public static final BooleanSetting MINIPLAYER_HIDE_EXPAND_CLOSE = new BooleanSetting("revanced_miniplayer_hide_expand_close", FALSE, true, new MiniplayerPatch.MiniplayerHideExpandCloseAvailability());
     public static final BooleanSetting MINIPLAYER_HIDE_SUBTEXT = new BooleanSetting("revanced_miniplayer_hide_subtext", FALSE, true, MINIPLAYER_TYPE.availability(MODERN_1, MODERN_3));
-    public static final BooleanSetting MINIPLAYER_HIDE_REWIND_FORWARD = new BooleanSetting("revanced_miniplayer_hide_rewind_forward", FALSE, true, MINIPLAYER_TYPE.availability(MODERN_1));
+    public static final BooleanSetting MINIPLAYER_HIDE_REWIND_FORWARD = new BooleanSetting("revanced_miniplayer_hide_rewind_forward", TRUE, true, MINIPLAYER_TYPE.availability(MODERN_1));
     public static final BooleanSetting MINIPLAYER_ROUNDED_CORNERS = new BooleanSetting("revanced_miniplayer_rounded_corners", TRUE, true, MINIPLAYER_ANY_MODERN);
     public static final IntegerSetting MINIPLAYER_WIDTH_DIP = new IntegerSetting("revanced_miniplayer_width_dip", 192, true, MINIPLAYER_ANY_MODERN);
     public static final IntegerSetting MINIPLAYER_OPACITY = new IntegerSetting("revanced_miniplayer_opacity", 100, true, MINIPLAYER_TYPE.availability(MODERN_1));
@@ -189,7 +190,8 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting HIDE_NAVIGATION_SUBSCRIPTIONS_BUTTON = new BooleanSetting("revanced_hide_navigation_subscriptions_button", FALSE, true);
     public static final BooleanSetting HIDE_NAVIGATION_LABEL = new BooleanSetting("revanced_hide_navigation_label", FALSE, true);
     public static final BooleanSetting SWITCH_CREATE_WITH_NOTIFICATIONS_BUTTON = new BooleanSetting("revanced_switch_create_with_notifications_button", TRUE, true, "revanced_switch_create_with_notifications_button_user_dialog_message");
-    public static final BooleanSetting ENABLE_TRANSLUCENT_NAVIGATION_BAR = new BooleanSetting("revanced_enable_translucent_navigation_bar", FALSE, true);
+    public static final BooleanSetting DISABLE_TRANSLUCENT_NAVIGATION_BAR_LIGHT = new BooleanSetting("revanced_disable_translucent_navigation_bar_light", FALSE, true);
+    public static final BooleanSetting DISABLE_TRANSLUCENT_NAVIGATION_BAR_DARK = new BooleanSetting("revanced_disable_translucent_navigation_bar_dark", FALSE, true);
     public static final BooleanSetting HIDE_NAVIGATION_BAR = new BooleanSetting("revanced_hide_navigation_bar", FALSE, true);
 
     // PreferenceScreen: General - Override buttons
@@ -490,6 +492,7 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting HIDE_SHORTS_NAVIGATION_BAR = new BooleanSetting("revanced_hide_shorts_navigation_bar", FALSE, true);
     public static final IntegerSetting SHORTS_NAVIGATION_BAR_HEIGHT_PERCENTAGE = new IntegerSetting("revanced_shorts_navigation_bar_height_percentage", 45, true, parent(HIDE_SHORTS_NAVIGATION_BAR));
     public static final BooleanSetting REPLACE_CHANNEL_HANDLE = new BooleanSetting("revanced_replace_channel_handle", FALSE, true);
+    public static final BooleanSetting RESTORE_SHORTS_OLD_PLAYER_LAYOUT = new BooleanSetting("revanced_restore_shorts_old_player_layout", FALSE, true);
 
     // PreferenceScreen: Swipe controls
     public static final BooleanSetting ENABLE_SWIPE_BRIGHTNESS = new BooleanSetting("revanced_enable_swipe_brightness", TRUE, true);
@@ -512,8 +515,8 @@ public class Settings extends BaseSettings {
      */
     @Deprecated // Patch is obsolete and no longer works with 19.09+
     public static final BooleanSetting DISABLE_HDR_AUTO_BRIGHTNESS = new BooleanSetting("revanced_disable_hdr_auto_brightness", TRUE, true, parent(ENABLE_SWIPE_BRIGHTNESS));
-    public static final BooleanSetting ENABLE_SWIPE_TO_SWITCH_VIDEO = new BooleanSetting("revanced_enable_swipe_to_switch_video", FALSE, true);
-    public static final BooleanSetting ENABLE_WATCH_PANEL_GESTURES = new BooleanSetting("revanced_enable_watch_panel_gestures", FALSE, true);
+    public static final BooleanSetting DISABLE_SWIPE_TO_SWITCH_VIDEO = new BooleanSetting("revanced_disable_swipe_to_switch_video", FALSE, true);
+    public static final BooleanSetting DISABLE_WATCH_PANEL_GESTURES = new BooleanSetting("revanced_disable_watch_panel_gestures", FALSE, true);
     public static final BooleanSetting SWIPE_BRIGHTNESS_AUTO = new BooleanSetting("revanced_swipe_brightness_auto", TRUE, false, false);
     public static final FloatSetting SWIPE_BRIGHTNESS_VALUE = new FloatSetting("revanced_swipe_brightness_value", -1.0f, false, false);
 
@@ -661,6 +664,12 @@ public class Settings extends BaseSettings {
                 migrateFromOldPreferences(ytPrefs, setting, key);
             }
         }
+        // endregion
+
+        // region SB import/export callbacks
+
+        Setting.addImportExportCallback(SponsorBlockSettings.SB_IMPORT_EXPORT_CALLBACK);
+
         // endregion
     }
 }
