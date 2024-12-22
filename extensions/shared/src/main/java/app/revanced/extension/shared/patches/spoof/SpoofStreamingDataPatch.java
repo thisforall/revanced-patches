@@ -152,7 +152,7 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
         }
         final Long approxDurationMs = approxDurationMsMap.get(videoId);
         if (approxDurationMs != null) {
-            Logger.printDebug(() -> "Replacing video length: " + approxDurationMs + "for videoId: " + videoId);
+            Logger.printDebug(() -> "Replacing video length: " + approxDurationMs + " for videoId: " + videoId);
             return approxDurationMs;
         }
         return Long.MAX_VALUE;
