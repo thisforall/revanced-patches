@@ -453,7 +453,7 @@ Tap the continue button and allow optimization changes."</string>
 
 ※ When used with 'Spoofing streaming data', playback issues may occur."</string>
     <string name="revanced_spoof_client_type_title">Default client</string>
-    <string name="revanced_spoof_client_type_summary">"Defines a default client to spoofing.
+    <string name="revanced_spoof_client_type_summary">"Defines a default client to spoof to.
 
 ※ When using the Android client, it is recommended to use it with 'Spoof app version'."</string>
     <string name="revanced_spoof_client_type_entry_android_music_4_27">Android Music 4.27.53</string>
