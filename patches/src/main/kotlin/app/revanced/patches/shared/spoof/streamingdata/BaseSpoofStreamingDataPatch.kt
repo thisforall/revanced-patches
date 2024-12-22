@@ -87,7 +87,7 @@ fun baseSpoofStreamingDataPatch(
             }
         }
 
-        val streamingDataFormatsReference = with(videoStreamingDataConstructorFingerprint.matchOrThrow(videoStreamingDataToStringFingerprint).method) {
+        val streamingDataFormatsReference = with(videoStreamingDataConstructorFingerprint.methodOrThrow(videoStreamingDataToStringFingerprint)) {
             val getFormatsFieldIndex = indexOfGetFormatsFieldInstruction(this)
             val longMaxValueIndex = indexOfLongMaxValueInstruction(this, getFormatsFieldIndex)
             val longMaxValueRegister = getInstruction<OneRegisterInstruction>(longMaxValueIndex).registerA
