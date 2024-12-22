@@ -3,12 +3,17 @@ package app.revanced.patches.shared.spoof.streamingdata
 import app.revanced.util.fingerprint.legacyFingerprint
 import app.revanced.util.getReference
 import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.indexOfFirstLiteralInstruction
 import app.revanced.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
+import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
+
+// In YouTube 17.34.36, this class is obfuscated.
+const val STREAMING_DATA_INTERFACE =
+    "Lcom/google/protos/youtube/api/innertube/StreamingDataOuterClass${'$'}StreamingData;"
 
 internal val buildMediaDataSourceFingerprint = legacyFingerprint(
     name = "buildMediaDataSourceFingerprint",
@@ -109,20 +114,35 @@ internal val videoStreamingDataConstructorFingerprint = legacyFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     returnType = "V",
     customFingerprint = { method, _ ->
-        indexOfVideoLengthInitializeInstruction(method) >= 0
-            && indexOfToMillisInstruction(method) >= 0
+        indexOfGetFormatsFieldInstruction(method) >= 0 &&
+                indexOfLongMaxValueInstruction(method) >= 0 &&
+                indexOfFormatStreamModelInitInstruction(method) >= 0
     },
 )
 
-internal fun indexOfToMillisInstruction(method: Method) =
+internal fun indexOfGetFormatsFieldInstruction(method: Method) =
     method.indexOfFirstInstruction {
-        val reference = getReference<MethodReference>()
-        opcode == Opcode.INVOKE_VIRTUAL &&
-                reference?.name == "toMillis"
+        val reference = getReference<FieldReference>()
+        opcode == Opcode.IGET_OBJECT &&
+                reference?.definingClass == STREAMING_DATA_INTERFACE &&
+                // Field e: 'formats'.
+                // Field name is always 'e', regardless of the client version.
+                reference.name == "e" &&
+                reference.type.startsWith("L")
     }
 
-internal fun indexOfVideoLengthInitializeInstruction(method: Method) =
-    method.indexOfFirstLiteralInstruction(Long.MAX_VALUE)
+internal fun indexOfLongMaxValueInstruction(method: Method, index: Int = 0) =
+    method.indexOfFirstInstruction(index) {
+        (this as? WideLiteralInstruction)?.wideLiteral == Long.MAX_VALUE
+    }
+
+internal fun indexOfFormatStreamModelInitInstruction(method: Method) =
+    method.indexOfFirstInstruction {
+        val reference = getReference<MethodReference>()
+        opcode == Opcode.INVOKE_DIRECT &&
+                reference?.name == "<init>" &&
+                reference.parameterTypes.size > 1
+    }
 
 /**
  * On YouTube, this class is 'Lcom/google/android/libraries/youtube/innertube/model/media/VideoStreamingData;'

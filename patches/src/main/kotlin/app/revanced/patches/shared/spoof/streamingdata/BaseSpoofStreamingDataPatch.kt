@@ -38,10 +38,6 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
 const val EXTENSION_CLASS_DESCRIPTOR =
     "$SPOOF_PATH/SpoofStreamingDataPatch;"
 
-// In YouTube 17.34.36, this class is obfuscated.
-const val STREAMING_DATA_INTERFACE =
-    "Lcom/google/protos/youtube/api/innertube/StreamingDataOuterClass${'$'}StreamingData;"
-
 fun baseSpoofStreamingDataPatch(
     block: BytecodePatchBuilder.() -> Unit = {},
     executeBlock: BytecodePatchContext.() -> Unit = {},
@@ -91,46 +87,36 @@ fun baseSpoofStreamingDataPatch(
             }
         }
 
-        val streamingDataFormatsReference = videoStreamingDataConstructorFingerprint.matchOrThrow(videoStreamingDataToStringFingerprint).let {
-            with(it.method) {
-                val approxDurationMsIndex = indexOfVideoLengthInitializeInstruction(this)
-                val approxDurationMsRegister = getInstruction<OneRegisterInstruction>(approxDurationMsIndex).registerA
-                val toMilisIndex = indexOfToMillisInstruction(this)
+        val streamingDataFormatsReference = with(videoStreamingDataConstructorFingerprint.matchOrThrow(videoStreamingDataToStringFingerprint).method) {
+            val getFormatsFieldIndex = indexOfGetFormatsFieldInstruction(this)
+            val longMaxValueIndex = indexOfLongMaxValueInstruction(this, getFormatsFieldIndex)
+            val longMaxValueRegister = getInstruction<OneRegisterInstruction>(longMaxValueIndex).registerA
+            val videoIdIndex =
+                indexOfFirstInstructionOrThrow(longMaxValueIndex) {
+                    val reference = getReference<FieldReference>()
+                    opcode == Opcode.IGET_OBJECT &&
+                            reference?.type == "Ljava/lang/String;" &&
+                            reference.definingClass == definingClass
+                }
 
-                val videoIdIndex =
-                    indexOfFirstInstructionOrThrow(approxDurationMsIndex) {
-                        val reference = getReference<FieldReference>()
-                        opcode == Opcode.IGET_OBJECT &&
-                                reference?.type == "Ljava/lang/String;" &&
-                                reference.definingClass == definingClass
-                    }
+            val definingClassRegister =
+                getInstruction<TwoRegisterInstruction>(videoIdIndex).registerB
+            val videoIdReference =
+                getInstruction<ReferenceInstruction>(videoIdIndex).reference
 
-                val definingClassRegister =
-                    getInstruction<TwoRegisterInstruction>(videoIdIndex).registerB
-                val videoIdReference =
-                    getInstruction<ReferenceInstruction>(videoIdIndex).reference
+            addInstructions(
+                longMaxValueIndex + 1, """
+                    # Get video id.
+                    iget-object v$longMaxValueRegister, v$definingClassRegister, $videoIdReference
+                    
+                    # Override approxDurationMs.
+                    invoke-static { v$longMaxValueRegister }, $EXTENSION_CLASS_DESCRIPTOR->getApproxDurationMs(Ljava/lang/String;)J
+                    move-result-wide v$longMaxValueRegister
+                    """
+            )
+            removeInstruction(longMaxValueIndex)
 
-                addInstructions(
-                    approxDurationMsIndex + 1, """
-                        # Get video id.
-                        iget-object v$approxDurationMsRegister, v$definingClassRegister, $videoIdReference
-                        
-                        # Override approxDurationMs.
-                        invoke-static { v$approxDurationMsRegister }, $EXTENSION_CLASS_DESCRIPTOR->getApproxDurationMsFromOriginalResponse(Ljava/lang/String;)J
-                        move-result-wide v$approxDurationMsRegister
-                        """
-                )
-                removeInstruction(approxDurationMsIndex)
-
-                instructions.subList(
-                        approxDurationMsIndex - 5,
-                        approxDurationMsIndex + 5
-                ).find { instruction ->
-                    instruction.opcode == Opcode.IGET_OBJECT &&
-                            instruction.getReference<FieldReference>()?.definingClass == STREAMING_DATA_INTERFACE
-                }?.getReference<FieldReference>()
-                    ?: throw PatchException("Could not find streamingDataFormatsField")
-            }
+            getInstruction<ReferenceInstruction>(getFormatsFieldIndex).reference
         }
 
         createStreamingDataFingerprint.matchOrThrow(createStreamingDataParentFingerprint)

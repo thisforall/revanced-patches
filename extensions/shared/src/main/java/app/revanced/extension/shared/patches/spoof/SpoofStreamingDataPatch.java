@@ -5,11 +5,9 @@ import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 
-import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import app.revanced.extension.shared.patches.BlockRequestPatch;
@@ -126,10 +124,11 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
      * Called after {@link #getStreamingData(String)}.
      */
     public static void setApproxDurationMs(String videoId, long approxDurationMs) {
-        if (approxDurationMs != Long.MAX_VALUE)
+        if (approxDurationMs != Long.MAX_VALUE) {
             approxDurationMsMap.put(videoId, approxDurationMs);
+            Logger.printDebug(() -> "New approxDurationMs loaded, video id: " + videoId + ", video length: " + approxDurationMs);
+        }
     }
-
 
     /**
      * Injection point.
@@ -146,14 +145,14 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
      * <p>
      * Called after {@link #getStreamingData(String)}.
      */
-    public static long getApproxDurationMsFromOriginalResponse(String videoId) {
-        if (videoId == null) {
-            return Long.MAX_VALUE;
-        }
-        final Long approxDurationMs = approxDurationMsMap.get(videoId);
-        if (approxDurationMs != null) {
-            Logger.printDebug(() -> "Replacing video length: " + approxDurationMs + " for videoId: " + videoId);
-            return approxDurationMs;
+    public static long getApproxDurationMs(String videoId) {
+        if (videoId != null) {
+            final Long approxDurationMs = approxDurationMsMap.get(videoId);
+            if (approxDurationMs != null) {
+                Logger.printDebug(() -> "Replacing video length: " + approxDurationMs + " for videoId: " + videoId);
+                approxDurationMsMap.remove(videoId);
+                return approxDurationMs;
+            }
         }
         return Long.MAX_VALUE;
     }
