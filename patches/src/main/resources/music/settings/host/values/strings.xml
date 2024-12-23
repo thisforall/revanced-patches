@@ -455,7 +455,7 @@ Tap the continue button and allow optimization changes."</string>
     <string name="revanced_spoof_client_type_title">Default client</string>
     <string name="revanced_spoof_client_type_summary">"Defines a default client for spoofing.
 
-• When using the Android client, it is recommended to use it with 'Spoof app version'."</string>
+• When using the Android client, it is recommended to also use 'Spoof app version'."</string>
     <string name="revanced_spoof_client_type_entry_android_music_4_27">Android Music 4.27.53</string>
     <string name="revanced_spoof_client_type_entry_android_music_5_29">Android Music 5.29.53</string>
     <string name="revanced_spoof_client_type_entry_ios_music_6_21">iOS Music 6.21</string>
