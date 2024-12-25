@@ -47,6 +47,7 @@
         <item>@string/revanced_change_start_page_entry_watch_later</item>
         <item>@string/revanced_change_start_page_entry_history</item>
         <item>@string/revanced_change_start_page_entry_trending</item>
+        <item>@string/revanced_change_start_page_entry_courses</item>
         <item>@string/revanced_change_start_page_entry_gaming</item>
         <item>@string/revanced_change_start_page_entry_live</item>
         <item>@string/revanced_change_start_page_entry_music</item>
@@ -67,6 +68,7 @@
         <item>WATCH_LATER</item>
         <item>HISTORY</item>
         <item>TRENDING</item>
+        <item>COURSES</item>
         <item>GAMING</item>
         <item>LIVE</item>
         <item>MUSIC</item>
