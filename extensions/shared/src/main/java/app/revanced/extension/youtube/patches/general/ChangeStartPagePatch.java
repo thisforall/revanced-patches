@@ -28,10 +28,12 @@ public final class ChangeStartPagePatch {
          * Browse id.
          */
         BROWSE("FEguide_builder", TRUE),
+        CLIPS("FEclips", TRUE),
         EXPLORE("FEexplore", TRUE),
         HISTORY("FEhistory", TRUE),
         LIBRARY("FElibrary", TRUE),
         MOVIE("FEstorefront", TRUE),
+        NOTIFICATIONS("FEactivity", TRUE),
         SUBSCRIPTIONS("FEsubscriptions", TRUE),
         TRENDING("FEtrending", TRUE),
 
