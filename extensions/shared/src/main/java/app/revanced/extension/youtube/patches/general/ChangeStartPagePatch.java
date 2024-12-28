@@ -28,7 +28,6 @@ public final class ChangeStartPagePatch {
          * Browse id.
          */
         BROWSE("FEguide_builder", TRUE),
-        CLIPS("FEclips", TRUE),
         EXPLORE("FEexplore", TRUE),
         HISTORY("FEhistory", TRUE),
         LIBRARY("FElibrary", TRUE),
@@ -36,6 +35,7 @@ public final class ChangeStartPagePatch {
         NOTIFICATIONS("FEactivity", TRUE),
         SUBSCRIPTIONS("FEsubscriptions", TRUE),
         TRENDING("FEtrending", TRUE),
+        YOUR_CLIPS("FEclips", TRUE),
 
         /**
          * Channel id, this can be used as a browseId.
