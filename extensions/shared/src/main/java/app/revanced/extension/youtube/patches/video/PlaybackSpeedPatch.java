@@ -10,7 +10,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import app.revanced.extension.shared.utils.Logger;
 import app.revanced.extension.shared.utils.Utils;
 import app.revanced.extension.youtube.patches.utils.PatchStatus;
-import app.revanced.extension.youtube.patches.video.requests.PlaylistRequest;
+import app.revanced.extension.youtube.patches.video.requests.CategoryRequest;
 import app.revanced.extension.youtube.settings.Settings;
 import app.revanced.extension.youtube.shared.VideoInformation;
 import app.revanced.extension.youtube.whitelist.Whitelist;
@@ -39,7 +39,7 @@ public class PlaybackSpeedPatch {
     /**
      * Injection point.
      */
-    public static void fetchPlaylistData(@NonNull String videoId, boolean isShortAndOpeningOrPlaying) {
+    public static void fetchCategory(@NonNull String videoId, boolean isShortAndOpeningOrPlaying) {
         if (Settings.DISABLE_DEFAULT_PLAYBACK_SPEED_MUSIC.get()) {
             try {
                 final boolean videoIdIsShort = VideoInformation.lastPlayerResponseIsShort();
@@ -50,9 +50,9 @@ public class PlaybackSpeedPatch {
                     return;
                 }
 
-                PlaylistRequest.fetchRequestIfNeeded(videoId);
+                CategoryRequest.fetchRequestIfNeeded(videoId);
             } catch (Exception ex) {
-                Logger.printException(() -> "fetchPlaylistData failure", ex);
+                Logger.printException(() -> "fetchCategoryData failure", ex);
             }
         }
     }
@@ -118,23 +118,22 @@ public class PlaybackSpeedPatch {
     }
 
     private static float getDefaultPlaybackSpeed(@NonNull String channelId, @Nullable String videoId) {
-        return (Settings.DISABLE_DEFAULT_PLAYBACK_SPEED_LIVE.get() && isLiveStream) ||
-                Whitelist.isChannelWhitelistedPlaybackSpeed(channelId) ||
-                getPlaylistData(videoId)
-                ? 1.0f
-                : Settings.DEFAULT_PLAYBACK_SPEED.get();
+        return (isLiveStream ||
+            Whitelist.isChannelWhitelistedPlaybackSpeed(channelId) ||
+            getCategory(videoId)
+        ) ? 1.0f : Settings.DEFAULT_PLAYBACK_SPEED.get();
     }
 
-    private static boolean getPlaylistData(@Nullable String videoId) {
+    private static boolean getCategory(@Nullable String videoId) {
         if (Settings.DISABLE_DEFAULT_PLAYBACK_SPEED_MUSIC.get() && videoId != null) {
             try {
-                PlaylistRequest request = PlaylistRequest.getRequestForVideoId(videoId);
-                final boolean isPlaylist = request != null && BooleanUtils.toBoolean(request.getStream());
-                Logger.printDebug(() -> "isPlaylist: " + isPlaylist);
+                CategoryRequest request = CategoryRequest.getRequestForVideoId(videoId);
+                final boolean isMusic = request != null && BooleanUtils.toBoolean(request.getStream());
+                Logger.printDebug(() -> "isMusic: " + isMusic);
 
-                return isPlaylist;
+                return isMusic;
             } catch (Exception ex) {
-                Logger.printException(() -> "getPlaylistData failure", ex);
+                Logger.printException(() -> "getCategory failure", ex);
             }
         }
 

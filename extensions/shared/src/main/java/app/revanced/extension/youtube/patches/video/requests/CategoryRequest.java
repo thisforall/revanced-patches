@@ -1,6 +1,6 @@
 package app.revanced.extension.youtube.patches.video.requests;
 
-import static app.revanced.extension.shared.patches.spoof.requests.PlayerRoutes.GET_PLAYLIST_PAGE;
+import static app.revanced.extension.shared.patches.spoof.requests.PlayerRoutes.GET_CATEGORY;
 
 import android.annotation.SuppressLint;
 
@@ -31,7 +31,7 @@ import app.revanced.extension.shared.utils.Logger;
 import app.revanced.extension.shared.utils.Utils;
 import app.revanced.extension.youtube.shared.VideoInformation;
 
-public class PlaylistRequest {
+public class CategoryRequest {
 
     /**
      * How long to keep fetches until they are expired.
@@ -41,7 +41,7 @@ public class PlaylistRequest {
     private static final long MAX_MILLISECONDS_TO_WAIT_FOR_FETCH = 20 * 1000; // 20 seconds
 
     @GuardedBy("itself")
-    private static final Map<String, PlaylistRequest> cache = new HashMap<>();
+    private static final Map<String, CategoryRequest> cache = new HashMap<>();
 
     @SuppressLint("ObsoleteSdkInt")
     public static void fetchRequestIfNeeded(@Nullable String videoId) {
@@ -56,13 +56,13 @@ public class PlaylistRequest {
             });
 
             if (!cache.containsKey(videoId)) {
-                cache.put(videoId, new PlaylistRequest(videoId));
+                cache.put(videoId, new CategoryRequest(videoId));
             }
         }
     }
 
     @Nullable
-    public static PlaylistRequest getRequestForVideoId(@Nullable String videoId) {
+    public static CategoryRequest getRequestForVideoId(@Nullable String videoId) {
         synchronized (cache) {
             return cache.get(videoId);
         }
@@ -79,20 +79,14 @@ public class PlaylistRequest {
 
         final long startTime = System.currentTimeMillis();
         String clientTypeName = clientType.name();
-        Logger.printDebug(() -> "Fetching playlist request for: " + videoId + " using client: " + clientTypeName);
+        Logger.printDebug(() -> "Fetching category request for: " + videoId + " using client: " + clientTypeName);
 
         try {
-            HttpURLConnection connection = PlayerRoutes.getPlayerResponseConnectionFromRoute(GET_PLAYLIST_PAGE, clientType);
+            HttpURLConnection connection = PlayerRoutes.getPlayerResponseConnectionFromRoute(GET_CATEGORY, clientType);
 
             JSONObject innerTubeBodyJson = PlayerRoutes.createInnertubeBody(clientType);
-            innerTubeBodyJson.put("playlistId", "%s");
+            String innerTubeBody = String.format(innerTubeBodyJson.toString(), videoId);
 
-            String innerTubeBody = String.format(
-                    Locale.ENGLISH,
-                    innerTubeBodyJson.toString(),
-                    videoId,
-                    "RD" + videoId
-            );
             byte[] requestBody = innerTubeBody.getBytes(StandardCharsets.UTF_8);
             connection.setFixedLengthStreamingMode(requestBody.length);
             connection.getOutputStream().write(requestBody);
@@ -117,41 +111,16 @@ public class PlaylistRequest {
     }
 
     private static Boolean fetch(@NonNull String videoId) {
-        final ClientType clientType = ClientType.ANDROID_VR;
-        final JSONObject playlistJson = send(clientType, videoId);
-        if (playlistJson != null) {
+        final ClientType clientType = ClientType.MWEB;
+        final JSONObject microFormatJson = send(clientType, videoId);
+        if (microFormatJson != null) {
             try {
-                final JSONObject singleColumnWatchNextResultsJsonObject = playlistJson
-                        .getJSONObject("contents")
-                        .getJSONObject("singleColumnWatchNextResults");
-
-                if (!singleColumnWatchNextResultsJsonObject.has("playlist")) {
-                    return false;
-                }
-
-                final JSONObject playlistJsonObject = singleColumnWatchNextResultsJsonObject
-                        .getJSONObject("playlist")
-                        .getJSONObject("playlist");
-
-                final Object currentStreamObject = playlistJsonObject
-                        .getJSONArray("contents")
-                        .get(0);
-
-                if (!(currentStreamObject instanceof JSONObject currentStreamJsonObject)) {
-                    return false;
-                }
-
-                final JSONObject watchEndpointJsonObject = currentStreamJsonObject
-                        .getJSONObject("playlistPanelVideoRenderer")
-                        .getJSONObject("navigationEndpoint")
-                        .getJSONObject("watchEndpoint");
-
-                Logger.printDebug(() -> "watchEndpoint: " + watchEndpointJsonObject);
-
-                return watchEndpointJsonObject.has("playerParams") &&
-                        VideoInformation.isMixPlaylistsOpenedByUser(watchEndpointJsonObject.getString("playerParams"));
+                 return microFormatJson.getJSONObject("microformat")
+                                      .getJSONObject("playerMicroformatRenderer")
+                                      .getString("category")
+                                      .equals("Music");
             } catch (JSONException e) {
-                Logger.printDebug(() -> "Fetch failed while processing response data for response: " + playlistJson);
+                Logger.printDebug(() -> "Fetch failed while processing response data for response: " + microFormatJson);
             }
         }
 
@@ -165,7 +134,7 @@ public class PlaylistRequest {
     private final String videoId;
     private final Future<Boolean> future;
 
-    private PlaylistRequest(String videoId) {
+    private CategoryRequest(String videoId) {
         this.timeFetched = System.currentTimeMillis();
         this.videoId = videoId;
         this.future = Utils.submitOnBackgroundThread(() -> fetch(videoId));

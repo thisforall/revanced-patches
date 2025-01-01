@@ -14,10 +14,10 @@ import app.revanced.extension.shared.utils.Utils;
 
 @SuppressWarnings({"ExtractMethodRecommender", "deprecation"})
 public final class PlayerRoutes {
-    public static final Route.CompiledRoute GET_PLAYLIST_PAGE = new Route(
+    public static final Route.CompiledRoute GET_CATEGORY = new Route(
             Route.Method.POST,
-            "next" +
-                    "?fields=contents.singleColumnWatchNextResults.playlist.playlist"
+            "player" +
+                    "?fields=microformat.playerMicroformatRenderer"
     ).compile();
     static final Route.CompiledRoute GET_STREAMING_DATA = new Route(
             Route.Method.POST,
@@ -44,14 +44,12 @@ public final class PlayerRoutes {
             JSONObject client = new JSONObject();
             client.put("clientName", clientType.clientName);
             client.put("clientVersion", clientType.clientVersion);
+            client.put("deviceMake", clientType.deviceMake);
             client.put("deviceModel", clientType.deviceModel);
             client.put("osVersion", clientType.osVersion);
             if (clientType.androidSdkVersion != null) {
                 client.put("androidSdkVersion", clientType.androidSdkVersion);
                 client.put("osName", "Android");
-            } else {
-                client.put("deviceMake", "Apple");
-                client.put("osName", "iOS");
             }
             if (!clientType.canLogin) {
                 client.put("hl", LOCALE_LANGUAGE);
