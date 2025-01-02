@@ -322,6 +322,7 @@ object AppClient {
             val CLIENT_ORDER_TO_USE_YOUTUBE: Array<ClientType> = arrayOf(
                 ANDROID_VR,
                 ANDROID_UNPLUGGED,
+                ANDROID_MUSIC,
                 IOS_UNPLUGGED,
                 IOS,
             )
