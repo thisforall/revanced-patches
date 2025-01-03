@@ -188,8 +188,6 @@ class MusicRequest private constructor(private val videoId: String, private val 
 
         private fun parseApplicationResponse(playlistJson: JSONObject): Boolean {
             try {
-                Logger.printDebug { "playlistJson: $playlistJson" }
-
                 val playerParams: String? = (playlistJson
                     .getJSONObject("contents")
                     .getJSONObject("singleColumnWatchNextResults")
@@ -211,8 +209,6 @@ class MusicRequest private constructor(private val videoId: String, private val 
 
         private fun parseWebResponse(microFormatJson: JSONObject): Boolean {
             try {
-                Logger.printDebug { "microFormatJson: $microFormatJson" }
-
                 return microFormatJson
                     .getJSONObject("playerMicroformatRenderer")
                     .getJSONObject("category")

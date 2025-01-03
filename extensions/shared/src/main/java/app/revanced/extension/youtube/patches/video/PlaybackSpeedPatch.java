@@ -17,7 +17,6 @@ import app.revanced.extension.youtube.whitelist.Whitelist;
 
 @SuppressWarnings("unused")
 public class PlaybackSpeedPatch {
-
     private static final boolean DISABLE_DEFAULT_PLAYBACK_SPEED_MUSIC =
             Settings.DISABLE_DEFAULT_PLAYBACK_SPEED_MUSIC.get();
     private static final long TOAST_DELAY_MILLISECONDS = 750;

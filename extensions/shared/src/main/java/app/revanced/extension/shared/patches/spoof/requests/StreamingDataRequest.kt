@@ -188,6 +188,8 @@ class StreamingDataRequest private constructor(
                 connection.connectTimeout = HTTP_TIMEOUT_MILLISECONDS
                 connection.readTimeout = HTTP_TIMEOUT_MILLISECONDS
 
+                val usePoToken = clientType.requirePoToken && !StringUtils.isAnyEmpty(botGuardPoToken, visitorId)
+
                 for (key in REQUEST_HEADER_KEYS) {
                     var value = playerHeaders[key]
                     if (value != null) {
@@ -197,10 +199,7 @@ class StreamingDataRequest private constructor(
                                 continue
                             }
                         }
-                        if (key == VISITOR_ID_HEADER &&
-                            clientType.requirePoToken &&
-                            !StringUtils.isAnyEmpty(botGuardPoToken, visitorId)
-                        ) {
+                        if (key == VISITOR_ID_HEADER && usePoToken) {
                             val originalVisitorId: String = value
                             Logger.printDebug { "Original visitor id:\n$originalVisitorId" }
                             Logger.printDebug { "Replaced visitor id:\n$visitorId" }
@@ -212,9 +211,7 @@ class StreamingDataRequest private constructor(
                 }
 
                 val requestBody: ByteArray
-                if (clientType.requirePoToken &&
-                    !StringUtils.isAnyEmpty(botGuardPoToken, visitorId)
-                ) {
+                if (usePoToken) {
                     requestBody = createApplicationRequestBody(
                         clientType = clientType,
                         videoId = videoId,
@@ -281,9 +278,7 @@ class StreamingDataRequest private constructor(
                                 ByteArrayOutputStream().use { stream ->
                                     val buffer = ByteArray(2048)
                                     var bytesRead: Int
-                                    while ((inputStream.read(buffer)
-                                            .also { bytesRead = it }) >= 0
-                                    ) {
+                                    while ((inputStream.read(buffer).also { bytesRead = it }) >= 0) {
                                         stream.write(buffer, 0, bytesRead)
                                     }
                                     lastSpoofedClientType = clientType

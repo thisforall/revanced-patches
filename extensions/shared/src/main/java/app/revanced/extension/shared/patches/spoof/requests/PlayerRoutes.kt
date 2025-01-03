@@ -64,10 +64,10 @@ object PlayerRoutes {
             client.put("clientVersion", clientType.clientVersion)
             client.put("deviceModel", clientType.deviceModel)
             client.put("osVersion", clientType.osVersion)
-            clientType.androidSdkVersion?.let {
-                client.put("androidSdkVersion", it)
+            if (clientType.androidSdkVersion != null) {
+                client.put("androidSdkVersion", clientType.androidSdkVersion)
                 client.put("osName", "Android")
-            } ?: {
+            } else {
                 client.put("deviceMake", "Apple")
                 client.put("osName", "iOS")
             }
@@ -83,8 +83,8 @@ object PlayerRoutes {
             innerTubeBody.put("racyCheckOk", true)
             innerTubeBody.put("videoId", videoId)
 
-            playlistId?.let {
-                innerTubeBody.put("playlistId", it)
+            if (playlistId != null) {
+                innerTubeBody.put("playlistId", playlistId)
             }
 
             if (!StringUtils.isAnyEmpty(botGuardPoToken, visitorId)) {
