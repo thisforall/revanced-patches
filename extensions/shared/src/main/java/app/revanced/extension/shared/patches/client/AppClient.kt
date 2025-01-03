@@ -4,24 +4,10 @@ import android.os.Build
 import app.revanced.extension.shared.patches.PatchStatus
 import app.revanced.extension.shared.settings.BaseSettings
 
+/**
+ * Used to fetch streaming data.
+ */
 object AppClient {
-    // MWEB
-    /**
-     * Video not playable: None
-     * Note: Audio track available
-     */
-    private const val CLIENT_VERSION_MWEB = "2.20241202.07.00";
-
-    private const val DEVICE_MODEL_MWEB = "iPad";
-
-    private const val OS_VERSION_MWEB = "16_7_10";
-
-    /**
-     * MWEB does not require PO Token with this User Agent
-     */
-    private const val USER_AGENT_MWEB =
-            "Mozilla/5.0 (iPad; CPU OS 16_7_10 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1,gzip(gfe)";
-
     // IOS
     /**
      * Video not playable: Paid / Movie / Private / Age-restricted
@@ -40,8 +26,6 @@ object AppClient {
         "17.40.5"
     else
         "19.29.1"
-
-    private const val DEVICE_MAKE_IOS = "Apple"
 
     /**
      * The device machine id for the iPhone 15 Pro Max (iPhone16,2),
@@ -65,7 +49,7 @@ object AppClient {
 
     // IOS UNPLUGGED
     /**
-     * Video not playable: Paid / Movie
+     * Video not playable: Paid / Movie / Playlists / Music
      * Note: Audio track available
      */
     private const val PACKAGE_NAME_IOS_UNPLUGGED = "com.google.ios.youtubeunplugged"
@@ -109,9 +93,8 @@ object AppClient {
      * The device machine id for the Meta Quest 3, used to get opus codec with the Android VR client.
      * See [this GitLab](https://dumps.tadiphone.dev/dumps/oculus/eureka) for more information.
      */
-    private const val DEVICE_MAKE_ANDROID_VR = "Oculus"
     private const val DEVICE_MODEL_ANDROID_VR = "Quest 3"
-    private const val OS_VERSION_ANDROID_VR = "12L"
+    private const val OS_VERSION_ANDROID_VR = "12"
 
     /**
      * The SDK version for Android 12 is 31,
@@ -134,7 +117,6 @@ object AppClient {
      * The device machine id for the Chromecast with Google TV 4K.
      * See [this GitLab](https://dumps.tadiphone.dev/dumps/google/kirkwood) for more information.
      */
-    private const val DEVICE_MAKE_ANDROID_UNPLUGGED = "Google"
     private const val DEVICE_MODEL_ANDROID_UNPLUGGED = "Google TV Streamer"
     private const val OS_VERSION_ANDROID_UNPLUGGED = "14"
     private const val ANDROID_SDK_VERSION_ANDROID_UNPLUGGED = "34"
@@ -191,7 +173,6 @@ object AppClient {
         return BaseSettings.SPOOF_STREAMING_DATA_IOS_FORCE_AVC.get()
     }
 
-    @JvmStatic
     val availableClientTypes: Array<ClientType>
         get() = if (PatchStatus.SpoofStreamingDataMusic())
             ClientType.CLIENT_ORDER_TO_USE_YOUTUBE_MUSIC
@@ -204,66 +185,41 @@ object AppClient {
          */
         val id: Int,
         /**
-         * Device manufacturer, equivalent to [Build.MANUFACTURER] (System property: ro.product.manufacturer)
-         */
-        @JvmField
-        val deviceMake: String? = Build.MANUFACTURER,
-
-        /**
          * Device model, equivalent to [Build.MODEL] (System property: ro.product.model)
          */
-        @JvmField
-        val deviceModel: String? = Build.MODEL,
+        val deviceModel: String = Build.MODEL,
         /**
          * Device OS version, equivalent to [Build.VERSION.RELEASE] (System property: ro.system.build.version.release)
          */
-        @JvmField
-        val osVersion: String? = Build.VERSION.RELEASE,
+        val osVersion: String = Build.VERSION.RELEASE,
         /**
          * Client user-agent.
          */
-        @JvmField
         val userAgent: String,
         /**
          * Android SDK version, equivalent to [Build.VERSION.SDK] (System property: ro.build.version.sdk)
          * Field is null if not applicable.
          */
-        @JvmField
         val androidSdkVersion: String? = null,
         /**
          * App version.
          */
-        @JvmField
         val clientVersion: String,
         /**
          * If the client can access the API logged in.
          */
-        @JvmField
-        val canLogin: Boolean? = true,
+        val canLogin: Boolean = true,
         /**
-         * If a poToken should be used.
+         * Whether a poToken is required to get playback for more than 1 minute.
          */
-        @JvmField
-        val usePoToken: Boolean? = false,
+        val requirePoToken: Boolean = false,
         /**
          * Friendly name displayed in stats for nerds.
          */
-        @JvmField
         val friendlyName: String
     ) {
-        MWEB(
-            id = 2,
-            deviceMake = DEVICE_MAKE_IOS,
-            deviceModel = DEVICE_MODEL_MWEB,
-            osVersion = OS_VERSION_MWEB,
-            userAgent = USER_AGENT_MWEB,
-            clientVersion = CLIENT_VERSION_MWEB,
-            canLogin = false,
-            friendlyName = "Mobile Web"
-        ),
         ANDROID_VR(
             id = 28,
-            deviceMake = DEVICE_MAKE_ANDROID_VR,
             deviceModel = DEVICE_MODEL_ANDROID_VR,
             osVersion = OS_VERSION_ANDROID_VR,
             userAgent = USER_AGENT_ANDROID_VR,
@@ -273,7 +229,6 @@ object AppClient {
         ),
         ANDROID_UNPLUGGED(
             id = 29,
-            deviceMake = DEVICE_MAKE_ANDROID_UNPLUGGED,
             deviceModel = DEVICE_MODEL_ANDROID_UNPLUGGED,
             osVersion = OS_VERSION_ANDROID_UNPLUGGED,
             userAgent = USER_AGENT_ANDROID_UNPLUGGED,
@@ -283,7 +238,6 @@ object AppClient {
         ),
         IOS_UNPLUGGED(
             id = 33,
-            deviceMake = DEVICE_MAKE_IOS,
             deviceModel = DEVICE_MODEL_IOS,
             osVersion = OS_VERSION_IOS,
             userAgent = USER_AGENT_IOS_UNPLUGGED,
@@ -295,13 +249,12 @@ object AppClient {
         ),
         IOS(
             id = 5,
-            deviceMake = DEVICE_MAKE_IOS,
             deviceModel = DEVICE_MODEL_IOS,
             osVersion = OS_VERSION_IOS,
             userAgent = USER_AGENT_IOS,
             clientVersion = CLIENT_VERSION_IOS,
             canLogin = false,
-            usePoToken = true,
+            requirePoToken = true,
             friendlyName = if (forceAVC())
                 "iOS Force AVC"
             else
@@ -315,14 +268,12 @@ object AppClient {
             friendlyName = "Android Music"
         );
 
-        @JvmField
         val clientName: String = name
 
         companion object {
             val CLIENT_ORDER_TO_USE_YOUTUBE: Array<ClientType> = arrayOf(
                 ANDROID_VR,
                 ANDROID_UNPLUGGED,
-                ANDROID_MUSIC,
                 IOS_UNPLUGGED,
                 IOS,
             )

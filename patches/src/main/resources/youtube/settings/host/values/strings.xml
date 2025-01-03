@@ -1523,6 +1523,9 @@ No margins on top and bottom of player."</string>
     <string name="revanced_disable_default_playback_speed_music_title">Disable playback speed for music</string>
     <string name="revanced_disable_default_playback_speed_music_on">Default playback speed is disabled for music.</string>
     <string name="revanced_disable_default_playback_speed_music_off">Default playback speed is enabled for music.</string>
+    <string name="revanced_disable_default_playback_speed_music_type_title">Validate using categories</string>
+    <string name="revanced_disable_default_playback_speed_music_type_on">Default playback speed is disabled if the video category is Music.</string>
+    <string name="revanced_disable_default_playback_speed_music_type_off">Default playback speed is disabled for videos playable on YouTube Music.</string>
     <string name="revanced_enable_default_playback_speed_shorts_title">Enable Shorts default playback speed</string>
     <string name="revanced_enable_default_playback_speed_shorts_summary_on">Default playback speed applies to Shorts.</string>
     <string name="revanced_enable_default_playback_speed_shorts_summary_off">Default playback speed does not apply to Shorts.</string>

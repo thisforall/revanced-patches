@@ -534,6 +534,7 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting RESTORE_OLD_VIDEO_QUALITY_MENU = new BooleanSetting("revanced_restore_old_video_quality_menu", TRUE, true);
     // Experimental Flags
     public static final BooleanSetting DISABLE_DEFAULT_PLAYBACK_SPEED_MUSIC = new BooleanSetting("revanced_disable_default_playback_speed_music", FALSE, true);
+    public static final BooleanSetting DISABLE_DEFAULT_PLAYBACK_SPEED_MUSIC_TYPE = new BooleanSetting("revanced_disable_default_playback_speed_music_type", FALSE, true, parent(DISABLE_DEFAULT_PLAYBACK_SPEED_MUSIC));
     public static final BooleanSetting ENABLE_DEFAULT_PLAYBACK_SPEED_SHORTS = new BooleanSetting("revanced_enable_default_playback_speed_shorts", FALSE);
     public static final BooleanSetting SKIP_PRELOADED_BUFFER = new BooleanSetting("revanced_skip_preloaded_buffer", FALSE, true, "revanced_skip_preloaded_buffer_user_dialog_message");
     public static final BooleanSetting SKIP_PRELOADED_BUFFER_TOAST = new BooleanSetting("revanced_skip_preloaded_buffer_toast", TRUE);
