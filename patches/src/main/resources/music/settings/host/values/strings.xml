@@ -79,18 +79,18 @@ Limitations:
     <!-- PreferenceScreen: Flyout -->
     <string name="revanced_preference_screen_flyout_title">Flyout Menu</string>
 
-    <string name="revanced_enable_compact_dialog_title">Enable compact dialog</string>
-    <string name="revanced_enable_compact_dialog_summary">"Enables the compact flyout menu on phones.
-
-Limitations:
-• Album art in the Library tab becomes smaller when organized in a grid.
-• Sleep timer layout may appear unusual."</string>
     <string name="revanced_enable_trim_silence_title">Add Trim silence switch</string>
     <string name="revanced_enable_trim_silence_summary">"Adds a Trim silence switch to the playback speed flyout menu.
 
 Info:
 • This feature is for podcasts.
 • This feature is still in development, so it may be unstable."</string>
+    <string name="revanced_enable_compact_dialog_title">Enable compact dialog</string>
+    <string name="revanced_enable_compact_dialog_summary">"Enables the compact flyout menu on phones.
+
+Limitations:
+• Album art in the Library tab becomes smaller when organized in a grid.
+• Sleep timer layout may appear unusual."</string>
     <string name="revanced_hide_flyout_menu_like_dislike_title">Hide Like and Dislike buttons</string>
     <string name="revanced_hide_flyout_menu_3_column_component_title">Hide 3-column component</string>
     <string name="revanced_hide_flyout_menu_add_to_queue_title">Hide Add to queue menu</string>
@@ -143,44 +143,44 @@ Info:
     <string name="revanced_change_start_page_entry_home">Home</string>
     <string name="revanced_change_start_page_entry_library">Library</string>
     <string name="revanced_change_start_page_entry_subscription">Subscriptions</string>
-    <string name="revanced_disable_auto_captions_title">Disable forced auto captions</string>
-    <string name="revanced_disable_auto_captions_summary">Disables captions from being automatically enabled.</string>
     <string name="revanced_disable_dislike_redirection_title">Disable dislike redirection</string>
     <string name="revanced_disable_dislike_redirection_summary">Disables redirection to the next track when clicking the Dislike button.</string>
-    <string name="revanced_enable_landscape_mode_title">Enable landscape mode</string>
-    <string name="revanced_enable_landscape_mode_summary">Enables landscape mode when rotating the screen on phones.</string>
+    <string name="revanced_disable_auto_captions_title">Disable forced auto captions</string>
+    <string name="revanced_disable_auto_captions_summary">Disables auto captions from being forced on.</string>
     <string name="revanced_custom_filter_title">Enable custom filter</string>
     <string name="revanced_custom_filter_summary">Enables the custom filter to hide layout components.</string>
     <string name="revanced_custom_filter_strings_title">Custom filter</string>
     <!-- 'Component path builder strings' is the technical name for identifying the Litho UI layout items to hide. This is an advanced feature and most users will never use this. -->
     <string name="revanced_custom_filter_strings_summary">List of component path builder strings to filter, separated by new lines.</string>
     <string name="revanced_custom_filter_toast_invalid_syntax">Invalid custom filter: %s.</string>
+    <string name="revanced_enable_landscape_mode_title">Enable landscape mode</string>
+    <string name="revanced_enable_landscape_mode_summary">Enables landscape mode when rotating the screen on phones.</string>
     <string name="revanced_hide_button_shelf_title">Hide button shelf</string>
     <string name="revanced_hide_button_shelf_summary">Hides the button shelf in the feed.</string>
     <string name="revanced_hide_carousel_shelf_title">Hide carousel shelf</string>
     <string name="revanced_hide_carousel_shelf_summary">Hides the carousel shelf in the feed.</string>
-    <string name="revanced_hide_playlist_card_shelf_title">Hide playlist card shelf</string>
-    <string name="revanced_hide_playlist_card_shelf_summary">Hides the playlist card shelf in the feed.</string>
-    <string name="revanced_hide_samples_shelf_title">Hide Samples shelf</string>
-    <string name="revanced_hide_samples_shelf_summary">Hides the Samples shelf in the feed.</string>
     <string name="revanced_hide_cast_button_title">Hide Cast button</string>
     <string name="revanced_hide_cast_button_summary">Hides the Cast button.</string>
     <string name="revanced_hide_category_bar_title">Hide category bar</string>
     <string name="revanced_hide_category_bar_summary">Hides the category bar.</string>
     <string name="revanced_hide_floating_button_title">Hide floating button</string>
     <string name="revanced_hide_floating_button_summary">Hides the floating button in the Library tab.</string>
-    <string name="revanced_hide_tap_to_update_button_title">Hide Tap to update button</string>
-    <string name="revanced_hide_tap_to_update_button_summary">Hides the Tap to update button.</string>
     <string name="revanced_hide_history_button_title">Hide History button</string>
     <string name="revanced_hide_history_button_summary">Hides the History button in the toolbar.</string>
     <string name="revanced_hide_notification_button_title">Hide Notifications button</string>
     <string name="revanced_hide_notification_button_summary">Hides the Notifications button in the toolbar.</string>
+    <string name="revanced_hide_playlist_card_shelf_title">Hide playlist card shelf</string>
+    <string name="revanced_hide_playlist_card_shelf_summary">Hides the playlist card shelf in the feed.</string>
+    <string name="revanced_hide_samples_shelf_title">Hide Samples shelf</string>
+    <string name="revanced_hide_samples_shelf_summary">Hides the Samples shelf in the feed.</string>
     <string name="revanced_hide_sound_search_button_title">Hide sound search button</string>
     <string name="revanced_hide_sound_search_button_summary">Hides the sound search button in the search bar.</string>
+    <string name="revanced_hide_tap_to_update_button_title">Hide Tap to update button</string>
+    <string name="revanced_hide_tap_to_update_button_summary">Hides the Tap to update button.</string>
     <string name="revanced_hide_voice_search_button_title">Hide voice search button</string>
     <string name="revanced_hide_voice_search_button_summary">Hides the voice search button in the search bar.</string>
-    <string name="revanced_restore_old_style_library_shelf_title">Restore old style library shelf</string>
-    <string name="revanced_restore_old_style_library_shelf_summary">Returns the Library tab to the old style. (Experimental)</string>
+    <string name="revanced_restore_old_style_library_shelf_title">Restore old Library tab</string>
+    <string name="revanced_restore_old_style_library_shelf_summary">Restores the Library tab to the old style. (Experimental)</string>
     <string name="revanced_remove_viewer_discretion_dialog_title">Remove viewer discretion dialog</string>
     <string name="revanced_remove_viewer_discretion_dialog_summary">"Removes the viewer discretion dialog.
 This does not bypass the age restriction. It just accepts it automatically."</string>
@@ -214,7 +214,7 @@ This does not bypass the age restriction. It just accepts it automatically."</st
     <string name="revanced_hide_navigation_bar_title">Hide navigation bar</string>
     <string name="revanced_hide_navigation_bar_summary">Hides the navigation bar.</string>
     <string name="revanced_hide_navigation_label_title">Hide navigation labels</string>
-    <string name="revanced_hide_navigation_label_summary">Hides labels below the navigation buttons.</string>
+    <string name="revanced_hide_navigation_label_summary">Hides the label below each navigation buttons.</string>
 
 
     <!-- PreferenceScreen: Player -->
@@ -229,17 +229,17 @@ This does not bypass the age restriction. It just accepts it automatically."</st
     <string name="revanced_enable_black_player_background_title">Change player background color</string>
     <string name="revanced_enable_black_player_background_summary">Changes the player background color to black.</string>
     <string name="revanced_disable_mini_player_gesture_title">Disable miniplayer gesture</string>
-    <string name="revanced_disable_mini_player_gesture_summary">Disable swipe to change tracks in the miniplayer.</string>
+    <string name="revanced_disable_mini_player_gesture_summary">Disables swipe to change tracks in the miniplayer.</string>
     <string name="revanced_disable_player_gesture_title">Disable player gesture</string>
-    <string name="revanced_disable_player_gesture_summary">Disable swipe to change tracks in the player.</string>
-    <string name="revanced_enable_force_minimized_player_title">Enable force minimized player</string>
-    <string name="revanced_enable_force_minimized_player_summary">Keeps the player minimized even when another track is played.</string>
+    <string name="revanced_disable_player_gesture_summary">Disables swipe to change tracks in the player.</string>
+    <string name="revanced_enable_force_minimized_player_title">Enable forced miniplayer</string>
+    <string name="revanced_enable_force_minimized_player_summary">Enables forced miniplayer when switching to a new track.</string>
     <string name="revanced_enable_swipe_to_dismiss_mini_player_title">Enable swipe to dismiss miniplayer</string>
     <string name="revanced_enable_swipe_to_dismiss_mini_player_summary">Enables swipe down to dismiss miniplayer.</string>
     <string name="revanced_enable_zen_mode_title">Enable Zen mode</string>
-    <string name="revanced_enable_zen_mode_summary">Changes the player background color to light grey to reduce eye strain.</string>
+    <string name="revanced_enable_zen_mode_summary">Enables light grey color to player background to reduce eye strain.</string>
     <string name="revanced_enable_zen_mode_podcast_title">Enable Zen mode in podcasts</string>
-    <string name="revanced_enable_zen_mode_podcast_summary">Also enables Zen mode for podcasts.</string>
+    <string name="revanced_enable_zen_mode_podcast_summary">Enables Zen mode but for podcasts.</string>
     <string name="revanced_hide_comment_channel_guidelines_title">Hide channel guidelines</string>
     <string name="revanced_hide_comment_channel_guidelines_summary">Hides the channel guidelines at the top of the comments section.</string>
     <string name="revanced_hide_double_tap_overlay_filter_title">Hide double-tap overlay filter</string>
@@ -255,11 +255,11 @@ This does not bypass the age restriction. It just accepts it automatically."</st
     <string name="revanced_remember_shuffle_state_title">Remember shuffle state</string>
     <string name="revanced_remember_shuffle_state_summary">Remembers the state of the shuffle toggle.</string>
     <string name="revanced_restore_old_comments_popup_panels_title">Restore old comments popup panels</string>
-    <string name="revanced_restore_old_comments_popup_panels_summary">Returns the comments popup panels to the old style.</string>
+    <string name="revanced_restore_old_comments_popup_panels_summary">Restores the comments popup panels to the old style.</string>
     <string name="revanced_restore_old_player_background_title">Restore old player background</string>
-    <string name="revanced_restore_old_player_background_summary">Returns the player background to the old style.</string>
+    <string name="revanced_restore_old_player_background_summary">Restores the player background to the old style.</string>
     <string name="revanced_restore_old_player_layout_title">Restore old player layout</string>
-    <string name="revanced_restore_old_player_layout_summary">"Returns the player layout to the old style.
+    <string name="revanced_restore_old_player_layout_summary">"Restores the player layout to the old style.
 Some features may not work properly in the old player layout."</string>
 
 
@@ -379,7 +379,7 @@ Click to see how to issue a API key."</string>
     <string name="revanced_sb_segments_nomusic_sum">Only for use in music videos. Sections of music videos without music, that aren\'t already covered by another category.</string>
 
     <string name="revanced_sb_skipped_sponsor">Skipped sponsor.</string>
-    <string name="revanced_sb_skipped_selfpromo">Skipped self promotion.</string>
+    <string name="revanced_sb_skipped_selfpromo">Skipped self-promotion.</string>
     <string name="revanced_sb_skipped_interaction">Skipped annoying reminder.</string>
     <string name="revanced_sb_skipped_intro_beginning">Skipped intro.</string>
     <string name="revanced_sb_skipped_intro_middle">Skipped intermission.</string>

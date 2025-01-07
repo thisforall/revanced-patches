@@ -736,8 +736,8 @@ Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_hide_zoom_overlay_summary_on">Zoom overlay is hidden.</string>
     <string name="revanced_hide_zoom_overlay_summary_off">Zoom overlay is shown.</string>
     <string name="revanced_sanitize_video_subtitle_title">Sanitize video subtitle</string>
-    <string name="revanced_sanitize_video_subtitle_summary_on">"Phrases like '#', 'Fundraiser', 'Shop' and 'products' were hidden from the video subtitles."</string>
-    <string name="revanced_sanitize_video_subtitle_summary_off">"Phrases like '#', 'Fundraiser', 'Shop' and 'products' were shown from the video subtitles."</string>
+    <string name="revanced_sanitize_video_subtitle_summary_on">"Phrases like '#', 'Fundraiser', 'Shop' and 'products' are hidden from the video subtitles."</string>
+    <string name="revanced_sanitize_video_subtitle_summary_off">"Phrases like '#', 'Fundraiser', 'Shop' and 'products' are shown from the video subtitles."</string>
     <string name="revanced_skip_autoplay_countdown_title">Skip autoplay countdown</string>
     <string name="revanced_skip_autoplay_countdown_summary_on">If autoplay is enabled, the next video will play immediately.</string>
     <string name="revanced_skip_autoplay_countdown_summary_off">If autoplay is enabled, the next video will play after the countdown ends.</string>
@@ -1359,9 +1359,9 @@ Info:
 
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Animation / Feedback -->
     <string name="revanced_preference_category_animation_feedback">Animation / Feedback</string>
-    <string name="revanced_disable_shorts_like_button_fountain_animation_title">Disable Like button animation</string>
-    <string name="revanced_disable_shorts_like_button_fountain_animation_summary_on">Fountain animation is disabled above the Like button.</string>
-    <string name="revanced_disable_shorts_like_button_fountain_animation_summary_off">Fountain animation is enabled above the Like button.</string>
+    <string name="revanced_disable_shorts_like_button_fountain_animation_title">Disable Like button fountain animation</string>
+    <string name="revanced_disable_shorts_like_button_fountain_animation_summary_on">Fountain animation above the Like button is disabled.</string>
+    <string name="revanced_disable_shorts_like_button_fountain_animation_summary_off">Fountain animation above the Like button is enabled.</string>
     <string name="revanced_shorts_double_tap_to_like_animation_title">Double-tap animation</string>
     <string name="revanced_shorts_double_tap_to_like_animation_entry_1">Original</string>
     <string name="revanced_shorts_double_tap_to_like_animation_entry_2">Thumbs up</string>
@@ -1544,16 +1544,16 @@ No margins on top and bottom of player."</string>
     <string name="revanced_disable_vp9_codec_title">Disable VP9 codec</string>
     <string name="revanced_disable_vp9_codec_summary_on">"VP9 codec is disabled.
 
-        • Maximum resolution is 1080p.
-        • Video playback will use more internet data than VP9.
-        • VP9 codec is still used for HDR video."</string>
+• Maximum resolution is 1080p.
+• Video playback will use more internet data than VP9.
+• VP9 codec is still used for HDR video."</string>
     <string name="revanced_disable_vp9_codec_summary_off">VP9 codec is enabled.</string>
     <string name="revanced_enable_default_playback_speed_shorts_title">Enable Shorts default playback speed</string>
     <string name="revanced_enable_default_playback_speed_shorts_summary_on">Default playback speed applies to Shorts.</string>
     <string name="revanced_enable_default_playback_speed_shorts_summary_off">Default playback speed does not apply to Shorts.</string>
     <string name="revanced_reject_av1_codec_title">Reject software AV1 codec response</string>
     <string name="revanced_reject_av1_codec_summary">"Forcefully rejects the software AV1 codec response.
-        A different codec will be applied after about 20 seconds of buffering."</string>
+A different codec will be applied after about 20 seconds of buffering."</string>
     <string name="revanced_reject_av1_codec_toast">Fallback process causes about 20 seconds of buffering.</string>
     <string name="revanced_replace_av1_codec_title">Replace software AV1 codec</string>
     <string name="revanced_replace_av1_codec_summary">Replaces the software AV1 codec with the VP9 codec.</string>
@@ -1561,16 +1561,16 @@ No margins on top and bottom of player."</string>
     <string name="revanced_skip_preloaded_buffer_title">Skip preloaded buffer</string>
     <string name="revanced_skip_preloaded_buffer_summary">"Skips the preloaded buffer at the start of videos to immediately apply the default video quality.
 
-        Info:
-        • When the video starts, there is a delay of approximately 0.3 seconds.
-        • Does not apply to HDR videos, live stream videos, or videos shorter than 15 seconds."</string>
+Info:
+• When the video starts, there is a delay of approximately 0.3 seconds.
+• Does not apply to HDR videos, live stream videos, or videos shorter than 15 seconds."</string>
     <string name="revanced_skip_preloaded_buffer_user_dialog_message">Turning on this setting may cause video playback issues.</string>
     <string name="revanced_skip_preloaded_buffer_toast_title">Show a toast when skipping</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_on">Toast is shown.</string>
     <string name="revanced_skip_preloaded_buffer_toast_summary_off">Toast is not shown.</string>
     <string name="revanced_spoof_device_dimensions_title">Spoof device dimensions</string>
     <string name="revanced_spoof_device_dimensions_summary">"Spoofs the device dimensions to the maximum value.
-        High quality may be unlocked on some videos that require high device dimensions, but not all videos."</string>
+High quality may be unlocked on some videos that require high device dimensions, but not all videos."</string>
     <string name="revanced_remember_playback_speed_toast">Changing default speed to %s.</string>
     <string name="revanced_remember_video_quality_mobile">Changing default mobile data quality to %s.</string>
     <string name="revanced_remember_video_quality_none">Failed to set video quality.</string>
@@ -1701,7 +1701,7 @@ Click to see how to issue a API key."</string>
     <string name="revanced_sb_skip_button_unsubmitted">Skip segment</string>
 
     <string name="revanced_sb_skipped_sponsor">Skipped sponsor.</string>
-    <string name="revanced_sb_skipped_selfpromo">Skipped self promotion.</string>
+    <string name="revanced_sb_skipped_selfpromo">Skipped self-promotion.</string>
     <string name="revanced_sb_skipped_interaction">Skipped annoying reminder.</string>
     <string name="revanced_sb_skipped_highlight">Skipped to highlight.</string>
     <string name="revanced_sb_skipped_intro_beginning">Skipped intro.</string>
@@ -1904,15 +1904,15 @@ Click to see how to issue a API key."</string>
     <string name="gms_core_dialog_title">Action needed</string>
     <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
 
-        Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
+Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
 
-        This is required for the app to work."</string>
+This is required for the app to work."</string>
     <string name="gms_core_dialog_open_website_text">Open website</string>
     <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
 
-        Disabling battery optimizations for GmsCore will not negatively affect battery usage.
+Disabling battery optimizations for GmsCore will not negatively affect battery usage.
 
-        Tap the continue button and allow optimization changes."</string>
+Tap the continue button and allow optimization changes."</string>
     <string name="gms_core_dialog_continue_text">Continue</string>
 
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof streaming data -->
