@@ -1857,25 +1857,6 @@ Click to see how to issue a API key."</string>
     <string name="revanced_enable_open_links_directly_title">Enable open links directly</string>
     <string name="revanced_enable_open_links_directly_summary_on">Bypassing URL redirects.</string>
     <string name="revanced_enable_open_links_directly_summary_off">Following default redirect policy.</string>
-    <string name="revanced_default_app_settings_title">Open default app settings</string>
-    <string name="revanced_default_app_settings_summary">To open YouTube links in RVX, enable \'Open supported links\' and enable the supported web addresses.</string>
-
-    <string name="gms_core_settings_title">Open GmsCore</string>
-    <string name="gms_core_settings_summary">Enable cloud messaging to receive notifications.</string>
-    <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
-    <string name="gms_core_dialog_title">Action needed</string>
-    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
-
-Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
-
-This is required for the app to work."</string>
-    <string name="gms_core_dialog_open_website_text">Open website</string>
-    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
-
-Disabling battery optimizations for GmsCore will not negatively affect battery usage.
-
-Tap the continue button and allow optimization changes."</string>
-    <string name="gms_core_dialog_continue_text">Continue</string>
 
     <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>
     <string name="revanced_sanitize_sharing_links_summary">Removes tracking query parameters from the URLs when sharing links.</string>
@@ -1913,6 +1894,26 @@ Tap the continue button and allow optimization changes."</string>
     <string name="revanced_extended_settings_import_success">Settings were successfully imported.</string>
     <string name="revanced_extended_settings_reset">Reset</string>
     <string name="revanced_share_copy_settings_success">Settings copied to clipboard.</string>
+
+    <string name="revanced_default_app_settings_title">Open default app settings</string>
+    <string name="revanced_default_app_settings_summary">To open YouTube links in RVX, enable \'Open supported links\' and enable the supported web addresses.</string>
+
+    <string name="gms_core_settings_title">Open GmsCore Settings</string>
+    <string name="gms_core_settings_summary">Enable cloud messaging to receive notifications.</string>
+    <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
+    <string name="gms_core_dialog_title">Action needed</string>
+    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
+
+        Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
+
+        This is required for the app to work."</string>
+    <string name="gms_core_dialog_open_website_text">Open website</string>
+    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
+
+        Disabling battery optimizations for GmsCore will not negatively affect battery usage.
+
+        Tap the continue button and allow optimization changes."</string>
+    <string name="gms_core_dialog_continue_text">Continue</string>
 
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof streaming data -->
     <string name="revanced_preference_screen_spoof_streaming_data_title">Spoof streaming data</string>

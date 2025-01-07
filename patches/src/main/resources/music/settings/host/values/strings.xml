@@ -199,8 +199,8 @@ This does not bypass the age restriction. It just accepts it automatically."</st
     <!-- PreferenceScreen: Navigation Bar -->
     <string name="revanced_preference_screen_navigation_title">Navigation Bar</string>
 
-    <string name="revanced_enable_black_navigation_bar_title">Enable black navigation bar</string>
-    <string name="revanced_enable_black_navigation_bar_summary">Sets the navigation bar color to black.</string>
+    <string name="revanced_enable_black_navigation_bar_title">Change navigation bar color</string>
+    <string name="revanced_enable_black_navigation_bar_summary">Changes the navigation bar color to black.</string>
     <string name="revanced_hide_navigation_home_button_title">Hide Home button</string>
     <string name="revanced_hide_navigation_home_button_summary">Hides the Home button.</string>
     <string name="revanced_hide_navigation_samples_button_title">Hide Samples button</string>
@@ -220,36 +220,36 @@ This does not bypass the age restriction. It just accepts it automatically."</st
     <!-- PreferenceScreen: Player -->
     <string name="revanced_preference_screen_player_title">Player</string>
 
-    <string name="revanced_disable_mini_player_gesture_title">Disable miniplayer gesture</string>
-    <string name="revanced_disable_mini_player_gesture_summary">Disable swipe to change tracks in the miniplayer.</string>
-    <string name="revanced_disable_player_gesture_title">Disable player gesture</string>
-    <string name="revanced_disable_player_gesture_summary">Disable swipe to change tracks in the player.</string>
-    <string name="revanced_enable_black_player_background_title">Enable black player background</string>
-    <string name="revanced_enable_black_player_background_summary">Changes the player background color to black.</string>
-    <string name="revanced_enable_color_match_player_title">Enable color match player</string>
-    <string name="revanced_enable_color_match_player_summary">Matches the color of the miniplayer to the fullscreen player.</string>
-    <string name="revanced_enable_force_minimized_player_title">Enable force minimized player</string>
-    <string name="revanced_enable_force_minimized_player_summary">Keeps the player minimized even when another track is played.</string>
     <string name="revanced_enable_mini_player_next_button_title">Add miniplayer next button</string>
     <string name="revanced_enable_mini_player_next_button_summary">Adds a next track button to the miniplayer.</string>
     <string name="revanced_enable_mini_player_previous_button_title">Add miniplayer previous button</string>
     <string name="revanced_enable_mini_player_previous_button_summary">Adds a previous track button to the miniplayer.</string>
+    <string name="revanced_enable_color_match_player_title">Change miniplayer color</string>
+    <string name="revanced_enable_color_match_player_summary">Changes the miniplayer color to that of fullscreen player.</string>
+    <string name="revanced_enable_black_player_background_title">Change player background color</string>
+    <string name="revanced_enable_black_player_background_summary">Changes the player background color to black.</string>
+    <string name="revanced_disable_mini_player_gesture_title">Disable miniplayer gesture</string>
+    <string name="revanced_disable_mini_player_gesture_summary">Disable swipe to change tracks in the miniplayer.</string>
+    <string name="revanced_disable_player_gesture_title">Disable player gesture</string>
+    <string name="revanced_disable_player_gesture_summary">Disable swipe to change tracks in the player.</string>
+    <string name="revanced_enable_force_minimized_player_title">Enable force minimized player</string>
+    <string name="revanced_enable_force_minimized_player_summary">Keeps the player minimized even when another track is played.</string>
     <string name="revanced_enable_swipe_to_dismiss_mini_player_title">Enable swipe to dismiss miniplayer</string>
     <string name="revanced_enable_swipe_to_dismiss_mini_player_summary">Enables swipe down to dismiss miniplayer.</string>
     <string name="revanced_enable_zen_mode_title">Enable Zen mode</string>
     <string name="revanced_enable_zen_mode_summary">Changes the player background color to light grey to reduce eye strain.</string>
     <string name="revanced_enable_zen_mode_podcast_title">Enable Zen mode in podcasts</string>
     <string name="revanced_enable_zen_mode_podcast_summary">Also enables Zen mode for podcasts.</string>
-    <string name="revanced_hide_audio_video_switch_toggle_title">Hide Audio / Video toggle</string>
-    <string name="revanced_hide_audio_video_switch_toggle_summary">Hides the Audio / Video toggle in the player.</string>
     <string name="revanced_hide_comment_channel_guidelines_title">Hide channel guidelines</string>
     <string name="revanced_hide_comment_channel_guidelines_summary">Hides the channel guidelines at the top of the comments section.</string>
-    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_title">Hide timestamp and emoji buttons</string>
-    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary">Hides the timestamp and emoji buttons when typing comments.</string>
     <string name="revanced_hide_double_tap_overlay_filter_title">Hide double-tap overlay filter</string>
     <string name="revanced_hide_double_tap_overlay_filter_summary">Hides dark overlay that appears when double-tapping to seek.</string>
+    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_title">Hide emoji and timestamp buttons</string>
+    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary">Hides the emoji and timestamp buttons when typing comments.</string>
     <string name="revanced_hide_fullscreen_share_button_title">Hide fullscreen Share button</string>
     <string name="revanced_hide_fullscreen_share_button_summary">Hides the Share button in the fullscreen player.</string>
+    <string name="revanced_hide_audio_video_switch_toggle_title">Hide Song / Video toggle</string>
+    <string name="revanced_hide_audio_video_switch_toggle_summary">Hides the Song / Video toggle in the player.</string>
     <string name="revanced_remember_repeat_state_title">Remember repeat state</string>
     <string name="revanced_remember_repeat_state_summary">Remembers the state of the repeat toggle.</string>
     <string name="revanced_remember_shuffle_state_title">Remember shuffle state</string>
@@ -412,6 +412,49 @@ Click to see how to issue a API key."</string>
     <!-- PreferenceScreen: Miscellaneous -->
     <string name="revanced_preference_screen_misc_title">Miscellaneous</string>
 
+    <string name="gms_core_settings_title">Open GmsCore Settings</string>
+    <string name="gms_core_settings_summary">Enable cloud messaging to receive notifications.</string>
+    <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
+    <string name="gms_core_dialog_title">Action needed</string>
+    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
+
+        Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
+
+        This is required for the app to work."</string>
+    <string name="gms_core_dialog_open_website_text">Open website</string>
+    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
+
+        Disabling battery optimizations for GmsCore will not negatively affect battery usage.
+
+        Tap the continue button and allow optimization changes."</string>
+    <string name="gms_core_dialog_continue_text">Continue</string>
+
+    <string name="revanced_default_app_settings_title">Open default app settings</string>
+    <string name="revanced_default_app_settings_summary">To open YouTube Music links in RVX Music, enable \'Open supported links\' and enable the supported web addresses.</string>
+
+    <string name="revanced_spoof_client_title">Spoof client</string>
+    <string name="revanced_spoof_client_summary">"Spoof the client to prevent playback issues.
+
+        • When used with 'Spoofing streaming data', playback issues may occur."</string>
+    <string name="revanced_spoof_client_type_title">Default client</string>
+    <string name="revanced_spoof_client_type_summary">"Defines a default client for spoofing.
+
+        • When using the Android client, it is recommended to also use 'Spoof app version'."</string>
+    <string name="revanced_spoof_client_type_entry_android_music_4_27">Android Music 4.27.53</string>
+    <string name="revanced_spoof_client_type_entry_android_music_5_29">Android Music 5.29.53</string>
+    <string name="revanced_spoof_client_type_entry_ios_music_6_21">iOS Music 6.21</string>
+
+    <string name="revanced_spoof_streaming_data_title">Spoof streaming data</string>
+    <string name="revanced_spoof_streaming_data_summary">"Spoof the streaming data to prevent playback issues.
+
+        • When used with 'Spoof client', playback issues may occur."</string>
+    <string name="revanced_spoof_streaming_data_type_title">Default client</string>
+    <string name="revanced_spoof_streaming_data_type_summary">Defines a default client that fetches streaming data.</string>
+    <string name="revanced_spoof_streaming_data_stats_for_nerds_title">Show in Stats for nerds</string>
+    <string name="revanced_spoof_streaming_data_stats_for_nerds_summary">Shows the client used to fetch streaming data in Stats for nerds.</string>
+    <string name="revanced_spoof_streaming_data_type_entry_android_vr">Android VR</string>
+    <string name="revanced_spoof_streaming_data_type_entry_android_music">Android Music</string>
+
     <string name="revanced_bypass_image_region_restrictions_title">Bypass image region restrictions</string>
     <string name="revanced_bypass_image_region_restrictions_summary">Replaces the domain that is blocked in some regions so that playlist thumbnails, channel avatars, etc. can be received.</string>
     <string name="revanced_change_share_sheet_title">Change share sheet</string>
@@ -429,8 +472,8 @@ Find the official song if a music video is detected playing from an album.
     <string name="revanced_disable_music_video_in_album_redirect_type_title">Redirection type</string>
     <string name="revanced_disable_music_video_in_album_redirect_type_summary">Specifies how to redirect to official song.</string>
     <string name="revanced_disable_music_video_in_album_redirect_type_entry_redirect">Redirect</string>
-    <string name="revanced_disable_music_video_in_album_redirect_type_entry_on_click">Tap Audio / Video toggle</string>
-    <string name="revanced_disable_music_video_in_album_redirect_type_entry_on_long_click">Tap and hold Audio / Video toggle</string>
+    <string name="revanced_disable_music_video_in_album_redirect_type_entry_on_click">Tap Song / Video toggle</string>
+    <string name="revanced_disable_music_video_in_album_redirect_type_entry_on_long_click">Tap and hold Song / Video toggle</string>
     <string name="revanced_enable_debug_logging_title">Enable debug logging</string>
     <string name="revanced_enable_debug_logging_summary">Prints the debug log.</string>
     <string name="revanced_enable_debug_buffer_logging_title">Enable debug buffer logging</string>
@@ -441,52 +484,6 @@ Find the official song if a music video is detected playing from an album.
 Info:
 • Latest YouTube Music clients use the OPUS audio codec by default.
 • This is only valid for users spoofing with very old clients."</string>
-
-    <string name="gms_core_settings_title">Open GmsCore</string>
-    <string name="gms_core_settings_summary">Enable cloud messaging to receive notifications.</string>
-    <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
-    <string name="gms_core_dialog_title">Action needed</string>
-    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
-
-Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
-
-This is required for the app to work."</string>
-    <string name="gms_core_dialog_open_website_text">Open website</string>
-    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
-
-Disabling battery optimizations for GmsCore will not negatively affect battery usage.
-
-Tap the continue button and allow optimization changes."</string>
-    <string name="gms_core_dialog_continue_text">Continue</string>
-
-    <string name="revanced_spoof_client_title">Spoof client</string>
-    <string name="revanced_spoof_client_summary">"Spoof the client to prevent playback issues.
-
-• When used with 'Spoofing streaming data', playback issues may occur."</string>
-    <string name="revanced_spoof_client_type_title">Default client</string>
-    <string name="revanced_spoof_client_type_summary">"Defines a default client for spoofing.
-
-• When using the Android client, it is recommended to also use 'Spoof app version'."</string>
-    <string name="revanced_spoof_client_type_entry_android_music_4_27">Android Music 4.27.53</string>
-    <string name="revanced_spoof_client_type_entry_android_music_5_29">Android Music 5.29.53</string>
-    <string name="revanced_spoof_client_type_entry_ios_music_6_21">iOS Music 6.21</string>
-
-    <string name="revanced_spoof_streaming_data_title">Spoof streaming data</string>
-    <string name="revanced_spoof_streaming_data_summary">"Spoof the streaming data to prevent playback issues.
-
-• When used with 'Spoof client', playback issues may occur."</string>
-    <string name="revanced_spoof_streaming_data_type_title">Default client</string>
-    <string name="revanced_spoof_streaming_data_type_summary">Defines a default client that fetches streaming data.</string>
-    <string name="revanced_spoof_streaming_data_stats_for_nerds_title">Show in Stats for nerds</string>
-    <string name="revanced_spoof_streaming_data_stats_for_nerds_summary">Shows the client used to fetch streaming data in Stats for nerds.</string>
-    <string name="revanced_spoof_streaming_data_type_entry_android_vr">Android VR</string>
-    <string name="revanced_spoof_streaming_data_type_entry_android_music">Android Music</string>
-
-    <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>
-    <string name="revanced_sanitize_sharing_links_summary">Removes tracking query parameters from URLs when sharing links.</string>
-
-    <string name="revanced_default_app_settings_title">Open default app settings</string>
-    <string name="revanced_default_app_settings_summary">To open YouTube Music links in RVX Music, enable \'Open supported links\' and enable the supported web addresses.</string>
 
     <string name="revanced_extended_settings_import_export_title">Import / Export settings</string>
     <string name="revanced_extended_settings_import_export_summary">Import or export settings.</string>
@@ -504,5 +501,10 @@ Tap the continue button and allow optimization changes."</string>
     <string name="revanced_extended_settings_import_success">Imported %d settings.</string>
     <string name="revanced_extended_settings_reset">Reset</string>
     <string name="revanced_share_copy_settings_success">Settings copied to clipboard.</string>
+
+    <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>
+    <string name="revanced_sanitize_sharing_links_summary">Removes tracking query parameters from URLs when sharing links.</string>
+
+
 
 </resources>
