@@ -202,12 +202,12 @@ Store"</string>
     <string name="revanced_hide_channel_profile_links_title">Hide channel profile links</string>
     <string name="revanced_hide_channel_profile_links_summary_on">Links at the top of channel profiles are hidden.</string>
     <string name="revanced_hide_channel_profile_links_summary_off">Links at the top of channel profiles are shown.</string>
-    <string name="revanced_hide_browse_store_button_title">Hide Visit store button</string>
-    <string name="revanced_hide_browse_store_button_summary_on">Visit store button is hidden.</string>
-    <string name="revanced_hide_browse_store_button_summary_off">Visit store button is shown.</string>
     <string name="revanced_hide_for_you_shelf_title">Hide For You shelf</string>
     <string name="revanced_hide_for_you_shelf_summary_on">For You shelf is hidden.</string>
     <string name="revanced_hide_for_you_shelf_summary_off">For You shelf is shown.</string>
+    <string name="revanced_hide_browse_store_button_title">Hide Visit store button</string>
+    <string name="revanced_hide_browse_store_button_summary_on">Visit store button is hidden.</string>
+    <string name="revanced_hide_browse_store_button_summary_off">Visit store button is shown.</string>
 
     <!-- PreferenceScreen: Feed, PreferenceCategory: Feed, PreferenceScreen: Community posts -->
     <string name="revanced_preference_screen_community_posts_title">Community posts</string>
