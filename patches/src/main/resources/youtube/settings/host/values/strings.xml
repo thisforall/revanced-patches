@@ -830,6 +830,9 @@ Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_hide_comment_create_shorts_button_title">Hide Create a Short button</string>
     <string name="revanced_hide_comment_create_shorts_button_summary_on">Create a Short button is hidden.</string>
     <string name="revanced_hide_comment_create_shorts_button_summary_off">Create a Short button is shown.</string>
+    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_title">Hide emoji and timestamp buttons</string>
+    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary_on">Emoji and timestamp buttons are hidden.</string>
+    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary_off">Emoji and timestamp buttons are shown.</string>
     <string name="revanced_hide_comment_highlighted_search_links_title">Hide highlighted search links</string>
     <string name="revanced_hide_comment_highlighted_search_links_summary_on">Highlighted search links are hidden.</string>
     <string name="revanced_hide_comment_highlighted_search_links_summary_off">Highlighted search links are shown.</string>
@@ -845,9 +848,6 @@ Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_hide_comment_thanks_button_title">Hide Thanks button</string>
     <string name="revanced_hide_comment_thanks_button_summary_on">Thanks button is hidden.</string>
     <string name="revanced_hide_comment_thanks_button_summary_off">Thanks button is shown.</string>
-    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_title">Hide timestamp and emoji buttons</string>
-    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary_on">Timestamp and emoji buttons are hidden.</string>
-    <string name="revanced_hide_comment_timestamp_and_emoji_buttons_summary_off">Timestamp and emoji buttons are shown.</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Flyout menu -->
     <string name="revanced_preference_screen_player_flyout_menu_title">Flyout menu</string>
