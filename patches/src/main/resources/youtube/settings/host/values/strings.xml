@@ -36,12 +36,12 @@ Please download %2$s from the website."</string>
     <string name="revanced_hide_merchandise_shelf_title">Hide merchandise shelves</string>
     <string name="revanced_hide_merchandise_shelf_summary_on">Merchandise shelves are hidden.</string>
     <string name="revanced_hide_merchandise_shelf_summary_off">Merchandise shelves are shown.</string>
-    <string name="revanced_hide_player_store_shelf_title">Hide player shopping shelf</string>
-    <string name="revanced_hide_player_store_shelf_summary_on">Shopping shelf is hidden.</string>
-    <string name="revanced_hide_player_store_shelf_summary_off">Shopping shelf is shown.</string>
     <string name="revanced_hide_paid_promotion_label_title">Hide paid promotion label</string>
     <string name="revanced_hide_paid_promotion_label_summary_on">Paid promotion label is hidden.</string>
     <string name="revanced_hide_paid_promotion_label_summary_off">Paid promotion label is shown.</string>
+    <string name="revanced_hide_player_store_shelf_title">Hide player shopping shelf</string>
+    <string name="revanced_hide_player_store_shelf_summary_on">Shopping shelf is hidden.</string>
+    <string name="revanced_hide_player_store_shelf_summary_off">Shopping shelf is shown.</string>
     <string name="revanced_hide_promotion_alert_banner_title">Hide promotion alert banner</string>
     <string name="revanced_hide_promotion_alert_banner_summary_on">Promotion alert banner is hidden.</string>
     <string name="revanced_hide_promotion_alert_banner_summary_off">Promotion alert banner is shown.</string>
@@ -66,10 +66,10 @@ Please download %2$s from the website."</string>
     <string name="revanced_preference_screen_alt_thumbnails_title">Alternative thumbnails</string>
 
     <string name="revanced_alt_thumbnail_home_title">Home tab</string>
-    <string name="revanced_alt_thumbnail_subscriptions_title">Subscriptions tab</string>
-    <string name="revanced_alt_thumbnail_library_title">You tab</string>
     <string name="revanced_alt_thumbnail_player_title">Player playlists, recommendations</string>
     <string name="revanced_alt_thumbnail_search_title">Search results</string>
+    <string name="revanced_alt_thumbnail_subscriptions_title">Subscriptions tab</string>
+    <string name="revanced_alt_thumbnail_library_title">You tab</string>
     <string name="revanced_alt_thumbnail_options_entry_1">Original thumbnails</string>
     <string name="revanced_alt_thumbnail_options_entry_2">DeArrow &amp; original thumbnails</string>
     <string name="revanced_alt_thumbnail_options_entry_3">DeArrow &amp; still captures</string>
@@ -124,7 +124,7 @@ Tap here to learn more about DeArrow."</string>
     <string name="revanced_hide_chips_shelf_title">Hide chips shelf</string>
     <string name="revanced_hide_chips_shelf_on">Chips shelf is hidden.</string>
     <string name="revanced_hide_chips_shelf_off">Chips shelf is shown.</string>
-    <string name="revanced_hide_expandable_chip_title">Hide expandable chip under videos</string>
+    <string name="revanced_hide_expandable_chip_title">Hide expandable chips under videos</string>
     <string name="revanced_hide_expandable_chip_summary_on">Expandable chips are hidden.</string>
     <string name="revanced_hide_expandable_chip_summary_off">Expandable chips are shown.</string>
     <string name="revanced_hide_expandable_shelf_title">Hide expandable shelves</string>
@@ -319,6 +319,13 @@ If the layout of the player screen changes due to server-side changes, unintende
     <!-- PreferenceScreen: General -->
     <string name="revanced_preference_screen_general_title">General</string>
 
+    <string name="revanced_change_layout_title">Change layout</string>
+    <string name="revanced_change_layout_entry_1">Original</string>
+    <string name="revanced_change_layout_entry_2">Phone</string>
+    <string name="revanced_change_layout_entry_3">Phone (Max 480 dp)</string>
+    <string name="revanced_change_layout_entry_4">Tablet</string>
+    <string name="revanced_change_layout_entry_5">Tablet (Min 600 dp)</string>
+
     <string name="revanced_change_start_page_title">Change start page</string>
     <string name="revanced_change_start_page_entry_browse">Browse channels</string>
     <string name="revanced_change_start_page_entry_courses">Courses / Learning</string>
@@ -373,13 +380,6 @@ Limitation: Back button on the toolbar may not work."</string>
     <string name="revanced_remove_viewer_discretion_dialog_summary">"Removes the viewer discretion dialog.
 This does not bypass the age restriction. It just accepts it automatically."</string>
 
-    <string name="revanced_change_layout_title">Change layout</string>
-    <string name="revanced_change_layout_entry_1">Original</string>
-    <string name="revanced_change_layout_entry_2">Phone</string>
-    <string name="revanced_change_layout_entry_3">Phone (Max 480 dp)</string>
-    <string name="revanced_change_layout_entry_4">Tablet</string>
-    <string name="revanced_change_layout_entry_5">Tablet (Min 600 dp)</string>
-
     <string name="revanced_spoof_app_version_title">Spoof app version</string>
     <string name="revanced_spoof_app_version_summary_on">Version spoofed</string>
     <string name="revanced_spoof_app_version_summary_off">Version not spoofed</string>
@@ -432,12 +432,12 @@ Some components may not be hidden."</string>
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Hook buttons, PreferenceCategory: Download button -->
     <string name="revanced_preference_category_download_button">Download button</string>
 
+    <string name="revanced_override_playlist_download_button_title">Override playlist download button</string>
+    <string name="revanced_override_playlist_download_button_summary_on">Native playlist download button is always shown, and in public playlists, it opens your external downloader.</string>
+    <string name="revanced_override_playlist_download_button_summary_off">Native playlist download button, if shown, opens the native in-app downloader.</string>
     <string name="revanced_override_video_download_button_title">Override video download button</string>
     <string name="revanced_override_video_download_button_summary_on">Native video download button opens your external downloader.</string>
     <string name="revanced_override_video_download_button_summary_off">Native video download button opens the native in-app downloader.</string>
-    <string name="revanced_override_playlist_download_button_title">Override playlist download button</string>
-    <string name="revanced_override_playlist_download_button_summary_on">Native playlist download button is always shown, and in public playlists, it opens your external downloader.</string>
-    <string name="revanced_override_playlist_download_button_summary_off">If shown, the native playlist download button opens the native in-app downloader.</string>
     <string name="revanced_external_downloader_package_name_playlist_title">Playlist downloader package name</string>
     <string name="revanced_external_downloader_package_name_playlist_summary">Package name of your installed external downloader app, such as YTDLnis.</string>
 
@@ -521,7 +521,7 @@ Swipe to expand or close."</string>
     <string name="revanced_hide_navigation_library_button_title">Hide Library button</string>
     <string name="revanced_hide_navigation_library_button_summary_on">Library button is hidden.</string>
     <string name="revanced_hide_navigation_library_button_summary_off">Library button is shown.</string>
-    <string name="revanced_hide_navigation_notifications_button_title">Hide notifications button</string>
+    <string name="revanced_hide_navigation_notifications_button_title">Hide Notifications button</string>
     <string name="revanced_hide_navigation_notifications_button_summary_on">Notifications button is hidden.</string>
     <string name="revanced_hide_navigation_notifications_button_summary_off">Notifications button is shown.</string>
     <string name="revanced_hide_navigation_shorts_button_title">Hide Shorts button</string>
@@ -674,22 +674,22 @@ Tap and hold to open RVX settings."</string>
     <string name="revanced_custom_player_overlay_opacity_title">Custom player overlay opacity</string>
     <string name="revanced_custom_player_overlay_opacity_summary">Opacity value between 0-100, where 0 is transparent.</string>
     <string name="revanced_custom_player_overlay_opacity_invalid_toast">Player overlay opacity must be between 0-100.</string>
-    <string name="revanced_disable_auto_player_popup_panels_title">Disable player popup panels</string>
-    <string name="revanced_disable_auto_player_popup_panels_summary_on">Auto player popup panels are disabled.</string>
-    <string name="revanced_disable_auto_player_popup_panels_summary_off">Auto player popup panels are enabled.</string>
-    <string name="revanced_disable_speed_overlay_title">Disable speed overlay</string>
-    <string name="revanced_disable_speed_overlay_summary">"Disable '2x&gt;&gt;' while holding down.
-
-        Note:
-        • Disabling the speed overlay restores the Slide to seek behavior of the old layout.
-        • Disabling this setting does not forcefully enable the speed overlay."</string>
-    <string name="revanced_disable_auto_switch_mix_playlists_title">Disable switch mix playlists</string>
+    <string name="revanced_disable_auto_switch_mix_playlists_title">Disable auto switch mix playlists</string>
     <string name="revanced_disable_auto_switch_mix_playlists_summary_on">Auto switch mix playlists is disabled.</string>
     <string name="revanced_disable_auto_switch_mix_playlists_summary_off">"Auto switch mix playlists is enabled when autoplay is turned on.
 
 Autoplay can be changed in YouTube settings:
 Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_disable_auto_switch_mix_playlists_user_dialog_message">Enabling this feature will disable automatic switching to YouTube Mix when playing music while autoplay is turned on.</string>
+    <string name="revanced_disable_auto_player_popup_panels_title">Disable player popup panels</string>
+    <string name="revanced_disable_auto_player_popup_panels_summary_on">Auto player popup panels are disabled.</string>
+    <string name="revanced_disable_auto_player_popup_panels_summary_off">Auto player popup panels are enabled.</string>
+    <string name="revanced_disable_speed_overlay_title">Disable speed overlay</string>
+    <string name="revanced_disable_speed_overlay_summary">"Disable '2x&gt;&gt;' while holding down.
+
+Note:
+• Disabling the speed overlay restores the Slide to seek behavior of the old layout.
+• Disabling this setting does not forcefully enable the speed overlay."</string>
     <string name="revanced_hide_channel_watermark_title">Hide channel watermark</string>
     <string name="revanced_hide_channel_watermark_summary_on">Channel watermark is hidden.</string>
     <string name="revanced_hide_channel_watermark_summary_off">Channel watermark is shown.</string>
@@ -815,9 +815,6 @@ Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_hide_channel_guidelines_title">Hide channel guidelines</string>
     <string name="revanced_hide_channel_guidelines_summary_on">Channel guidelines are hidden.</string>
     <string name="revanced_hide_channel_guidelines_summary_off">Channel guidelines are shown.</string>
-    <string name="revanced_hide_live_chat_summary_title">Hide Chat summary in live chat</string>
-    <string name="revanced_hide_live_chat_summary_summary_on">Chat summary is hidden.</string>
-    <string name="revanced_hide_live_chat_summary_summary_off">Chat summary is shown.</string>
     <string name="revanced_hide_comments_by_members_title">Hide Comments by members banner</string>
     <string name="revanced_hide_comments_by_members_summary_on">Comments by members banner is hidden.</string>
     <string name="revanced_hide_comments_by_members_summary_off">Comments by members banner is shown.</string>
@@ -836,15 +833,18 @@ Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_hide_comment_highlighted_search_links_title">Hide highlighted search links</string>
     <string name="revanced_hide_comment_highlighted_search_links_summary_on">Highlighted search links are hidden.</string>
     <string name="revanced_hide_comment_highlighted_search_links_summary_off">Highlighted search links are shown.</string>
-    <string name="revanced_hide_live_chat_messages_title">Hide live chat messages</string>
-    <string name="revanced_hide_live_chat_messages_summary_on">Live chat messages are hidden.\n\nThis setting applies to Shorts live videos too.</string>
-    <string name="revanced_hide_live_chat_messages_summary_off">Live chat messages are shown.\n\nThis setting applies to Shorts live videos too.</string>
+    <string name="revanced_hide_live_chat_messages_title">Hide Live Chat messages</string>
+    <string name="revanced_hide_live_chat_messages_summary_on">Live Chat messages are hidden.\n\nThis setting applies to Shorts Live videos too.</string>
+    <string name="revanced_hide_live_chat_messages_summary_off">Live Chat messages are shown.\n\nThis setting applies to Shorts Live videos too.</string>
+    <string name="revanced_hide_live_chat_summary_title">Hide Live Chat summary</string>
+    <string name="revanced_hide_live_chat_summary_summary_on">Live Chat summary is hidden.</string>
+    <string name="revanced_hide_live_chat_summary_summary_off">Live Chat summary is shown.</string>
     <string name="revanced_hide_preview_comment_title">Hide preview comment</string>
     <string name="revanced_hide_preview_comment_on">Preview comment is hidden.</string>
     <string name="revanced_hide_preview_comment_off">Preview comment is shown.</string>
     <string name="revanced_hide_preview_comment_type_title">Hide preview comment type</string>
-    <string name="revanced_hide_preview_comment_type_on">This does not change the size of the comments section, so it is possible to open the live chat replay in the comments section.</string>
-    <string name="revanced_hide_preview_comment_type_off">This changes the size of the comments section, so it is impossible to open a live chat replay in the comments section.</string>
+    <string name="revanced_hide_preview_comment_type_on">This does not change the size of the comments section, so it is possible to open the Live Chat replay in the comments section.</string>
+    <string name="revanced_hide_preview_comment_type_off">This changes the size of the comments section, so it is impossible to open a Live Chat replay in the comments section.</string>
     <string name="revanced_hide_comment_thanks_button_title">Hide Thanks button</string>
     <string name="revanced_hide_comment_thanks_button_summary_on">Thanks button is hidden.</string>
     <string name="revanced_hide_comment_thanks_button_summary_off">Thanks button is shown.</string>
@@ -944,9 +944,9 @@ Limitation: Video title disappears when clicked."</string>
     <string name="revanced_hide_autoplay_preview_title">Hide autoplay preview container</string>
     <string name="revanced_hide_autoplay_preview_summary_on">Autoplay preview container is hidden.</string>
     <string name="revanced_hide_autoplay_preview_summary_off">Autoplay preview container is shown.</string>
-    <string name="revanced_hide_live_chat_replay_button_title">Hide live chat replay button</string>
-    <string name="revanced_hide_live_chat_replay_button_summary_on">Live chat replay button is hidden.\n\nIt appears in fullscreen when closing live chat.</string>
-    <string name="revanced_hide_live_chat_replay_button_summary_off">Live chat replay button is shown.\n\nIt appears in fullscreen when closing live chat.</string>
+    <string name="revanced_hide_live_chat_replay_button_title">Hide Live Chat replay button</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_on">Live Chat replay button is hidden.\n\nIt appears in fullscreen when closing Live Chat.</string>
+    <string name="revanced_hide_live_chat_replay_button_summary_off">Live Chat replay button is shown.\n\nIt appears in fullscreen when closing Live Chat.</string>
     <string name="revanced_hide_related_video_overlay_title">Hide related video overlay</string>
     <string name="revanced_hide_related_video_overlay_summary_on">More videos section in the quick actions container and the related video overlay are hidden.</string>
     <string name="revanced_hide_related_video_overlay_summary_off">More videos section in the quick actions container and the related video overlay are shown.</string>
@@ -965,9 +965,9 @@ Limitation: Video title disappears when clicked."</string>
     <string name="revanced_hide_quick_actions_like_button_title">Hide Like button</string>
     <string name="revanced_hide_quick_actions_like_button_summary_on">Like button is hidden.</string>
     <string name="revanced_hide_quick_actions_like_button_summary_off">Like button is shown.</string>
-    <string name="revanced_hide_quick_actions_live_chat_button_title">Hide Live chat button</string>
-    <string name="revanced_hide_quick_actions_live_chat_button_summary_on">Live chat button is hidden.</string>
-    <string name="revanced_hide_quick_actions_live_chat_button_summary_off">Live chat button is shown.</string>
+    <string name="revanced_hide_quick_actions_live_chat_button_title">Hide Live Chat button</string>
+    <string name="revanced_hide_quick_actions_live_chat_button_summary_on">Live Chat button is hidden.</string>
+    <string name="revanced_hide_quick_actions_live_chat_button_summary_off">Live Chat button is shown.</string>
     <string name="revanced_hide_quick_actions_more_button_title">Hide More button</string>
     <string name="revanced_hide_quick_actions_more_button_summary_on">More button is hidden.</string>
     <string name="revanced_hide_quick_actions_more_button_summary_off">More button is shown.</string>
@@ -1072,7 +1072,7 @@ Tap and hold to open whitelist setting dialog.</string>
 Tap and hold to undo.
 
 Info:
-• May not work on livestreams."</string>
+• May not work on live streams."</string>
     <string name="revanced_overlay_button_play_all_type_title">Generate playlist mode</string>
     <string name="revanced_overlay_button_play_all_type_entry_0">All contents (Sort by time, Ascending)</string>
     <string name="revanced_overlay_button_play_all_type_entry_1">All contents (Sort by time)</string>
@@ -1085,8 +1085,8 @@ Info:
     <string name="revanced_overlay_button_play_all_type_entry_8">Streamed videos only (Sort by popular)</string>
     <string name="revanced_overlay_button_play_all_type_entry_9">All Members only contents</string>
     <string name="revanced_overlay_button_play_all_type_entry_10">Members only videos</string>
-    <string name="revanced_overlay_button_play_all_type_entry_11">Members only shorts</string>
-    <string name="revanced_overlay_button_play_all_type_entry_12">Members only livestreams</string>
+    <string name="revanced_overlay_button_play_all_type_entry_11">Members only Shorts</string>
+    <string name="revanced_overlay_button_play_all_type_entry_12">Members only live streams</string>
     <string name="revanced_overlay_button_play_all_not_available_toast">Unable to generate playlist due to channel id mismatch.</string>
 
     <string name="revanced_whitelist_settings_title">Channel whitelist</string>
@@ -1138,8 +1138,8 @@ Tap and hold to toggle the appended information type."</string>
     <string name="revanced_enable_seekbar_tapping_summary_on">Seekbar tapping is enabled.</string>
     <string name="revanced_enable_seekbar_tapping_summary_off">Seekbar tapping is disabled.</string>
     <string name="revanced_hide_seekbar_chapter_label_title">Hide seekbar chapter labels</string>
-    <string name="revanced_hide_seekbar_chapter_label_summary_on">Chapter labels next to the timestamp are hidden.</string>
-    <string name="revanced_hide_seekbar_chapter_label_summary_off">Chapter labels next to the timestamp are shown.</string>
+    <string name="revanced_hide_seekbar_chapter_label_summary_on">Chapter labels next to the seekbar are hidden.</string>
+    <string name="revanced_hide_seekbar_chapter_label_summary_off">Chapter labels next to the seekbar are shown.</string>
     <string name="revanced_hide_seekbar_title">Hide seekbar in video player</string>
     <string name="revanced_hide_seekbar_summary_on">Video player seekbar is hidden.</string>
     <string name="revanced_hide_seekbar_summary_off">Video player seekbar is shown.</string>
@@ -1155,7 +1155,7 @@ Tap and hold to toggle the appended information type."</string>
     <string name="revanced_enable_seekbar_thumbnails_high_quality_title">Enable high quality thumbnails</string>
     <string name="revanced_enable_seekbar_thumbnails_high_quality_summary_on">Seekbar thumbnails are high quality.</string>
     <string name="revanced_enable_seekbar_thumbnails_high_quality_summary_off">Seekbar thumbnails are medium quality.</string>
-    <string name="revanced_enable_seekbar_thumbnails_high_quality_dialog_message">"This will restore thumbnails to livestreams that do not have seekbar thumbnails.
+    <string name="revanced_enable_seekbar_thumbnails_high_quality_dialog_message">"This will restore thumbnails to live streams that do not have seekbar thumbnails.
 
 Internet data usage may be higher, and seekbar thumbnails will have a slight delay before showing.
 
@@ -1274,9 +1274,9 @@ Info:
     <string name="revanced_hide_shorts_join_button_title">Hide Join button</string>
     <string name="revanced_hide_shorts_join_button_summary_on">Join button is hidden.</string>
     <string name="revanced_hide_shorts_join_button_summary_off">Join button is shown.</string>
-    <string name="revanced_hide_shorts_live_header_title">Hide live chat header</string>
-    <string name="revanced_hide_shorts_live_header_summary_on">Live chat header is hidden.\n\nBack button in header will not be hidden.</string>
-    <string name="revanced_hide_shorts_live_header_summary_off">Live chat header is shown.\n\nBack button in header will not be hidden.</string>
+    <string name="revanced_hide_shorts_live_header_title">Hide Live Chat header</string>
+    <string name="revanced_hide_shorts_live_header_summary_on">Live Chat header is hidden.\n\nBack button in header will not be hidden.</string>
+    <string name="revanced_hide_shorts_live_header_summary_off">Live Chat header is shown.\n\nBack button in header will not be hidden.</string>
     <string name="revanced_hide_shorts_paid_promotion_label_title">Hide paid promotion label</string>
     <string name="revanced_hide_shorts_paid_promotion_label_summary_on">Paid promotion label is hidden.</string>
     <string name="revanced_hide_shorts_paid_promotion_label_summary_off">Paid promotion label is shown.</string>
@@ -1302,8 +1302,8 @@ Info:
     <string name="revanced_hide_shorts_trends_button_summary_on">Trends button is hidden.</string>
     <string name="revanced_hide_shorts_trends_button_summary_off">Trends button is shown.</string>
     <string name="revanced_hide_shorts_video_title_title">Hide video title</string>
-    <string name="revanced_hide_shorts_video_title_summary_on">Title is hidden.</string>
-    <string name="revanced_hide_shorts_video_title_summary_off">Title is shown.</string>
+    <string name="revanced_hide_shorts_video_title_summary_on">Video title is hidden.</string>
+    <string name="revanced_hide_shorts_video_title_summary_off">Video title is shown.</string>
 
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Suggested actions -->
     <string name="revanced_preference_category_suggested_actions">Suggested actions</string>
@@ -1329,12 +1329,12 @@ Info:
     <string name="revanced_hide_shorts_tagged_products_title">Hide tagged products</string>
     <string name="revanced_hide_shorts_tagged_products_summary_on">Tagged products are hidden.</string>
     <string name="revanced_hide_shorts_tagged_products_summary_off">Tagged products are shown.</string>
-    <string name="revanced_hide_shorts_use_this_sound_button_title">Hide Use this sound button</string>
-    <string name="revanced_hide_shorts_use_this_sound_button_summary_on">Use this sound button is hidden.</string>
-    <string name="revanced_hide_shorts_use_this_sound_button_summary_off">Use this sound button is shown.</string>
     <string name="revanced_hide_shorts_use_template_button_title">Hide Use template button</string>
     <string name="revanced_hide_shorts_use_template_button_summary_on">Use template button is hidden.</string>
     <string name="revanced_hide_shorts_use_template_button_summary_off">Use template button is shown.</string>
+    <string name="revanced_hide_shorts_use_this_sound_button_title">Hide Use this sound button</string>
+    <string name="revanced_hide_shorts_use_this_sound_button_summary_on">Use this sound button is hidden.</string>
+    <string name="revanced_hide_shorts_use_this_sound_button_summary_off">Use this sound button is shown.</string>
 
     <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Action buttons -->
     <string name="revanced_preference_category_action_buttons">Action buttons</string>
@@ -1380,7 +1380,7 @@ Info:
 
 Limitations:
 • Does not work if app version is spoofed to 18.49.37 or earlier.
-• Does not work with livestream."</string>
+• Does not work with live stream."</string>
     <string name="revanced_enable_shorts_custom_actions_flyout_menu_summary_off">Custom actions are disabled in flyout menu.</string>
     <string name="revanced_enable_shorts_custom_actions_toolbar_title">Enable custom actions in toolbar</string>
     <string name="revanced_enable_shorts_custom_actions_toolbar_summary_on">"Custom actions are enabled in toolbar.
@@ -1453,30 +1453,30 @@ No margins on top and bottom of player."</string>
     <string name="revanced_enable_swipe_brightness_title">Enable brightness gesture</string>
     <string name="revanced_enable_swipe_brightness_summary_on">Brightness swipe is enabled.</string>
     <string name="revanced_enable_swipe_brightness_summary_off">Brightness swipe is disabled.</string>
-    <string name="revanced_enable_swipe_volume_title">Enable volume gesture</string>
-    <string name="revanced_enable_swipe_volume_summary_on">Volume swipe is enabled.</string>
-    <string name="revanced_enable_swipe_volume_summary_off">Volume swipe is disabled.</string>
-    <string name="revanced_enable_save_and_restore_brightness_title">Enable save and restore brightness</string>
-    <string name="revanced_enable_save_and_restore_brightness_summary_on">Save and restore brightness when exiting or entering fullscreen.</string>
-    <string name="revanced_enable_save_and_restore_brightness_summary_off">Do not save and restore brightness when exiting or entering fullscreen.</string>
-    <string name="revanced_enable_swipe_press_to_engage_title">Enable press-to-swipe gesture</string>
-    <string name="revanced_enable_swipe_press_to_engage_summary_on">Touch and hold to activate swipe gesture.</string>
-    <string name="revanced_enable_swipe_press_to_engage_summary_off">Touch to activate swipe gesture.</string>
     <string name="revanced_enable_swipe_haptic_feedback_title">Enable haptic feedback</string>
     <string name="revanced_enable_swipe_haptic_feedback_summary_on">Haptic feedback is enabled.</string>
     <string name="revanced_enable_swipe_haptic_feedback_summary_off">Haptic feedback is disabled.</string>
+    <string name="revanced_enable_swipe_press_to_engage_title">Enable press-to-swipe gesture</string>
+    <string name="revanced_enable_swipe_press_to_engage_summary_on">Touch and hold to activate swipe gesture.</string>
+    <string name="revanced_enable_swipe_press_to_engage_summary_off">Touch to activate swipe gesture.</string>
+    <string name="revanced_enable_save_and_restore_brightness_title">Enable save and restore brightness</string>
+    <string name="revanced_enable_save_and_restore_brightness_summary_on">Save and restore brightness when exiting or entering fullscreen.</string>
+    <string name="revanced_enable_save_and_restore_brightness_summary_off">Do not save and restore brightness when exiting or entering fullscreen.</string>
+    <string name="revanced_enable_swipe_volume_title">Enable volume gesture</string>
+    <string name="revanced_enable_swipe_volume_summary_on">Volume swipe is enabled.</string>
+    <string name="revanced_enable_swipe_volume_summary_off">Volume swipe is disabled.</string>
+    <string name="revanced_swipe_overlay_background_alpha_title">Swipe background visibility</string>
+    <string name="revanced_swipe_overlay_background_alpha_summary">The visibility of swipe overlay background.</string>
     <string name="revanced_swipe_gestures_lock_mode_title">Swipe gestures in Lock screen mode</string>
     <string name="revanced_swipe_gestures_lock_mode_summary_on">Swipe gestures are enabled in Lock screen mode.</string>
     <string name="revanced_swipe_gestures_lock_mode_summary_off">Swipe gestures are disabled in Lock screen mode.</string>
-    <string name="revanced_swipe_overlay_background_alpha_title">Swipe background visibility</string>
-    <string name="revanced_swipe_overlay_background_alpha_summary">The visibility of swipe overlay background.</string>
     <string name="revanced_swipe_magnitude_threshold_title">Swipe magnitude threshold</string>
     <string name="revanced_swipe_magnitude_threshold_summary">The amount of threshold for swipe to occur.</string>
-    <string name="revanced_swipe_overlay_text_size_title">Swipe overlay text size</string>
-    <string name="revanced_swipe_overlay_text_size_summary">The text size for swipe overlay.</string>
     <string name="revanced_swipe_overlay_rect_size_title">Swipe overlay screen size</string>
     <string name="revanced_swipe_overlay_rect_size_summary">Percentage of swipeable screen area.\n\nNote: This will also change the size of the screen area for the double-tap-to-seek gesture.</string>
     <string name="revanced_swipe_overlay_rect_size_invalid_toast">Swipeable area size cannot be more than 50.</string>
+    <string name="revanced_swipe_overlay_text_size_title">Swipe overlay text size</string>
+    <string name="revanced_swipe_overlay_text_size_summary">The text size for swipe overlay.</string>
     <string name="revanced_swipe_overlay_timeout_title">Swipe overlay timeout</string>
     <string name="revanced_swipe_overlay_timeout_summary">The amount of milliseconds the overlay is visible.</string>
     <string name="revanced_swipe_brightness_sensitivity_title">Brightness swipe sensitivity</string>
@@ -1845,12 +1845,12 @@ Click to see how to issue a API key."</string>
     <!-- PreferenceScreen: Miscellaneous -->
     <string name="revanced_preference_screen_misc_title">Miscellaneous</string>
 
-    <string name="revanced_enable_debug_logging_title">Enable debug logging</string>
-    <string name="revanced_enable_debug_logging_summary_on">Debug logs are enabled.</string>
-    <string name="revanced_enable_debug_logging_summary_off">Debug logs are disabled.</string>
     <string name="revanced_enable_debug_buffer_logging_title">Enable debug buffer logging</string>
     <string name="revanced_enable_debug_buffer_logging_summary_on">Debug logs include the buffer.</string>
     <string name="revanced_enable_debug_buffer_logging_summary_off">Debug logs do not include the buffer.</string>
+    <string name="revanced_enable_debug_logging_title">Enable debug logging</string>
+    <string name="revanced_enable_debug_logging_summary_on">Debug logs are enabled.</string>
+    <string name="revanced_enable_debug_logging_summary_off">Debug logs are disabled.</string>
     <string name="revanced_enable_external_browser_title">Enable external browser</string>
     <string name="revanced_enable_external_browser_summary_on">External browser is enabled.</string>
     <string name="revanced_enable_external_browser_summary_off">External browser is disabled.</string>
