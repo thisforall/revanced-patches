@@ -834,8 +834,8 @@ Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_hide_comment_highlighted_search_links_summary_on">Highlighted search links are hidden.</string>
     <string name="revanced_hide_comment_highlighted_search_links_summary_off">Highlighted search links are shown.</string>
     <string name="revanced_hide_live_chat_messages_title">Hide Live Chat messages</string>
-    <string name="revanced_hide_live_chat_messages_summary_on">Live Chat messages are hidden.\n\nThis setting applies to Shorts Live videos too.</string>
-    <string name="revanced_hide_live_chat_messages_summary_off">Live Chat messages are shown.\n\nThis setting applies to Shorts Live videos too.</string>
+    <string name="revanced_hide_live_chat_messages_summary_on">Live Chat messages are hidden.\n\nThis setting applies to Shorts live videos too.</string>
+    <string name="revanced_hide_live_chat_messages_summary_off">Live Chat messages are shown.\n\nThis setting applies to Shorts live videos too.</string>
     <string name="revanced_hide_live_chat_summary_title">Hide Live Chat summary</string>
     <string name="revanced_hide_live_chat_summary_summary_on">Live Chat summary is hidden.</string>
     <string name="revanced_hide_live_chat_summary_summary_off">Live Chat summary is shown.</string>
@@ -1845,6 +1845,8 @@ Click to see how to issue a API key."</string>
     <!-- PreferenceScreen: Miscellaneous -->
     <string name="revanced_preference_screen_misc_title">Miscellaneous</string>
 
+    <string name="revanced_disable_quic_protocol_title">Disable QUIC protocol</string>
+    <string name="revanced_disable_quic_protocol_summary">"Disable CronetEngine's QUIC protocol."</string>
     <string name="revanced_enable_debug_buffer_logging_title">Enable debug buffer logging</string>
     <string name="revanced_enable_debug_buffer_logging_summary_on">Debug logs include the buffer.</string>
     <string name="revanced_enable_debug_buffer_logging_summary_off">Debug logs do not include the buffer.</string>
@@ -1857,11 +1859,8 @@ Click to see how to issue a API key."</string>
     <string name="revanced_enable_open_links_directly_title">Enable open links directly</string>
     <string name="revanced_enable_open_links_directly_summary_on">Bypassing URL redirects.</string>
     <string name="revanced_enable_open_links_directly_summary_off">Following default redirect policy.</string>
-
     <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>
-    <string name="revanced_sanitize_sharing_links_summary">Removes tracking query parameters from the URLs when sharing links.</string>
-    <string name="revanced_disable_quic_protocol_title">Disable QUIC protocol</string>
-    <string name="revanced_disable_quic_protocol_summary">"Disable CronetEngine's QUIC protocol."</string>
+    <string name="revanced_sanitize_sharing_links_summary">Sanitizes sharing links by removing tracking query parameters.</string>
 
     <string name="revanced_change_share_sheet_title">Change share sheet</string>
     <string name="revanced_change_share_sheet_summary_on">System share sheet is used.</string>
