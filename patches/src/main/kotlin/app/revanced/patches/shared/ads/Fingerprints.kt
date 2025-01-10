@@ -5,6 +5,13 @@ import app.revanced.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
+internal val sslGuardFingerprint = legacyFingerprint(
+    name = "sslGuardFingerprint",
+    returnType = "V",
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    strings = listOf("Cannot initialize SslGuardSocketFactory will null"),
+)
+
 internal val musicAdsFingerprint = legacyFingerprint(
     name = "musicAdsFingerprint",
     returnType = "V",
