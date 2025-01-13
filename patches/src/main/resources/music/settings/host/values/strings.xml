@@ -147,14 +147,14 @@ Limitations:
     <string name="revanced_disable_dislike_redirection_summary">Disables redirection to the next track when clicking the Dislike button.</string>
     <string name="revanced_disable_auto_captions_title">Disable forced auto captions</string>
     <string name="revanced_disable_auto_captions_summary">Disables auto captions from being forced on.</string>
+    <string name="revanced_enable_landscape_mode_title">Enable landscape mode</string>
+    <string name="revanced_enable_landscape_mode_summary">Enables landscape mode when rotating the screen on phones.</string>
     <string name="revanced_custom_filter_title">Enable custom filter</string>
     <string name="revanced_custom_filter_summary">Enables the custom filter to hide layout components.</string>
     <string name="revanced_custom_filter_strings_title">Custom filter</string>
     <!-- 'Component path builder strings' is the technical name for identifying the Litho UI layout items to hide. This is an advanced feature and most users will never use this. -->
     <string name="revanced_custom_filter_strings_summary">List of component path builder strings to filter, separated by new lines.</string>
     <string name="revanced_custom_filter_toast_invalid_syntax">Invalid custom filter: %s.</string>
-    <string name="revanced_enable_landscape_mode_title">Enable landscape mode</string>
-    <string name="revanced_enable_landscape_mode_summary">Enables landscape mode when rotating the screen on phones.</string>
     <string name="revanced_hide_button_shelf_title">Hide button shelf</string>
     <string name="revanced_hide_button_shelf_summary">Hides the button shelf in the feed.</string>
     <string name="revanced_hide_carousel_shelf_title">Hide carousel shelf</string>
@@ -199,8 +199,8 @@ This does not bypass the age restriction. It just accepts it automatically."</st
     <!-- PreferenceScreen: Navigation Bar -->
     <string name="revanced_preference_screen_navigation_title">Navigation Bar</string>
 
-    <string name="revanced_enable_black_navigation_bar_title">Change navigation bar color</string>
-    <string name="revanced_enable_black_navigation_bar_summary">Changes the navigation bar color to black.</string>
+    <string name="revanced_enable_black_navigation_bar_title">Enable black navigation bar</string>
+    <string name="revanced_enable_black_navigation_bar_summary">Sets the navigation bar color to black.</string>
     <string name="revanced_hide_navigation_home_button_title">Hide Home button</string>
     <string name="revanced_hide_navigation_home_button_summary">Hides the Home button.</string>
     <string name="revanced_hide_navigation_samples_button_title">Hide Samples button</string>
@@ -412,47 +412,22 @@ Click to see how to issue a API key."</string>
     <!-- PreferenceScreen: Miscellaneous -->
     <string name="revanced_preference_screen_misc_title">Miscellaneous</string>
 
-    <string name="revanced_default_app_settings_title">Open default app settings</string>
-    <string name="revanced_default_app_settings_summary">To open YouTube Music links in RVX Music, enable \'Open supported links\' and enable the supported web addresses.</string>
+    <string name="revanced_extended_settings_import_export_title">Import / Export settings</string>
+    <string name="revanced_extended_settings_import_export_summary">Import or export settings.</string>
 
-    <string name="gms_core_settings_title">Open GmsCore Settings</string>
-    <string name="gms_core_settings_summary">Opens GmsCore Settings. Then enable cloud messaging to receive notifications.</string>
-    <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
-    <string name="gms_core_dialog_title">Action needed</string>
-    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
+    <string name="revanced_extended_settings_export_as_file">Export settings to file</string>
+    <string name="revanced_extended_settings_import_as_file">Import settings from file</string>
+    <string name="revanced_extended_settings_import_export_as_text">Import / Export settings as text</string>
 
-Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
-
-This is required for the app to work."</string>
-    <string name="gms_core_dialog_open_website_text">Open website</string>
-    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
-
-Disabling battery optimizations for GmsCore will not negatively affect battery usage.
-
-Tap the continue button and allow optimization changes."</string>
-    <string name="gms_core_dialog_continue_text">Continue</string>
-
-    <string name="revanced_spoof_client_title">Spoof client</string>
-    <string name="revanced_spoof_client_summary">"Spoof the client to prevent playback issues.
-• When used with 'Spoofing streaming data', playback issues may occur."</string>
-    <string name="revanced_spoof_client_type_title">Default client</string>
-    <string name="revanced_spoof_client_type_summary">"Defines a default client for spoofing.
-
-• When using the Android client, it is recommended to also use 'Spoof app version'."</string>
-    <string name="revanced_spoof_client_type_entry_android_music_4_27">Android Music 4.27.53</string>
-    <string name="revanced_spoof_client_type_entry_android_music_5_29">Android Music 5.29.53</string>
-    <string name="revanced_spoof_client_type_entry_ios_music_6_21">iOS Music 6.21</string>
-
-    <string name="revanced_spoof_streaming_data_title">Spoof streaming data</string>
-    <string name="revanced_spoof_streaming_data_summary">"Spoof the streaming data to prevent playback issues.
-
-• When used with 'Spoof client', playback issues may occur."</string>
-    <string name="revanced_spoof_streaming_data_type_title">Default client</string>
-    <string name="revanced_spoof_streaming_data_type_summary">Defines a default client that fetches streaming data.</string>
-    <string name="revanced_spoof_streaming_data_stats_for_nerds_title">Show in Stats for nerds</string>
-    <string name="revanced_spoof_streaming_data_stats_for_nerds_summary">Shows the client used to fetch streaming data in Stats for nerds.</string>
-    <string name="revanced_spoof_streaming_data_type_entry_android_vr">Android VR</string>
-    <string name="revanced_spoof_streaming_data_type_entry_android_music">Android Music</string>
+    <string name="revanced_extended_settings_export_failed">Failed to export settings.</string>
+    <string name="revanced_extended_settings_export_success">Settings were successfully exported.</string>
+    <string name="revanced_extended_settings_import">Import</string>
+    <string name="revanced_extended_settings_import_copy">Copy</string>
+    <string name="revanced_extended_settings_import_failed">Import failed: %s.</string>
+    <string name="revanced_extended_settings_import_reset">Settings reset to default.</string>
+    <string name="revanced_extended_settings_import_success">Imported %d settings.</string>
+    <string name="revanced_extended_settings_reset">Reset</string>
+    <string name="revanced_share_copy_settings_success">Settings copied to clipboard.</string>
 
     <string name="revanced_bypass_image_region_restrictions_title">Bypass image region restrictions</string>
     <string name="revanced_bypass_image_region_restrictions_summary">Replaces the domain that is blocked in some regions so that playlist thumbnails, channel avatars, etc. can be received.</string>
@@ -483,27 +458,48 @@ Find the official song if a music video is detected playing from an album.
 Info:
 • Latest YouTube Music clients use the OPUS audio codec by default.
 • This is only valid for users spoofing with very old clients."</string>
-
-    <string name="revanced_extended_settings_import_export_title">Import / Export settings</string>
-    <string name="revanced_extended_settings_import_export_summary">Import or export settings.</string>
-
-    <string name="revanced_extended_settings_export_as_file">Export settings to file</string>
-    <string name="revanced_extended_settings_import_as_file">Import settings from file</string>
-    <string name="revanced_extended_settings_import_export_as_text">Import / Export settings as text</string>
-
-    <string name="revanced_extended_settings_export_failed">Failed to export settings.</string>
-    <string name="revanced_extended_settings_export_success">Settings were successfully exported.</string>
-    <string name="revanced_extended_settings_import">Import</string>
-    <string name="revanced_extended_settings_import_copy">Copy</string>
-    <string name="revanced_extended_settings_import_failed">Import failed: %s.</string>
-    <string name="revanced_extended_settings_import_reset">Settings reset to default.</string>
-    <string name="revanced_extended_settings_import_success">Imported %d settings.</string>
-    <string name="revanced_extended_settings_reset">Reset</string>
-    <string name="revanced_share_copy_settings_success">Settings copied to clipboard.</string>
-
     <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>
-    <string name="revanced_sanitize_sharing_links_summary">Sanitizes sharing links by removing tracking query parameters.</string>
+    <string name="revanced_sanitize_sharing_links_summary">Removes tracking query parameters from URLs when sharing links.</string>
+    <string name="revanced_spoof_client_title">Spoof client</string>
+    <string name="revanced_spoof_client_summary">"Spoof the client to prevent playback issues.
 
+• When used with 'Spoofing streaming data', playback issues may occur."</string>
+    <string name="revanced_spoof_client_type_title">Default client</string>
+    <string name="revanced_spoof_client_type_summary">"Defines a default client for spoofing.
 
+• When using the Android client, it is recommended to also use 'Spoof app version'."</string>
+    <string name="revanced_spoof_client_type_entry_android_music_4_27">Android Music 4.27.53</string>
+    <string name="revanced_spoof_client_type_entry_android_music_5_29">Android Music 5.29.53</string>
+    <string name="revanced_spoof_client_type_entry_ios_music_6_21">iOS Music 6.21</string>
 
+    <string name="revanced_spoof_streaming_data_title">Spoof streaming data</string>
+    <string name="revanced_spoof_streaming_data_summary">"Spoof the streaming data to prevent playback issues.
+
+• When used with 'Spoof client', playback issues may occur."</string>
+    <string name="revanced_spoof_streaming_data_type_title">Default client</string>
+    <string name="revanced_spoof_streaming_data_type_summary">Defines a default client that fetches streaming data.</string>
+    <string name="revanced_spoof_streaming_data_stats_for_nerds_title">Show in Stats for nerds</string>
+    <string name="revanced_spoof_streaming_data_stats_for_nerds_summary">Shows the client used to fetch streaming data in Stats for nerds.</string>
+    <string name="revanced_spoof_streaming_data_type_entry_android_vr">Android VR</string>
+    <string name="revanced_spoof_streaming_data_type_entry_android_music">Android Music</string>
+
+    <string name="revanced_default_app_settings_title">Open default app settings</string>
+    <string name="revanced_default_app_settings_summary">To open YouTube Music links in RVX Music, enable \'Open supported links\' and enable the supported web addresses.</string>
+
+    <string name="gms_core_settings_title">Open GmsCore settings</string>
+    <string name="gms_core_settings_summary">Opens GmsCore settings. Then enable cloud messaging to receive notifications.</string>
+    <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
+    <string name="gms_core_dialog_title">Action needed</string>
+    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
+
+Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
+
+This is required for the app to work."</string>
+    <string name="gms_core_dialog_open_website_text">Open website</string>
+    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
+
+Disabling battery optimizations for GmsCore will not negatively affect battery usage.
+
+Tap the continue button and allow optimization changes."</string>
+    <string name="gms_core_dialog_continue_text">Continue</string>
 </resources>
