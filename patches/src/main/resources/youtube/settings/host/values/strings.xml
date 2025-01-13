@@ -154,18 +154,18 @@ Tap here to learn more about DeArrow."</string>
     <string name="revanced_hide_playables_title">Hide Playables</string>
     <string name="revanced_hide_playables_summary_on">Playables are hidden.</string>
     <string name="revanced_hide_playables_summary_off">Playables are shown.</string>
-    <string name="revanced_hide_feed_search_bar_title">Hide search bar</string>
-    <string name="revanced_hide_feed_search_bar_summary_on">Search bar is hidden.</string>
-    <string name="revanced_hide_feed_search_bar_summary_off">Search bar is shown.</string>
     <string name="revanced_hide_show_more_button_title">Hide Show more button</string>
     <string name="revanced_hide_show_more_button_summary_on">Show more button is hidden.</string>
     <string name="revanced_hide_show_more_button_summary_off">Show more button is shown.</string>
-    <string name="revanced_hide_subscriptions_carousel_title">Hide subscriptions carousel</string>
-    <string name="revanced_hide_subscriptions_carousel_summary_on">Subscriptions carousel is hidden.</string>
-    <string name="revanced_hide_subscriptions_carousel_summary_off">Subscriptions carousel is shown.</string>
+    <string name="revanced_hide_feed_search_bar_title">Hide search bar</string>
+    <string name="revanced_hide_feed_search_bar_summary_on">Search bar is hidden.</string>
+    <string name="revanced_hide_feed_search_bar_summary_off">Search bar is shown.</string>
     <string name="revanced_hide_feed_survey_title">Hide surveys</string>
     <string name="revanced_hide_feed_survey_summary_on">Surveys are hidden.</string>
     <string name="revanced_hide_feed_survey_summary_off">Surveys are shown.</string>
+    <string name="revanced_hide_subscriptions_carousel_title">Hide subscriptions carousel</string>
+    <string name="revanced_hide_subscriptions_carousel_summary_on">Subscriptions carousel is hidden.</string>
+    <string name="revanced_hide_subscriptions_carousel_summary_off">Subscriptions carousel is shown.</string>
     <string name="revanced_hide_ticket_shelf_title">Hide ticket shelves</string>
     <string name="revanced_hide_ticket_shelf_summary_on">Ticket shelves are hidden.</string>
     <string name="revanced_hide_ticket_shelf_summary_off">Ticket shelves are shown.</string>
@@ -690,6 +690,9 @@ Settings → Autoplay → Autoplay next video"</string>
 Note:
 • Disabling the speed overlay restores the Slide to seek behavior of the old layout.
 • Disabling this setting does not forcefully enable the speed overlay."</string>
+    <string name="revanced_speed_overlay_value_title">Speed overlay value</string>
+    <string name="revanced_speed_overlay_value_summary">Speed overlay value between 0-8.0.</string>
+    <string name="revanced_speed_overlay_value_invalid_toast">Speed overlay value must be between 0-8.0.</string>
     <string name="revanced_hide_channel_watermark_title">Hide channel watermark</string>
     <string name="revanced_hide_channel_watermark_summary_on">Channel watermark is hidden.</string>
     <string name="revanced_hide_channel_watermark_summary_off">Channel watermark is shown.</string>
@@ -729,6 +732,9 @@ Note:
 Autoplay can be changed in YouTube settings:
 Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_hide_suggested_video_end_screen_summary_off">Suggested video end screen is shown.</string>
+    <string name="revanced_skip_autoplay_countdown_title">Skip autoplay countdown</string>
+    <string name="revanced_skip_autoplay_countdown_summary_on">If autoplay is enabled, the next video will play immediately.</string>
+    <string name="revanced_skip_autoplay_countdown_summary_off">If autoplay is enabled, the next video will play after the countdown ends.</string>
     <string name="revanced_hide_timed_reactions_title">Hide timed reactions</string>
     <string name="revanced_hide_timed_reactions_summary_on">Timed reactions are hidden.</string>
     <string name="revanced_hide_timed_reactions_summary_off">Timed reactions are shown.</string>
@@ -738,12 +744,6 @@ Settings → Autoplay → Autoplay next video"</string>
     <string name="revanced_sanitize_video_subtitle_title">Sanitize video subtitle</string>
     <string name="revanced_sanitize_video_subtitle_summary_on">"Phrases like '#', 'Fundraiser', 'Shop' and 'products' are hidden from the video subtitles."</string>
     <string name="revanced_sanitize_video_subtitle_summary_off">"Phrases like '#', 'Fundraiser', 'Shop' and 'products' are shown from the video subtitles."</string>
-    <string name="revanced_skip_autoplay_countdown_title">Skip autoplay countdown</string>
-    <string name="revanced_skip_autoplay_countdown_summary_on">If autoplay is enabled, the next video will play immediately.</string>
-    <string name="revanced_skip_autoplay_countdown_summary_off">If autoplay is enabled, the next video will play after the countdown ends.</string>
-    <string name="revanced_speed_overlay_value_title">Speed overlay value</string>
-    <string name="revanced_speed_overlay_value_summary">Speed overlay value between 0-8.0.</string>
-    <string name="revanced_speed_overlay_value_invalid_toast">Speed overlay value must be between 0-8.0.</string>
 
     <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Action buttons -->
     <string name="revanced_preference_screen_action_buttons_title">Action buttons</string>
@@ -1240,12 +1240,12 @@ Info:
     <string name="revanced_hide_shorts_shelf_home_related_videos_title">Hide in home feed and related videos</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_on">Hidden in home feed and related videos.</string>
     <string name="revanced_hide_shorts_shelf_home_related_videos_summary_off">Shown in home feed and related videos.</string>
-    <string name="revanced_hide_shorts_shelf_subscriptions_title">Hide in subscriptions feed</string>
-    <string name="revanced_hide_shorts_shelf_subscriptions_summary_on">Hidden in subscriptions feed.</string>
-    <string name="revanced_hide_shorts_shelf_subscriptions_summary_off">Shown in subscriptions feed.</string>
     <string name="revanced_hide_shorts_shelf_search_title">Hide in search results</string>
     <string name="revanced_hide_shorts_shelf_search_summary_on">Hidden in search results.</string>
     <string name="revanced_hide_shorts_shelf_search_summary_off">Shown in search results.</string>
+    <string name="revanced_hide_shorts_shelf_subscriptions_title">Hide in subscriptions feed</string>
+    <string name="revanced_hide_shorts_shelf_subscriptions_summary_on">Hidden in subscriptions feed.</string>
+    <string name="revanced_hide_shorts_shelf_subscriptions_summary_off">Shown in subscriptions feed.</string>
     <string name="revanced_hide_shorts_shelf_history_title">Hide in watch history</string>
     <string name="revanced_hide_shorts_shelf_history_summary_on">Hidden in watch history.</string>
     <string name="revanced_hide_shorts_shelf_history_summary_off">Shown in watch history.</string>
@@ -1453,30 +1453,30 @@ No margins on top and bottom of player."</string>
     <string name="revanced_enable_swipe_brightness_title">Enable brightness gesture</string>
     <string name="revanced_enable_swipe_brightness_summary_on">Brightness swipe is enabled.</string>
     <string name="revanced_enable_swipe_brightness_summary_off">Brightness swipe is disabled.</string>
-    <string name="revanced_enable_swipe_haptic_feedback_title">Enable haptic feedback</string>
-    <string name="revanced_enable_swipe_haptic_feedback_summary_on">Haptic feedback is enabled.</string>
-    <string name="revanced_enable_swipe_haptic_feedback_summary_off">Haptic feedback is disabled.</string>
-    <string name="revanced_enable_swipe_press_to_engage_title">Enable press-to-swipe gesture</string>
-    <string name="revanced_enable_swipe_press_to_engage_summary_on">Touch and hold to activate swipe gesture.</string>
-    <string name="revanced_enable_swipe_press_to_engage_summary_off">Touch to activate swipe gesture.</string>
-    <string name="revanced_enable_save_and_restore_brightness_title">Enable save and restore brightness</string>
-    <string name="revanced_enable_save_and_restore_brightness_summary_on">Save and restore brightness when exiting or entering fullscreen.</string>
-    <string name="revanced_enable_save_and_restore_brightness_summary_off">Do not save and restore brightness when exiting or entering fullscreen.</string>
     <string name="revanced_enable_swipe_volume_title">Enable volume gesture</string>
     <string name="revanced_enable_swipe_volume_summary_on">Volume swipe is enabled.</string>
     <string name="revanced_enable_swipe_volume_summary_off">Volume swipe is disabled.</string>
-    <string name="revanced_swipe_overlay_background_alpha_title">Swipe background visibility</string>
-    <string name="revanced_swipe_overlay_background_alpha_summary">The visibility of swipe overlay background.</string>
+    <string name="revanced_enable_save_and_restore_brightness_title">Enable save and restore brightness</string>
+    <string name="revanced_enable_save_and_restore_brightness_summary_on">Save and restore brightness when exiting or entering fullscreen.</string>
+    <string name="revanced_enable_save_and_restore_brightness_summary_off">Do not save and restore brightness when exiting or entering fullscreen.</string>
+    <string name="revanced_enable_swipe_press_to_engage_title">Enable press-to-swipe gesture</string>
+    <string name="revanced_enable_swipe_press_to_engage_summary_on">Touch and hold to activate swipe gesture.</string>
+    <string name="revanced_enable_swipe_press_to_engage_summary_off">Touch to activate swipe gesture.</string>
+    <string name="revanced_enable_swipe_haptic_feedback_title">Enable haptic feedback</string>
+    <string name="revanced_enable_swipe_haptic_feedback_summary_on">Haptic feedback is enabled.</string>
+    <string name="revanced_enable_swipe_haptic_feedback_summary_off">Haptic feedback is disabled.</string>
     <string name="revanced_swipe_gestures_lock_mode_title">Swipe gestures in Lock screen mode</string>
     <string name="revanced_swipe_gestures_lock_mode_summary_on">Swipe gestures are enabled in Lock screen mode.</string>
     <string name="revanced_swipe_gestures_lock_mode_summary_off">Swipe gestures are disabled in Lock screen mode.</string>
+    <string name="revanced_swipe_overlay_background_alpha_title">Swipe background visibility</string>
+    <string name="revanced_swipe_overlay_background_alpha_summary">The visibility of swipe overlay background.</string>
     <string name="revanced_swipe_magnitude_threshold_title">Swipe magnitude threshold</string>
     <string name="revanced_swipe_magnitude_threshold_summary">The amount of threshold for swipe to occur.</string>
+    <string name="revanced_swipe_overlay_text_size_title">Swipe overlay text size</string>
+    <string name="revanced_swipe_overlay_text_size_summary">The text size for swipe overlay.</string>
     <string name="revanced_swipe_overlay_rect_size_title">Swipe overlay screen size</string>
     <string name="revanced_swipe_overlay_rect_size_summary">Percentage of swipeable screen area.\n\nNote: This will also change the size of the screen area for the double-tap-to-seek gesture.</string>
     <string name="revanced_swipe_overlay_rect_size_invalid_toast">Swipeable area size cannot be more than 50.</string>
-    <string name="revanced_swipe_overlay_text_size_title">Swipe overlay text size</string>
-    <string name="revanced_swipe_overlay_text_size_summary">The text size for swipe overlay.</string>
     <string name="revanced_swipe_overlay_timeout_title">Swipe overlay timeout</string>
     <string name="revanced_swipe_overlay_timeout_summary">The amount of milliseconds the overlay is visible.</string>
     <string name="revanced_swipe_brightness_sensitivity_title">Brightness swipe sensitivity</string>
@@ -1541,22 +1541,9 @@ No margins on top and bottom of player."</string>
     <string name="revanced_disable_default_playback_speed_music_type_title">Validate using categories</string>
     <string name="revanced_disable_default_playback_speed_music_type_on">Default playback speed is disabled if the video category is Music.</string>
     <string name="revanced_disable_default_playback_speed_music_type_off">Default playback speed is disabled for videos playable on YouTube Music.</string>
-    <string name="revanced_disable_vp9_codec_title">Disable VP9 codec</string>
-    <string name="revanced_disable_vp9_codec_summary_on">"VP9 codec is disabled.
-
-• Maximum resolution is 1080p.
-• Video playback will use more internet data than VP9.
-• VP9 codec is still used for HDR video."</string>
-    <string name="revanced_disable_vp9_codec_summary_off">VP9 codec is enabled.</string>
     <string name="revanced_enable_default_playback_speed_shorts_title">Enable Shorts default playback speed</string>
     <string name="revanced_enable_default_playback_speed_shorts_summary_on">Default playback speed applies to Shorts.</string>
     <string name="revanced_enable_default_playback_speed_shorts_summary_off">Default playback speed does not apply to Shorts.</string>
-    <string name="revanced_reject_av1_codec_title">Reject software AV1 codec response</string>
-    <string name="revanced_reject_av1_codec_summary">"Forcefully rejects the software AV1 codec response.
-A different codec will be applied after about 20 seconds of buffering."</string>
-    <string name="revanced_reject_av1_codec_toast">Fallback process causes about 20 seconds of buffering.</string>
-    <string name="revanced_replace_av1_codec_title">Replace software AV1 codec</string>
-    <string name="revanced_replace_av1_codec_summary">Replaces the software AV1 codec with the VP9 codec.</string>
     <string name="revanced_skipped_preloaded_buffer">Skipped preloaded buffer.</string>
     <string name="revanced_skip_preloaded_buffer_title">Skip preloaded buffer</string>
     <string name="revanced_skip_preloaded_buffer_summary">"Skips the preloaded buffer at the start of videos to immediately apply the default video quality.
@@ -1571,11 +1558,25 @@ Info:
     <string name="revanced_spoof_device_dimensions_title">Spoof device dimensions</string>
     <string name="revanced_spoof_device_dimensions_summary">"Spoofs the device dimensions to the maximum value.
 High quality may be unlocked on some videos that require high device dimensions, but not all videos."</string>
+    <string name="revanced_disable_vp9_codec_title">Disable VP9 codec</string>
+    <string name="revanced_disable_vp9_codec_summary_on">"VP9 codec is disabled.
+
+• Maximum resolution is 1080p.
+• Video playback will use more internet data than VP9.
+• VP9 codec is still used for HDR video."</string>
+    <string name="revanced_disable_vp9_codec_summary_off">VP9 codec is enabled.</string>
+    <string name="revanced_replace_av1_codec_title">Replace software AV1 codec</string>
+    <string name="revanced_replace_av1_codec_summary">Replaces the software AV1 codec with the VP9 codec.</string>
+    <string name="revanced_reject_av1_codec_title">Reject software AV1 codec response</string>
+    <string name="revanced_reject_av1_codec_summary">"Forcefully rejects the software AV1 codec response.
+A different codec will be applied after about 20 seconds of buffering."</string>
+    <string name="revanced_reject_av1_codec_toast">Fallback process causes about 20 seconds of buffering.</string>
     <string name="revanced_remember_playback_speed_toast">Changing default speed to %s.</string>
     <string name="revanced_remember_video_quality_mobile">Changing default mobile data quality to %s.</string>
     <string name="revanced_remember_video_quality_none">Failed to set video quality.</string>
     <string name="revanced_remember_video_quality_wifi">Changing default Wi-Fi quality to %s.</string>
     <string name="revanced_custom_playback_speeds_invalid">Custom speeds must be less than %sx.</string>
+    <string name="revanced_custom_playback_speeds_parse_exception">Invalid custom playback speeds.</string>
     <string name="revanced_custom_playback_speeds_parse_exception">Invalid custom playback speeds.</string>
 
 
@@ -1847,12 +1848,12 @@ Click to see how to issue a API key."</string>
 
     <string name="revanced_disable_quic_protocol_title">Disable QUIC protocol</string>
     <string name="revanced_disable_quic_protocol_summary">"Disable CronetEngine's QUIC protocol."</string>
-    <string name="revanced_enable_debug_buffer_logging_title">Enable debug buffer logging</string>
-    <string name="revanced_enable_debug_buffer_logging_summary_on">Debug logs include the buffer.</string>
-    <string name="revanced_enable_debug_buffer_logging_summary_off">Debug logs do not include the buffer.</string>
     <string name="revanced_enable_debug_logging_title">Enable debug logging</string>
     <string name="revanced_enable_debug_logging_summary_on">Debug logs are enabled.</string>
     <string name="revanced_enable_debug_logging_summary_off">Debug logs are disabled.</string>
+    <string name="revanced_enable_debug_buffer_logging_title">Enable debug buffer logging</string>
+    <string name="revanced_enable_debug_buffer_logging_summary_on">Debug logs include the buffer.</string>
+    <string name="revanced_enable_debug_buffer_logging_summary_off">Debug logs do not include the buffer.</string>
     <string name="revanced_enable_external_browser_title">Enable external browser</string>
     <string name="revanced_enable_external_browser_summary_on">External browser is enabled.</string>
     <string name="revanced_enable_external_browser_summary_off">External browser is disabled.</string>
@@ -1861,6 +1862,26 @@ Click to see how to issue a API key."</string>
     <string name="revanced_enable_open_links_directly_summary_off">Following default redirect policy.</string>
     <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>
     <string name="revanced_sanitize_sharing_links_summary">Sanitizes sharing links by removing tracking query parameters.</string>
+
+    <string name="revanced_default_app_settings_title">Open default app settings</string>
+    <string name="revanced_default_app_settings_summary">To open YouTube links in RVX, enable \'Open supported links\' and enable the supported web addresses.</string>
+
+    <string name="gms_core_settings_title">Open GmsCore settings</string>
+    <string name="gms_core_settings_summary">Opens GmsCore settings. Then enable cloud messaging to receive notifications.</string>
+    <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
+    <string name="gms_core_dialog_title">Action needed</string>
+    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
+
+Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
+
+This is required for the app to work."</string>
+    <string name="gms_core_dialog_open_website_text">Open website</string>
+    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
+
+Disabling battery optimizations for GmsCore will not negatively affect battery usage.
+
+Tap the continue button and allow optimization changes."</string>
+    <string name="gms_core_dialog_continue_text">Continue</string>
 
     <string name="revanced_change_share_sheet_title">Change share sheet</string>
     <string name="revanced_change_share_sheet_summary_on">System share sheet is used.</string>
@@ -1893,26 +1914,6 @@ Click to see how to issue a API key."</string>
     <string name="revanced_extended_settings_import_success">Settings were successfully imported.</string>
     <string name="revanced_extended_settings_reset">Reset</string>
     <string name="revanced_share_copy_settings_success">Settings copied to clipboard.</string>
-
-    <string name="revanced_default_app_settings_title">Open default app settings</string>
-    <string name="revanced_default_app_settings_summary">To open YouTube links in RVX, enable \'Open supported links\' and enable the supported web addresses.</string>
-
-    <string name="gms_core_settings_title">Open GmsCore Settings</string>
-    <string name="gms_core_settings_summary">Opens GmsCore Settings. Then enable cloud messaging to receive notifications.</string>
-    <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
-    <string name="gms_core_dialog_title">Action needed</string>
-    <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
-
-Follow the 'Don't kill my app!' guide for your device, and apply the instructions to your GmsCore installation.
-
-This is required for the app to work."</string>
-    <string name="gms_core_dialog_open_website_text">Open website</string>
-    <string name="gms_core_dialog_not_whitelisted_using_battery_optimizations_message">"GmsCore battery optimizations must be disabled to prevent issues.
-
-Disabling battery optimizations for GmsCore will not negatively affect battery usage.
-
-Tap the continue button and allow optimization changes."</string>
-    <string name="gms_core_dialog_continue_text">Continue</string>
 
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof streaming data -->
     <string name="revanced_preference_screen_spoof_streaming_data_title">Spoof streaming data</string>
