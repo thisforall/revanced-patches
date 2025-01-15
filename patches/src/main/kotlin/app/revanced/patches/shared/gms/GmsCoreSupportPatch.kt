@@ -1,6 +1,7 @@
 package app.revanced.patches.shared.gms
 
 import app.revanced.patcher.Fingerprint
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.instructions
@@ -25,12 +26,15 @@ import app.revanced.util.fingerprint.methodOrThrow
 import app.revanced.util.fingerprint.mutableClassOrThrow
 import app.revanced.util.getReference
 import app.revanced.util.indexOfFirstInstruction
+import app.revanced.util.indexOfFirstInstructionOrThrow
+import app.revanced.util.indexOfFirstInstructionReversedOrThrow
 import app.revanced.util.returnEarly
 import app.revanced.util.valueOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
@@ -230,18 +234,41 @@ fun gmsCoreSupportPatch(
             }
         }
 
-        fun transformPrimeMethod(packageName: String) {
-            primeMethodFingerprint.methodOrThrow().apply {
-                var register = 2
-
-                val index = instructions.indexOfFirst {
-                    if (it.getReference<StringReference>()?.string != fromPackageName) return@indexOfFirst false
-
-                    register = (it as OneRegisterInstruction).registerA
-                    return@indexOfFirst true
+        fun transformPrimeMethod() {
+            setOf(
+                primesBackgroundInitializationFingerprint,
+                primesLifecycleEventFingerprint
+            ).forEach { fingerprint ->
+                fingerprint.methodOrThrow().apply {
+                    val exceptionIndex = indexOfFirstInstructionReversedOrThrow {
+                        opcode == Opcode.NEW_INSTANCE &&
+                                (this as? ReferenceInstruction)?.reference?.toString() == "Ljava/lang/IllegalStateException;"
+                    }
+                    val index =
+                        indexOfFirstInstructionReversedOrThrow(exceptionIndex, Opcode.IF_EQZ)
+                    val register = getInstruction<OneRegisterInstruction>(index).registerA
+                    addInstruction(
+                        index,
+                        "const/4 v$register, 0x1"
+                    )
                 }
-
-                replaceInstruction(index, "const-string v$register, \"$packageName\"")
+            }
+            primesApiFingerprint.mutableClassOrThrow().methods.filter { method ->
+                method.name != "<clinit>" &&
+                        method.returnType == "V"
+            }.forEach { method ->
+                method.apply {
+                    val index = if (MethodUtil.isConstructor(method))
+                        indexOfFirstInstructionOrThrow {
+                            opcode == Opcode.INVOKE_DIRECT &&
+                                    getReference<MethodReference>()?.name == "<init>"
+                        } + 1
+                    else 0
+                    addInstruction(
+                        index,
+                        "return-void"
+                    )
+                }
             }
         }
 
@@ -273,7 +300,7 @@ fun gmsCoreSupportPatch(
         ).forEach { it.methodOrThrow().returnEarly() }
 
         // Specific method that needs to be patched.
-        transformPrimeMethod(packageName)
+        transformPrimeMethod()
 
         // Verify GmsCore is installed and whitelisted for power optimizations and background usage.
         mainActivityOnCreateFingerprint.method.apply {
