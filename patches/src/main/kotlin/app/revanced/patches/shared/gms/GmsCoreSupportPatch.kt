@@ -4,7 +4,6 @@ import app.revanced.patcher.Fingerprint
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.instructions
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatchBuilder
 import app.revanced.patcher.patch.BytecodePatchContext
@@ -32,7 +31,6 @@ import app.revanced.util.returnEarly
 import app.revanced.util.valueOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
-import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c
@@ -300,6 +298,12 @@ fun gmsCoreSupportPatch(
             serviceCheckFingerprint,
             sslGuardFingerprint,
         ).forEach { it.methodOrThrow().returnEarly() }
+
+        // Prevent spam logs.
+        eCatcherFingerprint.methodOrThrow().apply {
+            val index = indexOfFirstInstructionOrThrow(Opcode.NEW_ARRAY)
+            addInstruction(index, "return-void")
+        }
 
         // Specific method that needs to be patched.
         transformPrimeMethod()

@@ -61,6 +61,16 @@ internal val sslGuardFingerprint = legacyFingerprint(
     strings = listOf("Cannot initialize SslGuardSocketFactory will null"),
 )
 
+internal val eCatcherFingerprint = legacyFingerprint(
+    name = "eCatcherFingerprint",
+    returnType = "V",
+    opcodes = listOf(Opcode.NEW_ARRAY),
+    strings = listOf("ECatcher disabled: level: %s, category: %s, message: %s"),
+    customFingerprint = { method, _ ->
+        method.parameterTypes.contains("Ljava/util/function/Function;")
+    },
+)
+
 internal val primesApiFingerprint = legacyFingerprint(
     name = "primesApiFingerprint",
     returnType = "V",
