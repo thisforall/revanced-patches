@@ -294,6 +294,8 @@ fun gmsCoreSupportPatch(
         // Return these methods early to prevent the app from crashing.
         setOf(
             castContextFetchFingerprint,
+            castDynamiteModuleFingerprint,
+            castDynamiteModuleV2Fingerprint,
             googlePlayUtilityFingerprint,
             serviceCheckFingerprint,
             sslGuardFingerprint,

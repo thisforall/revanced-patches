@@ -25,6 +25,16 @@ internal val castContextFetchFingerprint = legacyFingerprint(
     strings = listOf("Error fetching CastContext.")
 )
 
+internal val castDynamiteModuleFingerprint = legacyFingerprint(
+    name = "castDynamiteModuleFingerprint",
+    strings = listOf("com.google.android.gms.cast.framework.internal.CastDynamiteModuleImpl")
+)
+
+internal val castDynamiteModuleV2Fingerprint = legacyFingerprint(
+    name = "castDynamiteModuleV2Fingerprint",
+    strings = listOf("Failed to load module via V2: ")
+)
+
 internal val googlePlayUtilityFingerprint = legacyFingerprint(
     name = "googlePlayUtilityFingerprint",
     returnType = "I",
