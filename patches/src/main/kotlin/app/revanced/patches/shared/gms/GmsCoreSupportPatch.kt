@@ -299,22 +299,6 @@ fun gmsCoreSupportPatch(
             .single { it.name == GET_GMS_CORE_VENDOR_GROUP_ID_METHOD_NAME }
             .replaceInstruction(0, "const-string v0, \"$gmsCoreVendorGroupId\"")
 
-        certificateFingerprint.second.classDefOrNull?.methods?.forEach { mutableMethod ->
-            mutableMethod.apply {
-                val getPackageNameIndex = indexOfGetPackageNameInstruction(this)
-
-                if (getPackageNameIndex > -1) {
-                    val targetRegister =
-                        (getInstruction(getPackageNameIndex) as FiveRegisterInstruction).registerC
-
-                    replaceInstruction(
-                        getPackageNameIndex,
-                        "invoke-static {v$targetRegister}, $EXTENSION_CLASS_DESCRIPTOR->spoofPackageName(Landroid/content/Context;)Ljava/lang/String;",
-                    )
-                }
-            }
-        } // Since it has only been confirmed to work on YouTube and YouTube Music, does not raise an exception even if the fingerprint cannot be solved.
-
         executeBlock()
     }
 

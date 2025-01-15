@@ -45,19 +45,3 @@ internal val primeMethodFingerprint = legacyFingerprint(
     name = "primeMethodFingerprint",
     strings = listOf("com.google.android.GoogleCamera", "com.android.vending")
 )
-
-internal val certificateFingerprint = legacyFingerprint(
-    name = "certificateFingerprint",
-    returnType = "Ljava/lang/String;",
-    accessFlags = AccessFlags.PROTECTED or AccessFlags.FINAL,
-    parameters = emptyList(),
-    strings = listOf("X.509", "user", "S"),
-    customFingerprint = { method, _ ->
-        indexOfGetPackageNameInstruction(method) >= 0
-    }
-)
-
-fun indexOfGetPackageNameInstruction(method: Method) =
-    method.indexOfFirstInstruction {
-        getReference<MethodReference>()?.toString() == "Landroid/content/Context;->getPackageName()Ljava/lang/String;"
-    }
