@@ -32,20 +32,15 @@ fun baseAdsPatch(
 ) {
     execute {
 
-        setOf(
-            sslGuardFingerprint,
-            videoAdsFingerprint,
-        ).forEach { fingerprint ->
-            fingerprint.methodOrThrow().apply {
-                addInstructionsWithLabels(
-                    0, """
-                        invoke-static {}, $classDescriptor->$methodDescriptor()Z
-                        move-result v0
-                        if-nez v0, :show_ads
-                        return-void
-                        """, ExternalLabel("show_ads", getInstruction(0))
-                )
-            }
+        videoAdsFingerprint.methodOrThrow().apply {
+            addInstructionsWithLabels(
+                0, """
+                    invoke-static {}, $classDescriptor->$methodDescriptor()Z
+                    move-result v0
+                    if-nez v0, :show_ads
+                    return-void
+                    """, ExternalLabel("show_ads", getInstruction(0))
+            )
         }
 
         musicAdsFingerprint.methodOrThrow().apply {

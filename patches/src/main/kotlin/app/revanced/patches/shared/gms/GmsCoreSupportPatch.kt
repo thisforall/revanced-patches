@@ -269,6 +269,7 @@ fun gmsCoreSupportPatch(
             castContextFetchFingerprint,
             googlePlayUtilityFingerprint,
             serviceCheckFingerprint,
+            sslGuardFingerprint,
         ).forEach { it.methodOrThrow().returnEarly() }
 
         // Specific method that needs to be patched.

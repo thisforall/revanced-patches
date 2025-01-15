@@ -41,6 +41,13 @@ internal val serviceCheckFingerprint = legacyFingerprint(
     strings = listOf("Google Play Services not available")
 )
 
+internal val sslGuardFingerprint = legacyFingerprint(
+    name = "sslGuardFingerprint",
+    returnType = "V",
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    strings = listOf("Cannot initialize SslGuardSocketFactory will null"),
+)
+
 internal val primeMethodFingerprint = legacyFingerprint(
     name = "primeMethodFingerprint",
     strings = listOf("com.google.android.GoogleCamera", "com.android.vending")
