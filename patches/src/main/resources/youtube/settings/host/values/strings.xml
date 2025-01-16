@@ -1849,8 +1849,8 @@ Click to see how to issue an API key."</string>
     <!-- PreferenceScreen: Miscellaneous -->
     <string name="revanced_preference_screen_misc_title">Miscellaneous</string>
 
-    <string name="revanced_enable_open_links_directly_title">Bypass URL redirection</string>
-    <string name="revanced_enable_open_links_directly_summary_on">Bypasses URL redirection.</string>
+    <string name="revanced_enable_open_links_directly_title">Bypass link redirection</string>
+    <string name="revanced_enable_open_links_directly_summary_on">Bypasses link redirection.</string>
     <string name="revanced_enable_open_links_directly_summary_off">Follows default redirection policy.</string>
     <string name="revanced_disable_quic_protocol_title">Disable QUIC protocol</string>
     <string name="revanced_disable_quic_protocol_summary">"Disables CronetEngine's QUIC protocol."</string>

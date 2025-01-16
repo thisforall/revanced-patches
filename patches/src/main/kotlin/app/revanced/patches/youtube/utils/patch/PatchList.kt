@@ -18,8 +18,8 @@ internal enum class PatchList(
         "Adds an option to use a different host for static images, so that images blocked in some countries can be received."
     ),
     ENABLE_OPEN_LINKS_DIRECTLY(
-        "Bypass URL redirection",
-        "Adds an option to bypass redirection when opening external URLs."
+        "Bypass link redirection",
+        "Adds an option to bypass redirection when opening external links."
     ),
 
     CHANGE_PLAYER_FLYOUT_MENU_TOGGLES(
