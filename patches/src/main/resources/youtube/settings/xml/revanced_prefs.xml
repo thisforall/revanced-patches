@@ -249,7 +249,7 @@
             <SwitchPreference android:title="@string/revanced_change_youtube_header_title" android:key="revanced_change_youtube_header" android:summaryOn="@string/revanced_change_youtube_header_summary_on" android:summaryOff="@string/revanced_change_youtube_header_summary_off" />
             <SwitchPreference android:title="@string/revanced_enable_wide_search_bar_title" android:key="revanced_enable_wide_search_bar" android:summaryOn="@string/revanced_enable_wide_search_bar_summary_on" android:summaryOff="@string/revanced_enable_wide_search_bar_summary_off" />
             <SwitchPreference android:title="@string/revanced_enable_wide_search_bar_with_header_title" android:key="revanced_enable_wide_search_bar_with_header" android:summaryOn="@string/revanced_enable_wide_search_bar_with_header_summary_on" android:summaryOff="@string/revanced_enable_wide_search_bar_with_header_summary_off" android:dependency="revanced_enable_wide_search_bar" />
-            <SwitchPreference android:title="@string/revanced_enable_wide_search_bar_in_you_tab_title" android:key="revanced_enable_wide_search_bar_in_you_tab" android:summaryOn="@string/revanced_enable_wide_search_bar_in_you_tab_summary_on" android:summaryOff="@string/revanced_enable_wide_search_bar_in_you_tab_summary_off" android:dependency="revanced_enable_wide_search_bar" />
+            <SwitchPreference android:title="@string/revanced_enable_wide_search_bar_in_you_tab_title" android:key="revanced_enable_wide_search_bar_in_you_tab" android:summary="@string/revanced_enable_wide_search_bar_in_you_tab_summary" android:dependency="revanced_enable_wide_search_bar" />
             <SwitchPreference android:title="@string/revanced_hide_toolbar_cast_button_title" android:key="revanced_hide_toolbar_cast_button" android:summaryOn="@string/revanced_hide_toolbar_cast_button_summary_on" android:summaryOff="@string/revanced_hide_toolbar_cast_button_summary_off" />
             <SwitchPreference android:title="@string/revanced_hide_toolbar_create_button_title" android:key="revanced_hide_toolbar_create_button" android:summaryOn="@string/revanced_hide_toolbar_create_button_summary_on" android:summaryOff="@string/revanced_hide_toolbar_create_button_summary_off" />
             <SwitchPreference android:title="@string/revanced_hide_toolbar_notification_button_title" android:key="revanced_hide_toolbar_notification_button" android:summaryOn="@string/revanced_hide_toolbar_notification_button_summary_on" android:summaryOff="@string/revanced_hide_toolbar_notification_button_summary_off" />
@@ -707,14 +707,13 @@
         <SwitchPreference android:title="@string/revanced_skip_preloaded_buffer_title" android:key="revanced_skip_preloaded_buffer" android:summary="@string/revanced_skip_preloaded_buffer_summary" />
         <SwitchPreference android:title="@string/revanced_skip_preloaded_buffer_toast_title" android:key="revanced_skip_preloaded_buffer_toast" android:summaryOn="@string/revanced_skip_preloaded_buffer_toast_summary_on" android:summaryOff="@string/revanced_skip_preloaded_buffer_toast_summary_off" android:dependency="revanced_skip_preloaded_buffer" />
         <SwitchPreference android:title="@string/revanced_spoof_device_dimensions_title" android:key="revanced_spoof_device_dimensions" android:summary="@string/revanced_spoof_device_dimensions_summary" />
-        <SwitchPreference android:title="@string/revanced_disable_vp9_codec_title" android:key="revanced_disable_vp9_codec" android:summaryOn="@string/revanced_disable_vp9_codec_summary_on" android:summaryOff="@string/revanced_disable_vp9_codec_summary_off" />
-        <SwitchPreference android:title="@string/revanced_reject_av1_codec_title" android:key="revanced_reject_av1_codec" android:summary="@string/revanced_reject_av1_codec_summary" />PREFERENCE_SCREEN: VIDEO -->
+        <SwitchPreference android:title="@string/revanced_disable_vp9_codec_title" android:key="revanced_disable_vp9_codec" android:summaryOn="@string/revanced_disable_vp9_codec_summary_on" android:summaryOff="@string/revanced_disable_vp9_codec_summary_off" />PREFERENCE_SCREEN: VIDEO -->
 
         <!-- SETTINGS: REPLACE_AV1_CODEC
         <SwitchPreference android:title="@string/revanced_replace_av1_codec_title" android:key="revanced_replace_av1_codec" android:summary="@string/revanced_replace_av1_codec_summary" />SETTINGS: REPLACE_AV1_CODEC -->
 
         <!-- PREFERENCE_SCREEN: VIDEO
-
+        <SwitchPreference android:title="@string/revanced_reject_av1_codec_title" android:key="revanced_reject_av1_codec" android:summary="@string/revanced_reject_av1_codec_summary" />
     </PreferenceScreen>PREFERENCE_SCREEN: VIDEO -->
 
 
@@ -816,6 +815,9 @@
             <app.revanced.extension.youtube.settings.preference.WatchHistoryStatusPreference android:title="@string/revanced_watch_history_about_title" />
         </PreferenceScreen>SETTINGS: WATCH_HISTORY -->
 
+        <!-- SETTINGS: ENABLE_OPEN_LINKS_DIRECTLY
+        <SwitchPreference android:title="@string/revanced_enable_open_links_directly_title" android:key="revanced_enable_open_links_directly" android:summaryOn="@string/revanced_enable_open_links_directly_summary_on" android:summaryOff="@string/revanced_enable_open_links_directly_summary_off" />SETTINGS: ENABLE_OPEN_LINKS_DIRECTLY -->
+
         <!-- SETTINGS: DISABLE_QUIC_PROTOCOL
         <SwitchPreference android:title="@string/revanced_disable_quic_protocol_title" android:key="revanced_disable_quic_protocol" android:summary="@string/revanced_disable_quic_protocol_summary" />SETTINGS: DISABLE_QUIC_PROTOCOL -->
 
@@ -825,9 +827,6 @@
 
         <!-- SETTINGS: ENABLE_EXTERNAL_BROWSER
         <SwitchPreference android:title="@string/revanced_enable_external_browser_title" android:key="revanced_enable_external_browser" android:summaryOn="@string/revanced_enable_external_browser_summary_on" android:summaryOff="@string/revanced_enable_external_browser_summary_off" />SETTINGS: ENABLE_EXTERNAL_BROWSER -->
-
-        <!-- SETTINGS: ENABLE_OPEN_LINKS_DIRECTLY
-        <SwitchPreference android:title="@string/revanced_enable_open_links_directly_title" android:key="revanced_enable_open_links_directly" android:summaryOn="@string/revanced_enable_open_links_directly_summary_on" android:summaryOff="@string/revanced_enable_open_links_directly_summary_off" />SETTINGS: ENABLE_OPEN_LINKS_DIRECTLY -->
 
         <!-- SETTINGS: SANITIZE_SHARING_LINKS
         <SwitchPreference android:title="@string/revanced_sanitize_sharing_links_title" android:key="revanced_sanitize_sharing_links" android:summary="@string/revanced_sanitize_sharing_links_summary" />SETTINGS: SANITIZE_SHARING_LINKS -->

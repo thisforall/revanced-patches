@@ -412,7 +412,7 @@ Click to see how to issue an API key."</string>
     <!-- PreferenceScreen: Miscellaneous -->
     <string name="revanced_preference_screen_misc_title">Miscellaneous</string>
 
-    <string name="revanced_extended_settings_import_export_title">Export / Import settings</string>
+    <string name="revanced_extended_settings_import_export_title">Import / Export settings</string>
     <string name="revanced_extended_settings_import_export_summary">Import / Export RVX Music settings.</string>
 
     <string name="revanced_extended_settings_export_as_file">Export settings to file</string>
@@ -484,7 +484,7 @@ Info:
     <string name="revanced_spoof_streaming_data_type_entry_android_music">Android Music</string>
 
     <string name="revanced_default_app_settings_title">Open default app settings</string>
-    <string name="revanced_default_app_settings_summary">Opens default app settings. To open YouTube Music links in RVX Music, enable Open supported links and enable all the Supported web addresses.</string>
+    <string name="revanced_default_app_settings_summary">To open YouTube Music links in RVX Music, enable Open supported links and enable all the Supported web addresses.</string>
 
     <string name="gms_core_settings_title">Open GmsCore settings</string>
     <string name="gms_core_settings_summary">To receive notifications in RVX Music, enable Cloud Messaging.</string>

@@ -87,10 +87,10 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting HIDE_MOVIE_SHELF = new BooleanSetting("revanced_hide_movie_shelf", FALSE);
     public static final BooleanSetting HIDE_NOTIFY_ME_BUTTON = new BooleanSetting("revanced_hide_notify_me_button", FALSE);
     public static final BooleanSetting HIDE_PLAYABLES = new BooleanSetting("revanced_hide_playables", TRUE);
-    public static final BooleanSetting HIDE_SHOW_MORE_BUTTON = new BooleanSetting("revanced_hide_show_more_button", TRUE, true);
     public static final BooleanSetting HIDE_FEED_SEARCH_BAR = new BooleanSetting("revanced_hide_feed_search_bar", FALSE);
-    public static final BooleanSetting HIDE_FEED_SURVEY = new BooleanSetting("revanced_hide_feed_survey", TRUE);
+    public static final BooleanSetting HIDE_SHOW_MORE_BUTTON = new BooleanSetting("revanced_hide_show_more_button", TRUE, true);
     public static final BooleanSetting HIDE_SUBSCRIPTIONS_CAROUSEL = new BooleanSetting("revanced_hide_subscriptions_carousel", FALSE, true);
+    public static final BooleanSetting HIDE_FEED_SURVEY = new BooleanSetting("revanced_hide_feed_survey", TRUE);
     public static final BooleanSetting HIDE_TICKET_SHELF = new BooleanSetting("revanced_hide_ticket_shelf", TRUE);
 
 
@@ -550,8 +550,8 @@ public class Settings extends BaseSettings {
 
 
     // PreferenceScreen: Miscellaneous
-    public static final BooleanSetting ENABLE_EXTERNAL_BROWSER = new BooleanSetting("revanced_enable_external_browser", TRUE, true);
     public static final BooleanSetting ENABLE_OPEN_LINKS_DIRECTLY = new BooleanSetting("revanced_enable_open_links_directly", TRUE);
+    public static final BooleanSetting ENABLE_EXTERNAL_BROWSER = new BooleanSetting("revanced_enable_external_browser", TRUE, true);
 
     // Experimental Flags
     public static final BooleanSetting CHANGE_SHARE_SHEET = new BooleanSetting("revanced_change_share_sheet", FALSE, true);
