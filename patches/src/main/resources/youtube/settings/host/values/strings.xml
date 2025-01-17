@@ -998,8 +998,8 @@ Limitation: Video title disappears when clicked."</string>
     <string name="revanced_enable_compact_controls_overlay_summary_on">Controls overlay does not fill the fullscreen.</string>
     <string name="revanced_enable_compact_controls_overlay_summary_off">Controls overlay fills the fullscreen.</string>
     <string name="revanced_keep_landscape_mode_title">Keep landscape mode</string>
-    <string name="revanced_keep_landscape_mode_summary_on">Video plays in landscape mode after turning the screen off and on.</string>
-    <string name="revanced_keep_landscape_mode_summary_off">Video plays in portrait mode after turning the screen off and on.</string>
+    <string name="revanced_keep_landscape_mode_summary_on">Videos continue to play in landscape mode after turning the screen off and on.</string>
+    <string name="revanced_keep_landscape_mode_summary_off">Videos play in portrait mode after turning the screen off and on.</string>
     <string name="revanced_keep_landscape_mode_timeout_title">Keep landscape mode timeout</string>
     <string name="revanced_keep_landscape_mode_timeout_summary">The amount of milliseconds the landscape mode is forced after the screen in turned on.</string>
 
