@@ -196,8 +196,8 @@ This does not bypass the age restriction. It just accepts it automatically."</st
     <string name="revanced_spoof_app_version_target_entry_7_16_53">7.16.53 - Restore old action bar</string>
 
 
-    <!-- PreferenceScreen: Navigation bar -->
-    <string name="revanced_preference_screen_navigation_title">Navigation bar</string>
+    <!-- PreferenceScreen: Navigation Bar -->
+    <string name="revanced_preference_screen_navigation_title">Navigation Bar</string>
 
     <string name="revanced_hide_navigation_home_button_title">Hide Home button</string>
     <string name="revanced_hide_navigation_home_button_summary">Hides the Home button.</string>
@@ -342,7 +342,7 @@ The daily quota for API keys on the free plan is 10,000, and 1 quota is used to 
 
 Click to see how to issue an API key."</string>
     <string name="revanced_return_youtube_username_youtube_data_api_v3_dialog_title">Issue YouTube Data API v3 developer key</string>
-    <string name="revanced_return_youtube_username_youtube_data_api_v3_dialog_message">1. Go to &lt;a href=%1$s>Create a new project&lt;/a>.&lt;br>2. Click the &lt;b>CREATE&lt;/b> button.&lt;br>3. Go to &lt;a href=%2$s>YouTube Data API v3&lt;/a>.&lt;br>4. Click the &lt;b>ENABLE&lt;/b> button.&lt;br>5. Click the &lt;b>CREATE CREDENTIALS&lt;/b> button.&lt;br>6. Select the &lt;b>Public data&lt;/b> option.&lt;br>7. Click the &lt;b>NEXT&lt;/b> button.&lt;br>8. Copy the API key.&lt;br>&lt;br>※ API key should never be shared with others, so it is not included in Export / Import settings.</string>
+    <string name="revanced_return_youtube_username_youtube_data_api_v3_dialog_message">1. Go to &lt;a href=%1$s>Create a new project&lt;/a>.&lt;br>2. Click the &lt;b>CREATE&lt;/b> button.&lt;br>3. Go to &lt;a href=%2$s>YouTube Data API v3&lt;/a>.&lt;br>4. Click the &lt;b>ENABLE&lt;/b> button.&lt;br>5. Click the &lt;b>CREATE CREDENTIALS&lt;/b> button.&lt;br>6. Select the &lt;b>Public data&lt;/b> option.&lt;br>7. Click the &lt;b>NEXT&lt;/b> button.&lt;br>8. Copy the API key.&lt;br>&lt;br>※ API key should never be shared with others, so it is not included in Import / Export settings.</string>
 
 
     <!-- PreferenceScreen: SponsorBlock -->
@@ -362,21 +362,21 @@ Click to see how to issue an API key."</string>
 
     <string name="revanced_sb_diff_segments">Change segment behavior</string>
     <string name="revanced_sb_segments_sponsor">Sponsor</string>
-    <string name="revanced_sb_segments_sponsor_sum">Direct advertisements, paid promotion and paid referrals. Not for self-promotion or free shout-outs to causes / creators / products they like / websites.</string>
-    <string name="revanced_sb_segments_selfpromo">Self-promotion / Unpaid</string>
-    <string name="revanced_sb_segments_selfpromo_sum">Similar to Sponsor, except for self-promotion or unpaid. Includes sections about donations, information about who they collaborated with, or merchandise.</string>
+    <string name="revanced_sb_segments_sponsor_sum">Paid promotion, paid referrals, and direct advertisements. Not for self-promotion or free shout-outs to causes / creators / websites / products they like.</string>
+    <string name="revanced_sb_segments_selfpromo">Unpaid / Self Promotion</string>
+    <string name="revanced_sb_segments_selfpromo_sum">Similar to Sponsor, except for unpaid or self promotion. Includes sections about merchandise, donations, or information about who they collaborated with.</string>
     <string name="revanced_sb_segments_interaction">Interaction Reminder (Subscribe)</string>
-    <string name="revanced_sb_segments_interaction_sum">A short reminder to like, subscribe, or follow them in the middle of content. If it is long or about something specific, it should instead be under self-promotion.</string>
+    <string name="revanced_sb_segments_interaction_sum">A short reminder to like, subscribe, or follow them in the middle of content. If it is long or about something specific, it should instead be under self promotion.</string>
     <string name="revanced_sb_segments_intro">Intermission / Intro Animation</string>
     <string name="revanced_sb_segments_intro_sum">An interval without actual content. Could be a pause, static frame, or repeating animation. Does not include transitions containing information.</string>
-    <string name="revanced_sb_segments_outro">Credits / Endcards</string>
+    <string name="revanced_sb_segments_outro">Endcards / Credits</string>
     <string name="revanced_sb_segments_outro_sum">Credits or when the YouTube endcards appear. Not for conclusions with information.</string>
-    <string name="revanced_sb_segments_preview">Hook / Preview / Recap</string>
+    <string name="revanced_sb_segments_preview">Preview / Recap / Hook</string>
     <string name="revanced_sb_segments_preview_sum">Collection of clips that show what is coming up or what happened in the video or in other videos of a series, where all information is repeated elsewhere.</string>
     <string name="revanced_sb_segments_filler">Filler Tangent / Jokes</string>
     <string name="revanced_sb_segments_filler_sum">Tangential scenes added only for filler or humor that are not required to understand the main content of the video. Does not include segments providing context or background details.</string>
     <string name="revanced_sb_segments_nomusic">Music: Non-Music Section</string>
-    <string name="revanced_sb_segments_nomusic_sum">Only for use in music videos. Sections of music videos without music, that are not already covered by another category.</string>
+    <string name="revanced_sb_segments_nomusic_sum">Only for use in music videos. Sections of music videos without music, that aren\'t already covered by another category.</string>
 
     <string name="revanced_sb_skipped_sponsor">Skipped sponsor.</string>
     <string name="revanced_sb_skipped_selfpromo">Skipped self-promotion.</string>
@@ -413,11 +413,11 @@ Click to see how to issue an API key."</string>
     <string name="revanced_preference_screen_misc_title">Miscellaneous</string>
 
     <string name="revanced_extended_settings_import_export_title">Export / Import settings</string>
-    <string name="revanced_extended_settings_import_export_summary">Export / Import RVX Music settings.</string>
+    <string name="revanced_extended_settings_import_export_summary">Import / Export RVX Music settings.</string>
 
     <string name="revanced_extended_settings_export_as_file">Export settings to file</string>
     <string name="revanced_extended_settings_import_as_file">Import settings from file</string>
-    <string name="revanced_extended_settings_import_export_as_text">Export / Import settings as text</string>
+    <string name="revanced_extended_settings_import_export_as_text">Import / Export settings as text</string>
 
     <string name="revanced_extended_settings_export_failed">Failed to export settings.</string>
     <string name="revanced_extended_settings_export_success">Settings were successfully exported.</string>

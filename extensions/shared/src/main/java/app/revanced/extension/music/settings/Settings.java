@@ -116,7 +116,7 @@ public class Settings extends BaseSettings {
             PatchStatus.SpoofAppVersionDefaultString(), true);
 
 
-    // PreferenceScreen: Navigation bar
+    // PreferenceScreen: Navigation Bar
     public static final BooleanSetting ENABLE_BLACK_NAVIGATION_BAR = new BooleanSetting("revanced_enable_black_navigation_bar", FALSE);
     public static final BooleanSetting HIDE_NAVIGATION_HOME_BUTTON = new BooleanSetting("revanced_hide_navigation_home_button", FALSE, true);
     public static final BooleanSetting HIDE_NAVIGATION_SAMPLES_BUTTON = new BooleanSetting("revanced_hide_navigation_samples_button", FALSE, true);
