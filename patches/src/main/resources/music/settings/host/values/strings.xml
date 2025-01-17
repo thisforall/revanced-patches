@@ -63,9 +63,9 @@ Please download %2$s from the website."</string>
 Limitations:
 • Sometimes you may see a blank black screen instead of the home feed."</string>
     <string name="revanced_hide_general_ads_title">Hide general ads</string>
-    <string name="revanced_hide_general_ads_summary">Hides the ads that play during media playback.</string>
+    <string name="revanced_hide_general_ads_summary">Hides general ads.</string>
     <string name="revanced_hide_music_ads_title">Hide media ads</string>
-    <string name="revanced_hide_music_ads_summary">Hides ads before playing media.</string>
+    <string name="revanced_hide_music_ads_summary">Hides the ads that play during media playback.</string>
     <string name="revanced_hide_paid_promotion_label_title">Hide paid promotion label</string>
     <string name="revanced_hide_paid_promotion_label_summary">Hides the paid promotion label.</string>
     <string name="revanced_hide_premium_promotion_title">Hide premium promotion popups</string>
