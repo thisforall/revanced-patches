@@ -21,7 +21,6 @@ internal enum class PatchList(
         "Bypass link redirection",
         "Adds an option to bypass redirection when opening external links."
     ),
-
     CHANGE_PLAYER_FLYOUT_MENU_TOGGLES(
         "Change player flyout menu toggles",
         "Adds an option to use text toggles instead of switch toggles within the additional settings menu."
