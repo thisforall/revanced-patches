@@ -817,7 +817,7 @@
         </PreferenceScreen>SETTINGS: WATCH_HISTORY -->
 
         <!-- SETTINGS: BYPASS_URL_REDIRECTS
-        <SwitchPreference android:title="@string/revanced_bypass_url_redirects_title" android:key="revanced_bypass_link_redirection" android:summaryOn="@string/revanced_bypass_link_redirection_summary_on" android:summaryOff="@string/revanced_enable_open_links_directly_summary_off" />SETTINGS: BYPASS_URL_REDIRECTS -->
+        <SwitchPreference android:title="@string/revanced_bypass_url_redirects_title" android:key="revanced_bypass_url_redirects" android:summaryOn="@string/revanced_bypass_url_redirects_summary_on" android:summaryOff="@string/revanced_bypass_url_redirects_summary_off" />SETTINGS: BYPASS_URL_REDIRECTS -->
 
         <!-- SETTINGS: DISABLE_QUIC_PROTOCOL
         <SwitchPreference android:title="@string/revanced_disable_quic_protocol_title" android:key="revanced_disable_quic_protocol" android:summary="@string/revanced_disable_quic_protocol_summary" />SETTINGS: DISABLE_QUIC_PROTOCOL -->
