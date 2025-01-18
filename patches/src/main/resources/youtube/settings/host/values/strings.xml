@@ -1916,7 +1916,7 @@ Click to see how to issue an API key."</string>
     <string name="revanced_enable_debug_buffer_logging_title">Enable debug buffer logging</string>
     <string name="revanced_enable_debug_buffer_logging_summary_on">Debug logs include the buffer.</string>
     <string name="revanced_enable_debug_buffer_logging_summary_off">Debug logs do not include the buffer.</string>
-    <string name="revanced_enable_external_browser_title">Open links in browser</string>
+    <string name="revanced_enable_external_browser_title">Open links externally</string>
     <string name="revanced_enable_external_browser_summary_on">Opens links in the external browser.</string>
     <string name="revanced_enable_external_browser_summary_off">Opens links in the in-app browser.</string>
     <string name="revanced_sanitize_sharing_links_title">Sanitize sharing links</string>
