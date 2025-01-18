@@ -263,8 +263,8 @@ This does not bypass the age restriction. It just accepts it automatically."</st
 Some features may not work properly in the old player layout."</string>
 
 
-    <!-- PreferenceScreen: Settings menu -->
-    <string name="revanced_preference_screen_settings_title">Settings menu</string>
+    <!-- PreferenceScreen: Settings Menu -->
+    <string name="revanced_preference_screen_settings_title">Settings Menu</string>
 
     <string name="revanced_hide_settings_menu_parent_tools_title">Hide Family Center menu</string>
     <string name="revanced_hide_settings_menu_general_title">Hide General menu</string>
