@@ -22,6 +22,59 @@
     <string name="revanced_external_downloader_not_installed_dialog_message">"%1$s is not installed.
 Please download %2$s from the website."</string>
     <string name="revanced_external_downloader_not_installed_warning">%s is not installed. Please install it.</string>
+    <string name="revanced_language_title">RVX language</string>
+    <string name="revanced_language_DEFAULT">App language</string>
+    <string name="revanced_language_AR">Arabic</string>
+    <string name="revanced_language_AZ">Azerbaijani</string>
+    <string name="revanced_language_BG">Bulgarian</string>
+    <string name="revanced_language_BN">Bengali</string>
+    <string name="revanced_language_CA">Catalan</string>
+    <string name="revanced_language_CS">Czech</string>
+    <string name="revanced_language_DA">Danish</string>
+    <string name="revanced_language_DE">German</string>
+    <string name="revanced_language_EL">Greek</string>
+    <string name="revanced_language_EN">English</string>
+    <string name="revanced_language_ES">Spanish</string>
+    <string name="revanced_language_ET">Estonian</string>
+    <string name="revanced_language_FA">Persian</string>
+    <string name="revanced_language_FI">Finnish</string>
+    <string name="revanced_language_FR">French</string>
+    <string name="revanced_language_GU">Gujarati</string>
+    <string name="revanced_language_HI">Hindi</string>
+    <string name="revanced_language_HR">Croatian</string>
+    <string name="revanced_language_HU">Hungarian</string>
+    <string name="revanced_language_ID">Indonesian</string>
+    <string name="revanced_language_IT">Italian</string>
+    <string name="revanced_language_JA">Japanese</string>
+    <string name="revanced_language_KK">Kazakh</string>
+    <string name="revanced_language_KO">Korean</string>
+    <string name="revanced_language_LT">Lithuanian</string>
+    <string name="revanced_language_LV">Latvian</string>
+    <string name="revanced_language_MK">Macedonian</string>
+    <string name="revanced_language_MN">Mongolian</string>
+    <string name="revanced_language_MR">Marathi</string>
+    <string name="revanced_language_MS">Malay</string>
+    <string name="revanced_language_MY">Burmese</string>
+    <string name="revanced_language_NL">Dutch</string>
+    <string name="revanced_language_OR">Odia</string>
+    <string name="revanced_language_PA">Punjabi</string>
+    <string name="revanced_language_PL">Polish</string>
+    <string name="revanced_language_PT">Portuguese</string>
+    <string name="revanced_language_RO">Romanian</string>
+    <string name="revanced_language_RU">Russian</string>
+    <string name="revanced_language_SK">Slovak</string>
+    <string name="revanced_language_SL">Slovene</string>
+    <string name="revanced_language_SR">Serbian</string>
+    <string name="revanced_language_SV">Swedish</string>
+    <string name="revanced_language_SW">Swahili</string>
+    <string name="revanced_language_TA">Tamil</string>
+    <string name="revanced_language_TE">Telugu</string>
+    <string name="revanced_language_TH">Thai</string>
+    <string name="revanced_language_TR">Turkish</string>
+    <string name="revanced_language_UK">Ukrainian</string>
+    <string name="revanced_language_UR">Urdu</string>
+    <string name="revanced_language_VI">Vietnamese</string>
+    <string name="revanced_language_ZH">Chinese</string>
 
 
     <!-- PreferenceScreen: Ads -->
@@ -75,7 +128,7 @@ Please download %2$s from the website."</string>
     <string name="revanced_alt_thumbnail_options_entry_3">DeArrow &amp; still captures</string>
     <string name="revanced_alt_thumbnail_options_entry_4">Still captures</string>
     <string name="revanced_alt_thumbnail_dearrow_about_title">DeArrow</string>
-    <string name="revanced_alt_thumbnail_dearrow_about_summary">"DeArrow provides crowd-sourced thumbnails for YouTube videos. These thumbnails are often more relevant than those provided by YouTube.
+    <string name="revanced_alt_thumbnail_dearrow_about_summary">"DeArrow provides crowdsourced thumbnails for YouTube videos. These thumbnails are often more relevant than those provided by YouTube.
 
 If enabled, video URLs will be sent to the API server and no other data is sent. If a video does not have DeArrow thumbnails, then the original or still captures are shown.
 
@@ -113,14 +166,15 @@ Tap here to learn more about DeArrow."</string>
     <string name="revanced_hide_feed_captions_button_title">Hide Captions button</string>
     <string name="revanced_hide_feed_captions_button_on">Captions button is hidden.</string>
     <string name="revanced_hide_feed_captions_button_off">Captions button is shown.</string>
-    <string name="revanced_hide_carousel_shelf_title">Hide carousel shelf</string>
-    <string name="revanced_hide_carousel_shelf_summary">"Hides the following shelves:
+    <string name="revanced_hide_carousel_shelf_title">Hide carousel shelves</string>
+    <string name="revanced_hide_carousel_shelf_summary_on">"Carousel shelves are hidden, such as:
 • Breaking news
 • Continue watching
 • Explore more channels
 • Listen again
 • Shopping
 • Watch it again"</string>
+    <string name="revanced_hide_carousel_shelf_summary_off">Carousel shelves are shown.</string>
     <string name="revanced_hide_chips_shelf_title">Hide chips shelf</string>
     <string name="revanced_hide_chips_shelf_on">Chips shelf is hidden.</string>
     <string name="revanced_hide_chips_shelf_off">Chips shelf is shown.</string>
@@ -154,18 +208,18 @@ Tap here to learn more about DeArrow."</string>
     <string name="revanced_hide_playables_title">Hide Playables</string>
     <string name="revanced_hide_playables_summary_on">Playables are hidden.</string>
     <string name="revanced_hide_playables_summary_off">Playables are shown.</string>
-    <string name="revanced_hide_show_more_button_title">Hide Show more button</string>
-    <string name="revanced_hide_show_more_button_summary_on">Show more button is hidden.</string>
-    <string name="revanced_hide_show_more_button_summary_off">Show more button is shown.</string>
     <string name="revanced_hide_feed_search_bar_title">Hide search bar</string>
     <string name="revanced_hide_feed_search_bar_summary_on">Search bar is hidden.</string>
     <string name="revanced_hide_feed_search_bar_summary_off">Search bar is shown.</string>
-    <string name="revanced_hide_feed_survey_title">Hide surveys</string>
-    <string name="revanced_hide_feed_survey_summary_on">Surveys are hidden.</string>
-    <string name="revanced_hide_feed_survey_summary_off">Surveys are shown.</string>
+    <string name="revanced_hide_show_more_button_title">Hide Show more button</string>
+    <string name="revanced_hide_show_more_button_summary_on">Show more button is hidden.</string>
+    <string name="revanced_hide_show_more_button_summary_off">Show more button is shown.</string>
     <string name="revanced_hide_subscriptions_carousel_title">Hide subscriptions carousel</string>
     <string name="revanced_hide_subscriptions_carousel_summary_on">Subscriptions carousel is hidden.</string>
     <string name="revanced_hide_subscriptions_carousel_summary_off">Subscriptions carousel is shown.</string>
+    <string name="revanced_hide_feed_survey_title">Hide surveys</string>
+    <string name="revanced_hide_feed_survey_summary_on">Surveys are hidden.</string>
+    <string name="revanced_hide_feed_survey_summary_off">Surveys are shown.</string>
     <string name="revanced_hide_ticket_shelf_title">Hide ticket shelves</string>
     <string name="revanced_hide_ticket_shelf_summary_on">Ticket shelves are hidden.</string>
     <string name="revanced_hide_ticket_shelf_summary_off">Ticket shelves are shown.</string>
@@ -327,10 +381,11 @@ If the layout of the player screen changes due to server-side changes, unintende
     <string name="revanced_change_layout_entry_5">Tablet (Min 600 dp)</string>
 
     <string name="revanced_change_start_page_title">Change start page</string>
+    <string name="revanced_change_start_page_entry_default">Default</string>
     <string name="revanced_change_start_page_entry_browse">Browse channels</string>
     <string name="revanced_change_start_page_entry_courses">Courses / Learning</string>
-    <string name="revanced_change_start_page_entry_default">Default</string>
     <string name="revanced_change_start_page_entry_explore">Explore</string>
+    <string name="revanced_change_start_page_entry_fashion">Fashion &amp; Beauty</string>
     <string name="revanced_change_start_page_entry_gaming">Gaming</string>
     <string name="revanced_change_start_page_entry_history">History</string>
     <string name="revanced_change_start_page_entry_library">Library</string>
@@ -338,8 +393,11 @@ If the layout of the player screen changes due to server-side changes, unintende
     <string name="revanced_change_start_page_entry_live">Live</string>
     <string name="revanced_change_start_page_entry_movies">Movies</string>
     <string name="revanced_change_start_page_entry_music">Music</string>
+    <string name="revanced_change_start_page_entry_news">News</string>
     <string name="revanced_change_start_page_entry_notifications">Notifications</string>
+    <string name="revanced_change_start_page_entry_podcasts">Podcasts</string>
     <string name="revanced_change_start_page_entry_search">Search</string>
+    <string name="revanced_change_start_page_entry_shopping">Shopping</string>
     <string name="revanced_change_start_page_entry_shorts">Shorts</string>
     <string name="revanced_change_start_page_entry_sports">Sports</string>
     <string name="revanced_change_start_page_entry_subscriptions">Subscriptions</string>
@@ -455,7 +513,7 @@ Some components may not be hidden."</string>
 
     <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Miniplayer -->
     <string name="revanced_preference_screen_miniplayer_title">Miniplayer</string>
-    <string name="revanced_preference_screen_miniplayer_summary">Change the style of the in app minimized player.</string>
+    <string name="revanced_preference_screen_miniplayer_summary">Change the style of the in-app minimized player.</string>
 
     <string name="revanced_miniplayer_type_title">Miniplayer type</string>
     <string name="revanced_miniplayer_type_entry_0">Disabled</string>
@@ -482,7 +540,7 @@ Miniplayer can be dragged to any corner of the screen."</string>
     <string name="revanced_miniplayer_horizontal_drag_title">Enable horizontal drag gesture.</string>
     <string name="revanced_miniplayer_horizontal_drag_summary_on">"Horizontal drag gesture enabled.
 
-Miniplayer can be dragged off screen to the left or right."</string>
+Miniplayer can be dragged off-screen to the left or right."</string>
     <string name="revanced_miniplayer_horizontal_drag_summary_off">Horizontal drag gesture disabled.</string>
     <string name="revanced_miniplayer_hide_expand_close_title">Hide close button</string>
     <string name="revanced_miniplayer_hide_expand_close_summary_on">Close button is hidden.</string>
@@ -505,8 +563,8 @@ Swipe to expand or close."</string>
     <string name="revanced_miniplayer_opacity_summary">Opacity value between 0-100, where 0 is transparent.</string>
     <string name="revanced_miniplayer_opacity_invalid_toast">Miniplayer overlay opacity must be between 0-100.</string>
 
-    <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Navigation bar -->
-    <string name="revanced_preference_screen_navigation_bar_title">Navigation bar</string>
+    <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Navigation Bar -->
+    <string name="revanced_preference_screen_navigation_bar_title">Navigation Bar</string>
     <string name="revanced_preference_screen_navigation_bar_summary">Hide or show navigation bar section components.</string>
 
     <string name="revanced_enable_narrow_navigation_buttons_title">Enable narrow navigation buttons</string>
@@ -567,9 +625,9 @@ If this setting do not take effect, try switching to Incognito mode."</string>
     <string name="revanced_hide_settings_menu_data_saving_title">Hide Data saving menu</string>
     <string name="revanced_hide_settings_menu_data_saving_summary_on">Data saving menu is hidden.</string>
     <string name="revanced_hide_settings_menu_data_saving_summary_off">Data saving menu is shown.</string>
-    <string name="revanced_hide_settings_menu_auto_play_title">Hide Autoplay menu</string>
-    <string name="revanced_hide_settings_menu_auto_play_summary_on">Autoplay menu is hidden.</string>
-    <string name="revanced_hide_settings_menu_auto_play_summary_off">Autoplay menu is shown.</string>
+    <string name="revanced_hide_settings_menu_autoplay_playback_title">Hide Autoplay or Playback menu</string>
+    <string name="revanced_hide_settings_menu_autoplay_playback_summary_on">Autoplay or Playback menu is hidden.</string>
+    <string name="revanced_hide_settings_menu_autoplay_playback_summary_off">Autoplay or Playback menu is shown.</string>
     <string name="revanced_hide_settings_menu_video_quality_title">Hide Video quality preferences menu</string>
     <string name="revanced_hide_settings_menu_video_quality_summary_on">Video quality preferences menu is hidden.</string>
     <string name="revanced_hide_settings_menu_video_quality_summary_off">Video quality preferences menu is shown.</string>
@@ -627,8 +685,8 @@ If this setting do not take effect, try switching to Incognito mode."</string>
     <string name="revanced_enable_wide_search_bar_summary_on">Wide search bar is enabled.</string>
     <string name="revanced_enable_wide_search_bar_summary_off">Wide search bar is disabled.</string>
     <string name="revanced_enable_wide_search_bar_with_header_title">Enable wide search bar with header</string>
-    <string name="revanced_enable_wide_search_bar_with_header_summary_on">Wide search bar does not hide the YouTube header.</string>
-    <string name="revanced_enable_wide_search_bar_with_header_summary_off">Wide search bar hides the YouTube header.</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_on">Wide search bar is enabled along with the YouTube header.</string>
+    <string name="revanced_enable_wide_search_bar_with_header_summary_off">Wide search bar disables and uses the YouTube header space.</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_title">Enable wide search bar in You tab</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_summary">"Enabling this setting will disable the Settings button in the You tab.
 
@@ -679,7 +737,7 @@ Tap and hold to open RVX settings."</string>
     <string name="revanced_disable_auto_switch_mix_playlists_summary_off">"Auto switch mix playlists is enabled when autoplay is turned on.
 
 Autoplay can be changed in YouTube settings:
-Settings → Autoplay → Autoplay next video"</string>
+Settings → Autoplay / Playback → Autoplay next video"</string>
     <string name="revanced_disable_auto_switch_mix_playlists_user_dialog_message">Enabling this feature will disable automatic switching to YouTube Mix when playing music while autoplay is turned on.</string>
     <string name="revanced_disable_auto_player_popup_panels_title">Disable player popup panels</string>
     <string name="revanced_disable_auto_player_popup_panels_summary_on">Auto player popup panels are disabled.</string>
@@ -705,9 +763,9 @@ Note:
     <string name="revanced_hide_end_screen_cards_title">Hide end screen cards</string>
     <string name="revanced_hide_end_screen_cards_summary_on">End screen cards are hidden.</string>
     <string name="revanced_hide_end_screen_cards_summary_off">End screen cards are shown.</string>
-    <string name="revanced_hide_filmstrip_overlay_title">Hide film strip overlay</string>
-    <string name="revanced_hide_filmstrip_overlay_summary_on">Film strip overlay is hidden.</string>
-    <string name="revanced_hide_filmstrip_overlay_summary_off">Film strip overlay is shown.</string>
+    <string name="revanced_hide_filmstrip_overlay_title">Hide filmstrip overlay</string>
+    <string name="revanced_hide_filmstrip_overlay_summary_on">Filmstrip overlay is hidden.</string>
+    <string name="revanced_hide_filmstrip_overlay_summary_off">Filmstrip overlay is shown.</string>
     <string name="revanced_hide_info_cards_title">Hide info cards</string>
     <string name="revanced_hide_info_cards_summary_on">Info cards are hidden.</string>
     <string name="revanced_hide_info_cards_summary_off">Info cards are shown.</string>
@@ -995,7 +1053,8 @@ Limitation: Video title disappears when clicked."</string>
     <string name="revanced_enable_compact_controls_overlay_summary_on">Controls overlay does not fill the fullscreen.</string>
     <string name="revanced_enable_compact_controls_overlay_summary_off">Controls overlay fills the fullscreen.</string>
     <string name="revanced_keep_landscape_mode_title">Keep landscape mode</string>
-    <string name="revanced_keep_landscape_mode_summary">Keeps landscape mode when turning the screen off and on in fullscreen.</string>
+    <string name="revanced_keep_landscape_mode_summary_on">Videos continue to play in landscape mode after turning the screen off and on.</string>
+    <string name="revanced_keep_landscape_mode_summary_off">Videos play in portrait mode after turning the screen off and on.</string>
     <string name="revanced_keep_landscape_mode_timeout_title">Keep landscape mode timeout</string>
     <string name="revanced_keep_landscape_mode_timeout_summary">The amount of milliseconds the landscape mode is forced after the screen in turned on.</string>
 
@@ -1634,7 +1693,7 @@ Limitation: Dislikes may not appear if the user is not logged in or in incognito
 
 The daily quota for API keys on the free plan is 10,000, and 1 quota is used to replace a handle with a username for 1 comment.
 
-Click to see how to issue a API key."</string>
+Click to see how to issue an API key."</string>
     <string name="revanced_return_youtube_username_youtube_data_api_v3_dialog_title">Issue YouTube Data API v3 developer key</string>
     <string name="revanced_return_youtube_username_youtube_data_api_v3_dialog_message">1. Go to &lt;a href=%1$s>Create a new project&lt;/a>.&lt;br>2. Click the &lt;b>CREATE&lt;/b> button.&lt;br>3. Go to &lt;a href=%2$s>YouTube Data API v3&lt;/a>.&lt;br>4. Click the &lt;b>ENABLE&lt;/b> button.&lt;br>5. Click the &lt;b>CREATE CREDENTIALS&lt;/b> button.&lt;br>6. Select the &lt;b>Public data&lt;/b> option.&lt;br>7. Click the &lt;b>NEXT&lt;/b> button.&lt;br>8. Copy the API key.&lt;br>&lt;br>※ API key should never be shared with others, so it is not included in Import / Export settings.</string>
 
@@ -1642,7 +1701,7 @@ Click to see how to issue a API key."</string>
     <string name="revanced_preference_screen_sb_title">SponsorBlock</string>
 
     <string name="revanced_sb_enable_sb">Enable SponsorBlock</string>
-    <string name="revanced_sb_enable_sb_sum">SponsorBlock is a crowd-sourced system for skipping annoying parts of YouTube videos.</string>
+    <string name="revanced_sb_enable_sb_sum">SponsorBlock is a crowdsourced system for skipping annoying parts of YouTube videos.</string>
 
     <!-- PreferenceScreen: SponsorBlock, PreferenceCategory: Appearance -->
     <string name="revanced_sb_appearance_category">Appearance</string>
@@ -1766,8 +1825,8 @@ Click to see how to issue a API key."</string>
     <string name="revanced_sb_api_url_changed">API URL changed.</string>
     <string name="revanced_sb_settings_copy">Copy</string>
     <string name="revanced_sb_settings_ie">Import / Export settings</string>
-    <string name="revanced_sb_settings_ie_sum">Your SponsorBlock JSON configuration that can be imported / exported to ReVanced Extended and other SponsorBlock platforms.</string>
-    <string name="revanced_sb_settings_ie_sum_warning">Your SponsorBlock JSON configuration that can be imported / exported to ReVanced Extended and other SponsorBlock platforms. This includes your private user id. Be sure to share this wisely.</string>
+    <string name="revanced_sb_settings_ie_sum">Your SponsorBlock JSON configuration that can be imported / exported to RVX and other SponsorBlock platforms.</string>
+    <string name="revanced_sb_settings_ie_sum_warning">Your SponsorBlock JSON configuration that can be imported / exported to RVX and other SponsorBlock platforms. This includes your private user id. Be sure to share this wisely.</string>
     <string name="revanced_sb_settings_import_successful">Settings imported successfully.</string>
     <string name="revanced_sb_settings_import_failed">Failed to import: %s.</string>
     <string name="revanced_sb_settings_export_failed">Failed to export: %s.</string>
@@ -1849,7 +1908,7 @@ Click to see how to issue a API key."</string>
     <string name="revanced_bypass_url_redirects_summary_on">URL redirects are bypassed.</string>
     <string name="revanced_bypass_url_redirects_summary_off">URL redirects are not bypassed.</string>
     <string name="revanced_disable_quic_protocol_title">Disable QUIC protocol</string>
-    <string name="revanced_disable_quic_protocol_summary">"Disable CronetEngine's QUIC protocol."</string>
+    <string name="revanced_disable_quic_protocol_summary">"Disables CronetEngine's QUIC protocol."</string>
     <string name="revanced_enable_debug_logging_title">Enable debug logging</string>
     <string name="revanced_enable_debug_logging_summary_on">Debug logs are enabled.</string>
     <string name="revanced_enable_debug_logging_summary_off">Debug logs are disabled.</string>
@@ -1863,10 +1922,10 @@ Click to see how to issue a API key."</string>
     <string name="revanced_sanitize_sharing_links_summary">Sanitizes sharing links by removing tracking query parameters.</string>
 
     <string name="revanced_default_app_settings_title">Open default app settings</string>
-    <string name="revanced_default_app_settings_summary">To open YouTube links in RVX, enable \'Open supported links\' and enable the supported web addresses.</string>
+    <string name="revanced_default_app_settings_summary">To open YouTube links in RVX, enable Open supported links and enable all the Supported web addresses.</string>
 
     <string name="gms_core_settings_title">Open GmsCore settings</string>
-    <string name="gms_core_settings_summary">Opens GmsCore settings. Then enable cloud messaging to receive notifications.</string>
+    <string name="gms_core_settings_summary">To receive notifications in RVX, enable Cloud Messaging.</string>
     <string name="gms_core_toast_not_installed_message">GmsCore is not installed. Install it.</string>
     <string name="gms_core_dialog_title">Action needed</string>
     <string name="gms_core_dialog_not_whitelisted_not_allowed_in_background_message">"GmsCore does not have permission to run in the background.
@@ -1886,11 +1945,11 @@ Tap the continue button and allow optimization changes."</string>
     <string name="revanced_change_share_sheet_summary_on">System share sheet is used.</string>
     <string name="revanced_change_share_sheet_summary_off">In-app share sheet is used.</string>
     <string name="revanced_enable_opus_codec_title">Enable OPUS codec</string>
-    <string name="revanced_enable_opus_codec_summary">Enable the OPUS codec if the player response includes the OPUS codec.</string>
+    <string name="revanced_enable_opus_codec_summary">Enables the OPUS codec if the player response includes it.</string>
 
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings -->
     <string name="revanced_preference_screen_import_export_title">Import / Export settings</string>
-    <string name="revanced_preference_screen_import_export_summary">Import or export settings.</string>
+    <string name="revanced_preference_screen_import_export_summary">Import / Export RVX settings.</string>
 
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings, PreferenceCategory: Import / Export as file -->
     <string name="revanced_preference_category_import_export_as_file">Import / Export as file</string>
@@ -1902,7 +1961,7 @@ Tap the continue button and allow optimization changes."</string>
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Import / Export settings, PreferenceCategory: Import / Export as text -->
     <string name="revanced_preference_category_import_export_as_text">Import / Export as text</string>
     <string name="revanced_extended_settings_import_export_as_text_title">Import / Export as text</string>
-    <string name="revanced_extended_settings_import_export_as_text_summary">Import or export settings as text.</string>
+    <string name="revanced_extended_settings_import_export_as_text_summary">Import / Export settings as text.</string>
 
     <string name="revanced_extended_settings_export_failed">Failed to export settings.</string>
     <string name="revanced_extended_settings_export_success">Settings were successfully exported.</string>
@@ -1925,6 +1984,8 @@ Tap the continue button and allow optimization changes."</string>
     <string name="revanced_spoof_streaming_data_type_entry_android_unplugged">"Android TV
 <small>(Login required)</small>"</string>
     <string name="revanced_spoof_streaming_data_type_entry_android_vr">Android VR</string>
+    <string name="revanced_spoof_streaming_data_type_entry_android_vr_no_auth">"Android VR
+<small>(No auth)</small>"</string>
     <string name="revanced_spoof_streaming_data_type_entry_ios">"iOS
 <small>(PoToken required)</small>"</string>
     <string name="revanced_spoof_streaming_data_type_entry_ios_unplugged">"iOS TV
@@ -1946,6 +2007,7 @@ AVC has a maximum resolution of 1080p, Opus audio codec is not available, and vi
     <string name="revanced_spoof_streaming_data_stats_for_nerds_title">Show in Stats for nerds</string>
     <string name="revanced_spoof_streaming_data_stats_for_nerds_summary_on">Client used to fetch streaming data is shown in Stats for nerds.</string>
     <string name="revanced_spoof_streaming_data_stats_for_nerds_summary_off">Client used to fetch streaming data is hidden in Stats for nerds.</string>
+    <string name="revanced_spoof_streaming_data_language_title">VR default audio stream language</string>
 
     <!-- PreferenceScreen: Miscellaneous, PreferenceCategory: Miscellaneous, PreferenceScreen: Spoof streaming data, PreferenceCategory: PoToken / VisitorData -->
     <string name="revanced_preference_category_po_token_visitor_data">PoToken / VisitorData</string>

@@ -21,6 +21,7 @@ import app.revanced.extension.shared.utils.Utils;
 import app.revanced.extension.youtube.settings.Settings;
 import app.revanced.extension.youtube.shared.ShortsPlayerState;
 import app.revanced.extension.youtube.utils.VideoUtils;
+import kotlin.Unit;
 
 @SuppressWarnings("unused")
 public class ShortsPatch {
@@ -34,7 +35,7 @@ public class ShortsPatch {
         if (HIDE_SHORTS_NAVIGATION_BAR) {
             ShortsPlayerState.getOnChange().addObserver((ShortsPlayerState state) -> {
                 setNavigationBarLayoutParams(state);
-                return null;
+                return Unit.INSTANCE;
             });
         }
         final int bottomMargin = validateValue(
@@ -58,6 +59,10 @@ public class ShortsPatch {
 
     public static boolean disableResumingStartupShortsPlayer() {
         return Settings.DISABLE_RESUMING_SHORTS_PLAYER.get();
+    }
+
+    public static boolean disableResumingStartupShortsPlayer(boolean original) {
+        return !Settings.DISABLE_RESUMING_SHORTS_PLAYER.get() && original;
     }
 
     public static boolean enableShortsTimeStamp(boolean original) {
