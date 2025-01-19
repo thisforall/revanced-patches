@@ -9,7 +9,7 @@
     <string name="revanced_extended_settings_search_title">Search %s</string>
     <string name="revanced_extended_reset_to_default_toast">Reset to default values.</string>
 
-    <string name="revanced_preference_category_experimental_flag">Experimental Flags</string>
+    <string name="revanced_preference_category_experimental_flag">Experimental flags</string>
     <string name="revanced_extended_confirm_user_dialog_title">Do you wish to proceed?</string>
     <string name="revanced_extended_restart_first_run">Restart to load the layout normally</string>
     <string name="revanced_extended_restart_message">Refresh and restart</string>
@@ -499,7 +499,7 @@ Some components may not be hidden."</string>
     <string name="revanced_external_downloader_package_name_playlist_title">Playlist downloader package name</string>
     <string name="revanced_external_downloader_package_name_playlist_summary">Package name of your installed external downloader app, such as YTDLnis.</string>
 
-    <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Hook buttons, PreferenceCategory: Experimental Flags -->
+    <!-- PreferenceScreen: General, PreferenceCategory: General, PreferenceScreen: Hook buttons, PreferenceCategory: Experimental flags -->
     <string name="revanced_override_youtube_music_button_title">Override YouTube Music button</string>
     <string name="revanced_override_youtube_music_button_summary_on">YouTube Music button opens the RVX Music.</string>
     <string name="revanced_override_youtube_music_button_summary_off">YouTube Music button opens the native app.</string>
@@ -690,9 +690,11 @@ If this setting do not take effect, try switching to Incognito mode."</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_title">Enable wide search bar in You tab</string>
     <string name="revanced_enable_wide_search_bar_in_you_tab_summary_on">"Wide search bar is enabled in the You tab.
 
-Enabling this setting will disable the Settings button in the You tab. In this case, please use the following path to access settings:
+To access settings, please use the following path:
 You tab → View channel → Menu → Settings"</string>
-    <string name="revanced_enable_wide_search_bar_in_you_tab_summary_off">Wide search bar is disabled in the You tab.</string>
+    <string name="revanced_enable_wide_search_bar_in_you_tab_summary_off">"Wide search bar is disabled in the You tab.
+        
+Enabling this setting will disable the Settings button in the You tab."</string>
     <string name="revanced_hide_toolbar_cast_button_title">Hide Cast button</string>
     <string name="revanced_hide_toolbar_cast_button_summary_on">Cast button is hidden.</string>
     <string name="revanced_hide_toolbar_cast_button_summary_off">Cast button is shown.</string>
@@ -1046,7 +1048,7 @@ Limitation: Video title disappears when clicked."</string>
     <string name="revanced_quick_actions_top_margin_summary">Configure the spacing from the seekbar to the quick action container, between 0-32.</string>
     <string name="revanced_quick_actions_top_margin_invalid_toast">Quick actions top margin must be between 0-32.</string>
 
-    <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen, PreferenceCategory: Experimental Flags -->
+    <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Fullscreen, PreferenceCategory: Experimental flags -->
     <string name="revanced_disable_landscape_mode_title">Disable landscape mode</string>
     <string name="revanced_disable_landscape_mode_summary_on">Video orientation is portrait mode in fullscreen.</string>
     <string name="revanced_disable_landscape_mode_summary_off">Video orientation follows device settings in fullscreen.</string>
@@ -1256,7 +1258,7 @@ This feature works best with a very fast internet connection."</string>
     <string name="revanced_hide_transcript_section_summary_on">Transcript section is hidden.</string>
     <string name="revanced_hide_transcript_section_summary_off">Transcript section is shown.</string>
 
-    <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description, PreferenceCategory: Experimental Flags -->
+    <!-- PreferenceScreen: Player, PreferenceCategory: Player, PreferenceScreen: Video description, PreferenceCategory: Experimental flags -->
     <string name="revanced_disable_video_description_interaction_title">Disable video description interaction</string>
     <string name="revanced_disable_video_description_interaction_summary">"Disables the following interactions when the video description is expanded:
 
@@ -1310,7 +1312,7 @@ Info:
     <string name="revanced_hide_shorts_shelf_history_summary_on">Hidden in watch history.</string>
     <string name="revanced_hide_shorts_shelf_history_summary_off">Shown in watch history.</string>
 
-    <!-- PreferenceScreen: Shorts, PreferenceCategory: Experimental Flags -->
+    <!-- PreferenceScreen: Shorts, PreferenceCategory: Experimental flags -->
     <string name="revanced_change_shorts_background_repeat_state_title">Change Shorts background repeat state</string>
     <string name="revanced_change_shorts_repeat_state_title">Change Shorts repeat state</string>
     <string name="revanced_change_shorts_repeat_state_entry_auto_play">Autoplay</string>
@@ -1473,7 +1475,7 @@ Press and hold the More button to show the Custom actions dialog."</string>
 
 Most bugs cannot be fixed due to client-side limitations, so use it only for testing purposes."</string>
 
-    <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Experimental Flags -->
+    <!-- PreferenceScreen: Shorts, PreferenceCategory: Shorts, PreferenceScreen: Shorts player, PreferenceCategory: Experimental flags -->
     <string name="revanced_enable_shorts_time_stamp_title">Enable timestamps</string>
     <string name="revanced_enable_shorts_time_stamp_summary_on">"Timestamp is enabled.
 
