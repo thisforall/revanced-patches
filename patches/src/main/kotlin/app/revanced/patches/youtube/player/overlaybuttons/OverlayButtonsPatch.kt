@@ -184,13 +184,13 @@ val overlayButtonsPatch = resourcePatch(
                     "yt_fill_arrow_repeat_white_24.png",
                     "yt_outline_arrow_repeat_1_white_24.png",
                     "yt_outline_arrow_shuffle_1_white_24.png",
+                    "yt_outline_arrow_shuffle_black_24.png",
+                    "yt_outline_list_play_arrow_black_24.png",
+                    "yt_outline_list_play_arrow_white_24.png",
                     "yt_outline_screen_full_exit_white_24.png",
-                    "yt_outline_screen_full_white_24.png",
                     "yt_outline_screen_full_vd_theme_24.png",
+                    "yt_outline_screen_full_white_24.png",
                     "yt_outline_screen_vertical_vd_theme_24.png",
-		    "yt_outline_arrow_shuffle_black_24.png",
-		    "yt_outline_list_play_arrow_black_24.png",
-		    "yt_outline_list_play_arrow_white_24.png"
                 ),
                 ResourceGroup(
                     "drawable",
@@ -206,11 +206,11 @@ val overlayButtonsPatch = resourcePatch(
             "android.support.constraint.ConstraintLayout"
         )
 
-        var xmlFiles = arrayOf(
-            "youtube_controls_bottom_ui_container.xml", "youtube_controls_fullscreen_button.xml", "youtube_controls_cf_fullscreen_button.xml"
-        )
-
-        xmlFiles.forEach { xmlFile ->
+        arrayOf(
+            "youtube_controls_bottom_ui_container.xml",
+            "youtube_controls_fullscreen_button.xml",
+            "youtube_controls_cf_fullscreen_button.xml"
+        ).forEach { xmlFile ->
             val targetXml = get("res").resolve("layout").resolve(xmlFile)
             if (targetXml.exists()) {
                 document("res/layout/$xmlFile").use { document ->
@@ -223,15 +223,15 @@ val overlayButtonsPatch = resourcePatch(
                                 if (attribute.textContent == "@id/fullscreen_button") {
                                     attribute.textContent = "@+id/speed_dialog_button"
                                 }
-                            }							
-							
-			node.getAttributeNode("yt:layout_constraintBottom_toTopOf")
+                            }
+
+                        node.getAttributeNode("yt:layout_constraintBottom_toTopOf")
                             ?.let { attribute ->
                                 if (attribute.textContent == "@id/quick_actions_container") {
                                     attribute.textContent = "@+id/bottom_margin"
                                 }
                             }
-							
+
                         val (id, height, width) = Triple(
                             node.getAttribute("android:id"),
                             node.getAttribute("android:layout_height"),
@@ -243,7 +243,7 @@ val overlayButtonsPatch = resourcePatch(
                         )
 
                         val isButton = id.endsWith("_button") && id != "@id/multiview_button" || id == "@id/youtube_controls_fullscreen_button_stub"
-						
+
                         // Adjust TimeBar and Chapter bottom padding
                         val timBarItem = mutableMapOf(
                             "@id/time_bar_chapter_title" to "16.0dip",
