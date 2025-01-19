@@ -23,7 +23,7 @@ private const val EXTENSION_CLASS_DESCRIPTOR =
     "$GENERAL_PATH/OpenChannelOfLiveAvatarPatch;"
 
 @Suppress("unused")
-val layoutSwitchPatch = bytecodePatch(
+val openChannelOfLiveAvatarPatch = bytecodePatch(
     CHANGE_LIVE_RING_CLICK_ACTION.title,
     CHANGE_LIVE_RING_CLICK_ACTION.summary,
 ) {
