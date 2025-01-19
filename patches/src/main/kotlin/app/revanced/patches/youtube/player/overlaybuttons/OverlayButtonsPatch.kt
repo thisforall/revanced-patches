@@ -128,7 +128,7 @@ val overlayButtonsPatch = resourcePatch(
         val marginBottom = bottomMarginOption
             .lowerCaseOrThrow()
 
-        val useWiderButtonsSpace = widerButtonsSpace
+        val useWiderButtonsSpace = widerButtonsSpace == true
 
         // Inject hooks for overlay buttons.
         setOf(
@@ -232,9 +232,6 @@ val overlayButtonsPatch = resourcePatch(
                                 }
                             }
 							
-                        if (id == "@id/time_bar_reference_view") {
-                            node.setAttribute("yt:layout_constraintBottom_toTopOf", "@id/quick_actions_container")
-                        }
                         val (id, height, width) = Triple(
                             node.getAttribute("android:id"),
                             node.getAttribute("android:layout_height"),
@@ -274,6 +271,8 @@ val overlayButtonsPatch = resourcePatch(
 
                         if (id.equals("@+id/bottom_margin")) {
                             node.setAttribute("android:layout_height", marginBottom)
+                        } else if (id.equals("@id/time_bar_reference_view")) {
+                            node.setAttribute("yt:layout_constraintBottom_toTopOf", "@id/quick_actions_container")
                         }
                     }
                 }
