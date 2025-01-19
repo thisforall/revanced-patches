@@ -21,9 +21,13 @@ internal enum class PatchList(
         "Bypass URL redirects",
         "Adds an option to bypass URL redirects and open the original URL directly."
     ),
-    LAYOUT_SWITCH(
+    CHANGE_LAYOUT(
         "Change layout",
         "Adds an option to change the dp in order to use a tablet or phone layout."
+    ),
+    CHANGE_LIVE_RING_CLICK_ACTION(
+        "Change live ring click action",
+        "Adds an option to open the channel instead of the live stream when clicking on the live ring."
     ),
     CHANGE_PLAYER_FLYOUT_MENU_TOGGLES(
         "Change player flyout menu toggles",
@@ -156,10 +160,6 @@ internal enum class PatchList(
     HOOK_DOWNLOAD_ACTIONS(
         "Hook download actions",
         "Adds support to download videos with an external downloader app using the in-app download button."
-    ),
-    OPEN_CHANNEL_OF_LIVE_AVATAR(
-        "Live ring click action",
-        "Adds an option to open the channel instead of the live stream when clicking on the live ring."
     ),
     MATERIALYOU(
         "MaterialYou",

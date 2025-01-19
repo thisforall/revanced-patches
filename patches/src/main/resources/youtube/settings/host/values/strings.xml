@@ -437,9 +437,9 @@ This does not bypass the age restriction. It just accepts it automatically."</st
     <string name="revanced_change_layout_entry_3">Phone (Max 480 dp)</string>
     <string name="revanced_change_layout_entry_4">Tablet</string>
     <string name="revanced_change_layout_entry_5">Tablet (Min 600 dp)</string>
-    <string name="revanced_open_channel_of_live_avatar_title">Live ring click action</string>
-    <string name="revanced_open_channel_of_live_avatar_summary_on">Channel opens when the live ring is clicked.</string>
-    <string name="revanced_open_channel_of_live_avatar_summary_off">Live stream opens when the live ring is clicked.</string>
+    <string name="revanced_change_live_ring_click_action_title">Change live ring click action</string>
+    <string name="revanced_change_live_ring_click_action_summary_on">Channel opens when the live ring is clicked.</string>
+    <string name="revanced_change_live_ring_click_action_summary_off">Live stream opens when the live ring is clicked.</string>
     <string name="revanced_spoof_app_version_title">Spoof app version</string>
     <string name="revanced_spoof_app_version_summary_on">Version spoofed</string>
     <string name="revanced_spoof_app_version_summary_off">Version not spoofed</string>
