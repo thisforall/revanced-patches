@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
 
 import app.revanced.extension.shared.patches.components.ByteArrayFilterGroup;
@@ -115,26 +114,27 @@ public final class ShortsCustomActionsFilter extends Filter {
                 return;
             }
             synchronized (lastVideoIds) {
-                if (lastVideoIds.containsKey(videoId)) return;
-                // Put a placeholder first
-                lastVideoIds.put(videoId, null);
-
-                final ByteArrayFilterGroup videoIdFilter = new ByteArrayFilterGroup(null, videoId);
-                lastVideoIds.put(videoId, videoIdFilter);
+                if (!lastVideoIds.containsKey(videoId)) {
+                    // Put a placeholder first
+                    lastVideoIds.put(videoId, null);
+                    lastVideoIds.put(videoId, new ByteArrayFilterGroup(null, videoId));
+                }
             }
         } catch (Exception ex) {
             Logger.printException(() -> "newPlayerResponseVideoId failure", ex);
         }
     }
 
+
     /**
-     * Do pattern search to find the videoId in O(n + m)
-     * If the filter group haven't built yet, fallback to linear search: O(n * m)
+     * This could use {@link TrieSearch}, but since the patterns are constantly changing
+     * the overhead of updating the Trie might negate the search performance gain.
      */
     private static boolean byteArrayContainsString(@NonNull byte[] array, @NonNull String text,
                                                    @Nullable ByteArrayFilterGroup videoIdFilter) {
-        if (videoIdFilter != null) { // Use pattern search if possible
-            return videoIdFilter.check(protobufBufferArray).isFiltered();
+        // If a video filter is available, check it first.
+        if (videoIdFilter != null) {
+            return videoIdFilter.check(array).isFiltered();
         }
         for (int i = 0, lastArrayStartIndex = array.length - text.length(); i <= lastArrayStartIndex; i++) {
             boolean found = true;
