@@ -116,6 +116,8 @@ public final class ShortsCustomActionsFilter extends Filter {
             }
             synchronized (lastVideoIds) {
                 if (lastVideoIds.containsKey(videoId)) return;
+                // Put a placeholder first
+                lastVideoIds.put(videoId, null);
 
                 final ByteArrayFilterGroup videoIdFilter = new ByteArrayFilterGroup(null, videoId);
                 lastVideoIds.put(videoId, videoIdFilter);
@@ -123,6 +125,31 @@ public final class ShortsCustomActionsFilter extends Filter {
         } catch (Exception ex) {
             Logger.printException(() -> "newPlayerResponseVideoId failure", ex);
         }
+    }
+
+    /**
+     * Do pattern search to find the videoId in O(n + m)
+     * If the filter group haven't built yet, fallback to linear search: O(n * m)
+     */
+    private static boolean byteArrayContainsString(@NonNull byte[] array, @NonNull String text,
+                                                   @Nullable ByteArrayFilterGroup videoIdFilter) {
+        if (videoIdFilter != null) { // Use pattern search if possible
+            return videoIdFilter.check(protobufBufferArray).isFiltered();
+        }
+        for (int i = 0, lastArrayStartIndex = array.length - text.length(); i <= lastArrayStartIndex; i++) {
+            boolean found = true;
+            for (int j = 0, textLength = text.length(); j < textLength; j++) {
+                if (array[i + j] != (byte) text.charAt(j)) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -144,10 +171,9 @@ public final class ShortsCustomActionsFilter extends Filter {
     private void findVideoId(byte[] protobufBufferArray) {
         synchronized (lastVideoIds) {
             for (Map.Entry<String, ByteArrayFilterGroup> entry : lastVideoIds.entrySet()) {
+                final String videoId = entry.getKey();
                 final ByteArrayFilterGroup videoIdFilter = entry.getValue();
-
-                if (videoIdFilter.check(protobufBufferArray).isFiltered()) {
-                    final String videoId = entry.getKey();
+                if (byteArrayContainsString(protobufBufferArray, videoId, videoIdFilter)) {
                     setShortsVideoId(videoId, false);
                     return;
                 }
