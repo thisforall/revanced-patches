@@ -326,6 +326,18 @@ val snackBarComponentsPatch = resourcePatch(
             }
         }
 
+        document("res/values/dimens.xml").use { document ->
+            document.getElementsByTagName("dimen")
+            .first { it.getAttribute("name") == "snackbar_corner_radius" }
+            .textContent = cornerRadius
+        }
+
+        document("res/drawable/playlist_entry_point_corner_drawable.xml").use { document ->
+            document.getNode("corners").apply {
+                attributes.getNamedItem("android:radius").nodeValue = cornerRadius
+            }
+        }
+
         // region add settings
 
         addPreference(
