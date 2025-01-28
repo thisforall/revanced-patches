@@ -6,7 +6,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWith
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.booleanOption
 import app.revanced.patcher.patch.bytecodePatch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.litho.addLithoFilter
@@ -40,7 +39,6 @@ import app.revanced.patches.youtube.video.information.videoEndMethod
 import app.revanced.patches.youtube.video.information.videoInformationPatch
 import app.revanced.util.Utils.printWarn
 import app.revanced.util.addInstructionsAtControlFlowLabel
-import app.revanced.util.doRecursively
 import app.revanced.util.findMethodOrThrow
 import app.revanced.util.fingerprint.methodOrThrow
 import app.revanced.util.fingerprint.mutableClassOrThrow
@@ -56,7 +54,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
-import org.w3c.dom.Element
 
 private const val FILTER_CLASS_DESCRIPTOR =
     "$COMPONENTS_PATH/QuickActionFilter;"
@@ -85,18 +82,8 @@ val fullscreenComponentsPatch = bytecodePatch(
         versionCheckPatch,
     )
 
-    val hideVideoInfo by booleanOption(
-        key = "hideVideoInfo",
-        default = false,
-        title = "Hide video info in related video overlay",
-        description = "Hide video info in related video overlay (contains Store ads in some cases).",
-        required = true
-    )
-
     execute {
 
-        val VideoInfo = hideVideoInfo == true
-        
         var settingArray = arrayOf(
             "PREFERENCE_SCREEN: PLAYER",
             "SETTINGS: FULLSCREEN_COMPONENTS"
@@ -197,28 +184,6 @@ val fullscreenComponentsPatch = bytecodePatch(
                             """, ExternalLabel("show", getInstruction(0))
                     )
                 } ?: throw PatchException("Could not find targetMethod")
-        }
-
-        if (VideoInfo) {
-            arrayOf(
-                "fullscreen_engagement_overlay.xml"
-            ).forEach { xmlFile ->
-                val targetXml = get("res").resolve("layout").resolve(xmlFile)
-                if (targetXml.exists()) {
-                    document("res/layout/$xmlFile").use { document ->
-                        document.doRecursively loop@{ node ->
-                            if (node !is Element) return@loop
-
-                            val id = node.getAttribute("android:id")
-
-                            if (id.equals("@id/engagement_header_background") || id.equals("@id/engagement_title") || id.equals("@id/metadata_highlights")) {
-                                node.setAttribute("android:layout_height", "0.0dip")
-                                node.setAttribute("android:layout_width", "0.0dip")
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         // endregion
