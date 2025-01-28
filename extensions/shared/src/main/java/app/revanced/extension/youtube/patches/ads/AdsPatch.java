@@ -20,6 +20,10 @@ public class AdsPatch {
     private static final boolean HIDE_VIDEO_ADS =
             Settings.HIDE_VIDEO_ADS.get();
 
+    // https://encrypted-tbn0.gstatic.com/shopping?q=tbn
+    private static final String STORE_BANNER_DOMAIN =
+            "gstatic.com/shopping";
+
     /**
      * Injection point.
      * Hide the view, which shows ads in the homepage.
@@ -38,7 +42,7 @@ public class AdsPatch {
      */
     public static void hideEndScreenStoreBanner(List<Object> elementsList, Object protobufList) {
         if (HIDE_END_SCREEN_STORE_BANNER &&
-                protobufList.toString().contains("gstatic.com/shopping")) {
+                protobufList.toString().contains(STORE_BANNER_DOMAIN)) {
             Logger.printDebug(() -> "Hiding store banner");
             return;
         }
