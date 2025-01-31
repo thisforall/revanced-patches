@@ -327,9 +327,16 @@ val snackBarComponentsPatch = resourcePatch(
         }
 
         document("res/values/dimens.xml").use { document ->
-            document.getElementsByTagName("dimen")
-            .first { it.getAttribute("name") == "snackbar_corner_radius" }
-            .textContent = cornerRadius
+            val resourcesNode = document.getElementsByTagName("resources").item(0) as Element
+
+            for (i in 0 until resourcesNode.childNodes.length) {
+                val node = resourcesNode.childNodes.item(i) as? Element ?: continue
+                val dimenName = node.getAttribute("name")
+
+                if (dimenName.equals("snackbar_corner_radius")) {
+                    node.textContent = cornerRadius
+                }
+            }
         }
 
         document("res/drawable/playlist_entry_point_corner_drawable.xml").use { document ->
