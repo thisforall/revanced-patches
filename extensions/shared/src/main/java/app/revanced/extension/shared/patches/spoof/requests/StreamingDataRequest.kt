@@ -177,7 +177,7 @@ class StreamingDataRequest private constructor(
                     botGuardPoToken = poTokenGenerator.getPoTokenResult(Utils.getActivity())?.let {
                         connection.setRequestProperty(VISITOR_ID_HEADER, it.visitorId)
                         it.botGuardPoToken
-                    } ?: null
+                    } ?: return null
                 }
 
                 val requestBody = createApplicationRequestBody(
