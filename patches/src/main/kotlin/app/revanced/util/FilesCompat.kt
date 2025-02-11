@@ -8,12 +8,12 @@ import java.nio.file.StandardCopyOption
 /**
  * Provides java.nio.file.Files compatible functions.
  *
- * This is needed for ReVanced Manager running on Android 5.0-7.1
- * because before Android 8.0 does not have java.nio.file API.
+ * This is needed for the ReVanced Manager running on Android 5.0-7.1
+ * because Android 7.1 and below does not support the Java NIO2 Files API.
  */
 internal object FilesCompat {
     private val useCompat = try {
-        // Check existence of java.nio.file.Files class
+        // Check for the existence of java.nio.file.Files class
         Class.forName("java.nio.file.Files")
         false
     } catch (_ : ClassNotFoundException) {
