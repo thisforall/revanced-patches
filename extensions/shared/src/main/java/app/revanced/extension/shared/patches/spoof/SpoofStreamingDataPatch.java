@@ -1,8 +1,12 @@
 package app.revanced.extension.shared.patches.spoof;
 
+import static app.revanced.extension.shared.utils.Utils.runOnBackgroundThread;
+
+import android.app.Activity;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.nio.ByteBuffer;
@@ -11,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import app.revanced.extension.shared.patches.client.YouTubeAppClient.ClientType;
+import app.revanced.extension.shared.patches.spoof.potoken.PoTokenGenerator;
 import app.revanced.extension.shared.patches.spoof.requests.StreamingDataRequest;
 import app.revanced.extension.shared.settings.BaseSettings;
 import app.revanced.extension.shared.settings.Setting;
@@ -24,6 +29,8 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
      */
     private static final String UNREACHABLE_HOST_URI_STRING = "https://127.0.0.0";
     private static final Uri UNREACHABLE_HOST_URI = Uri.parse(UNREACHABLE_HOST_URI_STRING);
+
+    private static volatile boolean shouldRefreshPoToken = true;
 
     /**
      * Key: video id
@@ -44,6 +51,22 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
      */
     public static boolean isSpoofingEnabled() {
         return SPOOF_STREAMING_DATA;
+    }
+
+    /**
+     * Injection point.
+     * This method is invoked at the app startup.
+     */
+    public static void initializePoTokenWebView(@NonNull Activity mActivity) {
+        if (!SPOOF_STREAMING_DATA) return;
+
+        runOnBackgroundThread(() -> {
+            try {
+                new PoTokenGenerator().getPoTokenResult(mActivity, true);
+            } catch (Exception ex) {
+                Logger.printException(() -> "Failed to initialize PoToken WebView", ex);
+            }
+        });
     }
 
     /**
@@ -96,6 +119,8 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
 
                     var stream = request.getStream();
                     if (stream != null) {
+                        shouldRefreshPoToken = true;
+
                         Logger.printDebug(() -> "Overriding video stream: " + videoId);
                         return stream;
                     }
@@ -149,6 +174,18 @@ public class SpoofStreamingDataPatch extends BlockRequestPatch {
             }
         }
         return Long.MAX_VALUE;
+    }
+
+    /**
+     * Injection point. Runs off the main thread.
+     * <p>
+     * This method is called when returning a 403 response.
+     */
+    public static void onResponseCode(int responseCode) {
+        if (SPOOF_STREAMING_DATA && shouldRefreshPoToken && responseCode == 403) {
+            shouldRefreshPoToken = false;
+            new PoTokenGenerator().getPoTokenResult(Utils.getActivity(), true);
+        }
     }
 
     /**

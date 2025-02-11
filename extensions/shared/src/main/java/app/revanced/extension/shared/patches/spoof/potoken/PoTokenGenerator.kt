@@ -82,12 +82,13 @@ class PoTokenGenerator {
         return null
     }
 
-    fun getPoTokenResult(activity: Activity): PoTokenResult? {
+    fun getPoTokenResult(activity: Activity, forceCreate: Boolean = false): PoTokenResult? {
         if (!supportsWebView) {
+            Logger.printDebug { "WebView is not supported. Cannot obtain PoToken" }
             return null
         }
         synchronized(PoTokenGenLock) {
-            val shouldRecreate = poTokenGenerator == null || poTokenGenerator!!.isExpired()
+            val shouldRecreate = forceCreate || poTokenGenerator == null || poTokenGenerator!!.isExpired()
 
             if (shouldRecreate) {
                 visitorData = fetchVisitorData() ?: throw PoTokenException("Visitor data is null")

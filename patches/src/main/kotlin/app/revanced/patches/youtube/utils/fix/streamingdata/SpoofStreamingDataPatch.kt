@@ -19,7 +19,6 @@ import app.revanced.patches.shared.spoof.blockrequest.blockRequestPatch
 import app.revanced.patches.shared.spoof.useragent.baseSpoofUserAgentPatch
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.compatibility.Constants.YOUTUBE_PACKAGE_NAME
-import app.revanced.patches.youtube.utils.extension.Constants.INITIALIZATION_CLASS_DESCRIPTOR
 import app.revanced.patches.youtube.utils.patch.PatchList.SPOOF_STREAMING_DATA
 import app.revanced.patches.youtube.utils.mainactivity.mainActivityResolvePatch
 import app.revanced.patches.youtube.utils.request.buildRequestPatch
@@ -347,8 +346,17 @@ val spoofStreamingDataPatch = bytecodePatch(
         // region Initialize PoToken WebView.
 
         injectOnCreateMethodCall(
-            INITIALIZATION_CLASS_DESCRIPTOR,
+            EXTENSION_CLASS_DESCRIPTOR,
             "initializePoTokenWebView"
+        )
+
+        // endregion
+
+        // region Regenerate PoToken when video playback got Bad Response.
+
+        badResponseFingerprint.methodOrThrow().addInstruction(
+            0,
+            "invoke-static { p1 }, $EXTENSION_CLASS_DESCRIPTOR->onResponseCode(I)V"
         )
 
         // endregion
